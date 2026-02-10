@@ -1,0 +1,16 @@
+@import url(../font/Pretendard-1.3.9);
+
+body {
+    background-color: #1A1A1A;
+    color: white;
+}
+
+header {
+    width: 100%;
+}
+header .header-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+header a {color: white;}
