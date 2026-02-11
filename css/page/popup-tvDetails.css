@@ -1,0 +1,127 @@
+@import url(../reset.css);
+@import url(../common.css);
+
+
+.popup{width: 1100px; margin: 150px auto;}
+.popup .wrap { margin: 0 auto;}
+.popup>p>img{
+    width: 250px; height: 380px;}
+
+.title {display: flex;
+}
+
+
+.title .txt {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.title .txt>p:nth-of-type(1){
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 5px;
+}
+.title .txt>p:nth-of-type(2){
+    font-size: 14px;
+    
+    padding: 10px;
+}
+.popup .txt>b {
+    padding-right: 10px;
+    font-size: 28px;}
+
+.bodytxt{padding: 0 5px 0 27px;}    
+
+.drama{color: #b0b0b0; font-size: 14px;}
+
+.txt2{
+    display: block; 
+    margin: 18px 0; }
+.txt2>p{padding-bottom: 18px;}
+
+.txt2>span{
+
+    font-size: 14px;
+    border: 1px solid white;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 100px;
+    display: inline-block;
+}
+
+.txt3>p{
+    font-weight: bold;
+    font-size: 14px;}
+.txt3>span{font-size: 13px;}    
+.txt3{
+    display: block; 
+    margin: 18px 0; 
+    padding-bottom: 18px;
+}
+.txt4{
+    margin: 18px 0; 
+    padding-bottom: 18px;
+}
+.txt4>p{
+    font-weight: bold;
+    font-size: 14px;}
+.txt4>span{font-size: 13px;}
+
+
+.movie{padding: 100px 0;}
+.mov{
+    display: flex;
+    justify-content: space-between;    
+}
+.mov>p{padding-top: 30px; width: 550px;}
+.mov>p>img{width: 95%;}
+
+
+
+.act-img{display: flex; padding: 30px 0; }
+.act-img>li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 30px;
+}
+.act-img>li>p{width: 60px; height: 60px;
+text-align: center;}
+.act-img>li>p>img{width: 100%; height: 100%; border-radius: 100%;}
+
+.act-img>li>b{font-size: 15px; padding: 15px 0 5px 0;}
+.act-img>li>p{font-size: 12px;}
+
+
+.Episode{padding: 100px 0;}
+.solid>b{font-size: 24px;}
+.solid>a{
+    font-weight: bold;
+    font-size: 16px;
+    background-color: black;
+    border: 1px solid #FF3535;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    display: inline-block;
+}
+.solid>a::after{
+   content:
+   url(../../image/ic-uil_angle-down.png);
+   display: inline-block;
+}
+
+.con>p{width: 96px;} .con>p>img{width: 100%;}
+.con{
+    display: flex;
+    align-items: center;
+    padding: 65px 0; 
+    width: 100%;   
+}
+.con>span{padding: 0 20px; } 
+.con>span::before{
+    content: " · " ;
+}
+
+
+

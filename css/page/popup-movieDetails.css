@@ -1,0 +1,6 @@
+@import url('../common.css');
+@import url('../reset.css');
+
+.popup{width: 1100px; margin: 150px auto;}
+.wrap { margin: 0 auto;}
+
