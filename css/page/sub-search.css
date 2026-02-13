@@ -1,10 +1,10 @@
-@import url(./reset.css);
-@import url(./common.css);
+@import url(../reset.css);
+@import url(../common.css);
 
 .top-back {
     width: 100%;
     height: 380px;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../image/img-back.jpg) center center / cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../image/img-back.jpg) center center / cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,7 +33,7 @@
 }
 
 .header-search>div:nth-of-type(1)::after {
-    content: url(../image/ic_search.svg);
+    content: url(../../image/ic_search.svg);
     display: flex;
     align-items: center;
     padding: 0 10px;
