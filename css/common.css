@@ -1,14 +1,15 @@
 body {
     background-color: #1A1A1A;
     color: white;
-    
+
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 /*                         header                       */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 header {
-    width: 100%; height: 60px;
+    width: 100%;
+    height: 60px;
     background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
@@ -16,10 +17,10 @@ header {
     flex-direction: column;
     gap: 140px;
     justify-content: flex-start;
-    padding-top: 12.5px;
     position: fixed;
     transition: 0.1s;
 }
+
 header.active {
     height: 380px;
 }
@@ -28,7 +29,7 @@ header.active {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 12.5px 20px;
 }
 
 .header-left {
@@ -41,6 +42,7 @@ header nav {
     align-items: center;
     gap: 40px;
 }
+
 header nav.active {
     display: none;
 }
@@ -52,6 +54,7 @@ header a {
 .header-search {
     display: none;
 }
+
 .header-search.active {
     width: 425px;
     display: flex;
@@ -59,23 +62,28 @@ header a {
     align-items: center;
     gap: 30px;
 }
+
 .header-search-box {
-    width: 380px; height: 40px;
+    width: 380px;
+    height: 40px;
     border-bottom: 1px solid white;
 }
+
 .header-search-box p {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
 }
-.header-search > div:nth-of-type(1)::after {
+
+.header-search-box::after {
     content: url(../image/ic_search.svg);
     display: flex;
     align-items: center;
     padding: 0 10px;
 }
+
 .header-search div {
     width: 100%;
     display: flex;
@@ -83,13 +91,15 @@ header a {
 }
 
 .header-icon {
-    width: 35px; height: 35px;
+    width: 35px;
+    height: 35px;
     border: 1px solid white;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .header-icon.active {
     border: 0;
 }
@@ -100,22 +110,26 @@ header a {
 /*                         footer                       */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 footer {
-    width: 100%; height: 260px;
+    width: 100%;
+    height: 260px;
     background: linear-gradient(rgba(126, 30, 30, 0), rgba(126, 30, 30));
     font-size: 14px;
     display: flex;
     align-items: flex-end;
 }
+
 .footer-box {
     margin: 20px;
-    
+
 }
+
 .footer-text {
     padding: 10px 0;
     display: flex;
     align-items: center;
     gap: 60px;
 }
+
 .footer-text div {
     display: flex;
     gap: 20px
@@ -124,4 +138,388 @@ footer {
 .contour::after {
     content: '│';
     padding: 0 10px;
+}
+
+
+/* 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width:768px) and (max-width:1023px) {
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /*                         header                       */
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    header {
+        height: 34px;
+        gap: 0;
+    }
+    
+    header.active {
+        height: 154px;
+    }
+    
+    .header-box {
+        padding: 7px 10px;
+    }
+    
+    .header-left {
+        gap: 20px;
+    }
+    
+    header .logo {
+        width: auto;
+        height: 20px;
+        display: flex;
+    }
+    header .logo img {
+        width: auto;
+        height: 100%;
+    }
+
+    header nav {
+        gap: 15px;
+    }
+
+    header a {
+        font-size: 12px;
+    }
+
+    .header-search.active {
+        width: 300px;
+        gap: 10px;
+    }
+
+    .header-search-box {
+        align-items: flex-end;
+    }
+
+    .header-search-box p {
+        font-size: 12px;
+        padding-bottom: 3px;
+    }
+
+    .header-search-box::after {
+        content: '';
+        background: url(../image/ic_search2.svg) center center / cover no-repeat;
+        width: 15px;
+        height: 15px;
+        padding: 0;
+        margin: 3px;
+    }
+
+    .header-search .recommend {
+        font-size: 12px;
+    }
+
+    .header-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .header-icon img {
+        width: 12px;
+        height: 12px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /*                         footer                       */
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    footer {
+        width: 100%;
+        height: 150px;
+        font-size: 10px;
+    }
+
+    footer .logo {
+        width: auto;
+        height: 20px;
+        display: flex;
+    }
+    footer .logo img {
+        width: auto;
+        height: 100%;
+    }
+
+    .footer-box {
+        margin: 10px;
+    }
+
+    .footer-text {
+        padding: 3px 0;
+        gap: 20px;
+    }
+
+    .footer-text div {
+        display: flex;
+        gap: 0px;
+    }
+
+    .footer-text .text b {
+        padding-right: 5px;
+    }
+
+    .contour::after {
+        padding: 0 5px;
+    }
+}
+
+/* 모바일 가로 & 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width:480px) and (max-width:767px) {
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /*                         header                       */
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    header {
+        height: 34px;
+        gap: 0;
+    }
+    
+    header.active {
+        height: 154px;
+    }
+    
+    .header-box {
+        padding: 7px 10px;
+    }
+    
+    .header-left {
+        gap: 20px;
+    }
+    
+    header .logo {
+        width: auto;
+        height: 20px;
+        display: flex;
+    }
+    header .logo img {
+        width: auto;
+        height: 100%;
+    }
+
+    header nav {
+        gap: 15px;
+    }
+
+    header a {
+        font-size: 12px;
+    }
+
+    .header-search.active {
+        width: 300px;
+        gap: 10px;
+    }
+
+    .header-search-box {
+        align-items: flex-end;
+    }
+
+    .header-search-box p {
+        font-size: 12px;
+        padding-bottom: 3px;
+    }
+
+    .header-search-box::after {
+        content: '';
+        background: url(../image/ic_search2.svg) center center / cover no-repeat;
+        width: 15px;
+        height: 15px;
+        padding: 0;
+        margin: 3px;
+    }
+
+    .header-search .recommend {
+        font-size: 12px;
+    }
+
+    .header-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .header-icon img {
+        width: 12px;
+        height: 12px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /*                         footer                       */
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    footer {
+        width: 100%;
+        font-size: 10px;
+    }
+
+    footer .logo {
+        width: auto;
+        height: 20px;
+        display: flex;
+    }
+    footer .logo img {
+        width: auto;
+        height: 100%;
+    }
+
+    .footer-box {
+        margin: 10px;
+    }
+
+    .footer-text {
+        padding: 3px 0;
+        display: flex;
+        gap: 20px;
+    }
+
+    .footer-text:nth-of-type(2) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .footer-text:nth-of-type(3) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .footer-text div {
+        display: flex;
+        gap: 0px;
+    }
+
+    .footer-text .text b {
+        padding-right: 5px;
+    }
+
+    .contour::after {
+        padding: 0 5px;
+    }
+}
+
+/* 모바일 세로 (해상도 ~ 479px)*/
+@media all and (max-width:479px) {
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /*                         header                       */
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    header {
+        height: 34px;
+        gap: 0;
+    }
+    
+    header.active {
+        height: 154px;
+    }
+    
+    .header-box {
+        padding: 7px 10px;
+    }
+    
+    .header-left {
+        gap: 20px;
+    }
+    
+    header .logo {
+        width: auto;
+        height: 20px;
+        display: flex;
+    }
+    header .logo img {
+        width: auto;
+        height: 100%;
+    }
+
+    header nav {
+        gap: 15px;
+    }
+
+    header a {
+        font-size: 12px;
+    }
+
+    .header-search.active {
+        width: 300px;
+        gap: 10px;
+    }
+
+    .header-search-box {
+        align-items: flex-end;
+    }
+
+    .header-search-box p {
+        font-size: 12px;
+        padding-bottom: 3px;
+    }
+
+    .header-search-box::after {
+        content: '';
+        background: url(../image/ic_search2.svg) center center / cover no-repeat;
+        width: 15px;
+        height: 15px;
+        padding: 0;
+        margin: 3px;
+    }
+
+    .header-search .recommend {
+        font-size: 12px;
+    }
+
+    .header-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .header-icon img {
+        width: 12px;
+        height: 12px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /*                         footer                       */
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    footer {
+        width: 100%;
+        font-size: 10px;
+    }
+
+    footer .logo {
+        width: auto;
+        height: 20px;
+        display: flex;
+    }
+    footer .logo img {
+        width: auto;
+        height: 100%;
+    }
+
+    .footer-box {
+        margin: 10px;
+    }
+
+    .footer-text {
+        padding: 3px 0;
+        display: flex;
+        gap: 20px;
+    }
+
+    .footer-text:nth-of-type(2) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+    .footer-text:nth-of-type(3) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .footer-text div {
+        display: flex;
+        gap: 0px;
+    }
+
+    .footer-text .text b {
+        padding-right: 5px;
+    }
+
+    .contour::after {
+        padding: 0 5px;
+    }
 }

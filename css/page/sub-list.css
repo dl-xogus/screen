@@ -7,7 +7,7 @@
     margin: 0 auto;
     display: flex;
     gap: 20px;
-    padding: 30px 0 100px 0;
+    padding: 30px 20px 100px 20px;
     align-items: flex-start;
 }
 
@@ -21,14 +21,17 @@
     width: 263px;
     background-color: #222222;
     border-radius: 12px;
-    border-right: 1px solid rgba(255,255,255,0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    flex-shrink: 0;
 }
 
 .side-menu small {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
     padding: 0 12px;
 }
 
@@ -43,6 +46,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .side-menu .spread span {
     display: flex;
     align-items: center;
@@ -55,21 +59,28 @@
     gap: 10px;
     padding: 15px;
 }
+
 .see .icons a {
-    width: 38px; height: 38px;
+    width: 38px;
+    height: 38px;
 }
+
 .see .icons .netflix {
     background: url(../../image/ic_netflix.svg);
 }
+
 .see .icons .appleTV {
     background: url(../../image/ic_appleTV.svg);
 }
+
 .see .icons .tving {
     background: url(../../image/ic_tving.svg);
 }
+
 .see .icons .wavve {
     background: url(../../image/ic_wavve.svg);
 }
+
 .see .icons .disneyplus {
     background: url(../../image/ic_disneyplus.svg);
 }
@@ -80,14 +91,16 @@
     gap: 6px;
     padding: 12px;
 }
+
 .genre-btn a {
     display: inline-block;
     font-size: 12px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     background-color: #353535;
     padding: 6px 15px;
     border-radius: 99px;
 }
+
 .genre-btn a.active {
     color: rgba(255, 255, 255, 0.8);
     border: 2px solid #FF3535;
@@ -96,8 +109,10 @@
 .side-menu .lineOkbtn {
     width: 100%;
 }
+
 .side-menu .line {
-    width: 100%; height: 1px;
+    width: 100%;
+    height: 1px;
     background-color: #353535;
     margin-bottom: 20px;
 }
@@ -113,7 +128,8 @@
 }
 
 .curation {
-    width: 1397px;
+    flex: 1;
+    min-width: 0;
 }
 
 .sort-tab {
@@ -123,47 +139,64 @@
     justify-content: space-between;
     padding: 20px;
 }
+
 .sort-tab div {
     display: flex;
 }
+
 .sort-tab img {
     padding: 0 5px;
 }
+
 .sort-tab a {
     display: flex;
     align-items: center;
     padding: 0 10px;
     color: #959595;
 }
+
 .sort-tab a.active {
     color: white;
 
 }
+
 .sort-tab a::before {
     content: '';
-    width: 10px; height: 10px;
+    width: 10px;
+    height: 10px;
     margin: 0 5px;
     background: url(../../image/ic_point.svg) center center / cover no-repeat;
 }
+
 .sort-tab a.active::before {
     background: url(../../image/ic_check.svg) center center / cover no-repeat;
 }
 
+.objs {
+    width: 100%;
+}
 .objs .list {
+    width: 100%;
     padding: 30px 0;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
 }
+
+.objs figure {
+    width: 100%;
+}
 .objs figure p {
-    width: 182.43px;
+    width: 100%;
 }
 
 .objs img {
     width: 100%;
     border-radius: 20px 20px 0 0;
 }
-
+.objs-txt {
+    width: 100%;
+}
 .objs-txt p:nth-of-type(1) {
     font-size: 14px;
     white-space: nowrap;
@@ -176,7 +209,8 @@
 }
 
 .objs .more {
-    width: 100%; height: 40px;
+    width: 100%;
+    height: 40px;
     background-color: #FF3535;
     border-radius: 10px;
     display: flex;
@@ -184,9 +218,117 @@
     justify-content: center;
     text-align: center;
 }
+
 .objs .more::before {
     content: '';
-    width: 20px; height: 20px;
+    width: 20px;
+    height: 20px;
     margin: 0 5px;
     background: url(../../image/ic_down.svg) center center / cover no-repeat;
+}
+
+/* 테블릿 가로 (해상도 768px ~ 1023px)*/
+@media all and (min-width:768px) and (max-width:1023px) {
+    .search-section {
+    }
+
+    .side-menu {
+        width: 220px;
+    }
+
+    .sort-tab {
+        padding: 10px;
+        width: 100%;
+    }
+
+    .sort-tab h2 {
+        font-size: 18px;
+    }
+
+    .sort-tab img {
+        padding: 0 5px;
+    }
+
+    .sort-tab a {
+        padding: 0 3px;
+        font-size: 12px;
+    }
+}
+
+/* 모바일 가로 & 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width:480px) and (max-width:767px) {
+    .search-section {
+        display: block;
+    }
+
+    .side-menu {
+        width: 100%;
+    }
+
+    .sort-tab {
+        padding: 10px;
+        width: 100%;
+    }
+
+    .sort-tab h2 {
+        font-size: 18px;
+    }
+
+    .sort-tab img {
+        padding: 0 5px;
+    }
+
+    .sort-tab a {
+        padding: 0 3px;
+        font-size: 12px;
+    }
+}
+
+/* 모바일 세로 (해상도 ~ 479px)*/
+@media all and (max-width:479px) {
+    .back-img {
+    }
+    .search-section {
+        display: block;
+        padding: 0 10px;
+    }
+
+    .side-menu {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .side-menu .see {
+        display: none;
+    }
+    .side-menu .genre .spread {
+        display: none;
+    }
+
+    .side-menu .genre-btn {
+        flex-wrap: nowrap;
+        overflow: hidden;
+    }
+
+    .genre-btn a {
+        flex-shrink: 0;
+    }
+
+    .sort-tab {
+        padding: 10px;
+        width: 100%;
+    }
+
+    .sort-tab h2 {
+        font-size: 18px;
+    }
+
+    .sort-tab img {
+        padding: 0 5px;
+    }
+
+    .sort-tab a {
+        padding: 0 3px;
+        font-size: 12px;
+    }
 }
