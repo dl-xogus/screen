@@ -1,0 +1,44 @@
+@import url(../reset.css);
+@import url(../common.css);
+
+body {
+    background-color: #1a1a1a;
+    width: 1100px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+
+    border: 1px solid white;    /* 테두리가 안보여서 임시로 넣음 */
+}
+
+.btn-x {
+    position: relative;
+    left: 46%;
+    top: 30px;
+}
+
+img {width: 100%;}
+
+article {
+    width: 800px;
+    margin: 60px 0;
+}
+
+.title {
+    width: 100%;
+    font-size: 20px;
+    padding-bottom: 20px; 
+}
+
+.contents {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contents a {
+    display: block;
+    width: 144px;
+}

@@ -1,47 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/index.css">
     <script defer src="./javascript/common.js"></script>
+    <script defer src="./javascript/index.js"></script>
 </head>
+
 <body>
     <header>
         <div class="header-box">
             <div class="header-left">
-                <p><img src="../image/logo-screen.svg" alt="로고"></p>
+                <a class="logo" href="#"><img src="../image/logo-screen.svg" alt="로고"></a>
                 <nav>
                     <a href="#">영화</a>
                     <a href="#">TV</a>
                 </nav>
             </div>
-            
+
             <p class="header-icon"><img src="../image/ic_search.svg" alt="검색아이콘"></p>
         </div>
 
         <div class="header-search">
-            <div class="header-search-box">
-                <p>검색어를 입력해 주세요</p>
-            </div>
-            <div>
+            <form class="header-search-box">
+                <input type="text" placeholder="검색어를 입력해 주세요">
+                <button></button>
+            </form>
+            <div class="recommend">
                 <b>추천 검색어</b>
-                <p>더 레킹 트루</p>
-                <p>원더맨</p>
-                <p>아나콘다</p>
+                <div></div>
             </div>
         </div>
     </header>
-
+    <style>
+        iframe {
+            pointer-events: none;
+        }
+    </style>
     <main>
+        <div class="main-top">
+            <div class="video-wrap">
+                <iframe name="video" src="" frameborder="0" allow="autoplay; encrypted-media;"></iframe>
+            </div>
+            
+            <div class="dark-overlay"></div>
+            
+            <div class="upcoming">
+                <b>Comming Soon</b>
 
+                <div class="video">
+                    <a href="" target="video">
+                        <p class="thumb"><img src="" alt="썸네일"></p>
+                        <p class="btn"><img src="./image/ic_startBtn.svg" alt="재생버튼"></p>
+                        <div class="text">
+                            <span>[예고편]</span>
+                            <b class="name"></b>
+                        </div>
+                    </a>
+                    <a href="" target="video">
+                        <p class="thumb"><img src="" alt="썸네일"></p>
+                        <p class="btn"><img src="./image/ic_startBtn.svg" alt="재생버튼"></p>
+                        <div class="text">
+                            <span>[예고편]</span>
+                            <b class="name"></b>
+                        </div>
+                    </a>
+                    <a href="" target="video">
+                        <p class="thumb"><img src="" alt="썸네일"></p>
+                        <p class="btn"><img src="./image/ic_startBtn.svg" alt="재생버튼"></p>
+                        <div class="text">
+                            <span>[예고편]</span>
+                            <b class="name"></b>
+                        </div>
+                    </a>
+                    <a href="" target="video">
+                        <p class="thumb"><img src="" alt="썸네일"></p>
+                        <p class="btn"><img src="./image/ic_startBtn.svg" alt="재생버튼"></p>
+                        <div class="text">
+                            <span>[예고편]</span>
+                            <b class="name"></b>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== top10 탭 ========== -->
+        <div class="top-tab tab">
+            <button class="active">영화</button>
+            <button>TV 프로그램</button>
+        </div>
+
+        <section>
+            <article class="top-movies top-contents active">
+                <h2>영화 TOP 10</h2>
+                <div class="top10 wrapper"></div>
+            </article>
+
+            <article class="top-tv top-contents">
+                <h2>TV프로그램 TOP 10</h2>
+                <div class="top10 wrapper"></div>
+            </article>
+        </section>
+
+        <!-- ========== 추천 탭 ========== -->
+        <div class="recommend-tab tab">
+            <button class="active">전체</button>
+            <button>영화</button>
+            <button>TV 프로그램</button>
+        </div>
+
+        <section class="recommend-all recommend-contents active">
+            <article>
+                <div class="title">
+                    <h2>추천 영화</h2>
+                    <a href="#">더보기<img src="./image/ic_right.svg"></a>
+                </div>
+                <div class="swiper wrapper mov"></div>
+            </article>
+            <article>
+                <div class="title">
+                    <h2>추천 TV 프로그램</h2>
+                    <a href="#">더보기<img src="./image/ic_right.svg"></a>
+                </div>
+                <div class="swiper wrapper tvpro"></div>
+            </article>
+            <article>
+                <div class="title">
+                    <h2>추천 애니메이션</h2>
+                    <a href="#">더보기<img src="./image/ic_right.svg"></a>
+                </div>
+                <div class="swiper wrapper animation"></div>
+            </article>
+        </section>
+
+        <section class="recommend-movies recommend-contents"></section>
+
+        <section class="recommend-tv recommend-contents"></section>
     </main>
 
     <footer>
         <div class="footer-box">
             <div class="footer-text">
-                <p><img src="../image/logo-screen.svg" alt="로고"></p>
+                <a class="logo" href="#"><img src="../image/logo-screen.svg" alt="로고"></a>
                 <div>
                     <b class="contour">이용약관</b>
                     <b>개인정보처리방침</b>
@@ -79,5 +183,7 @@
             </div>
         </div>
     </footer>
+
 </body>
+
 </html>

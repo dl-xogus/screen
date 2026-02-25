@@ -1,0 +1,130 @@
+@import url(../reset.css);
+@import url(../common.css);
+
+body {
+    background-color: #1a1a1a;
+    width: 1100px;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+
+    border: 1px solid white;    /* 테두리가 안보여서 임시로 넣음 */
+}
+
+img {
+    width: 100%;
+}
+
+.btn-x {
+    position: relative;
+    left: 46%;
+    top: 30px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 130px 0;
+}
+
+.profile .image {
+    width: 185px;
+    height: 185px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.profile .details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile .details .name {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.profile .icons {
+    display: flex;
+    gap: 10px;
+}
+
+.profile .icons a {
+    display: block;
+    width: 24px;
+}
+
+.contents {
+    width: 800px;
+    padding-bottom: 100px;
+}
+
+.appear .title {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.appear .LR-btn {
+    display: flex;
+    gap: 5px;
+}
+
+.appear .LR-btn a {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 53, 53, 0.8);
+    border-radius: 5px;
+}
+
+.appear .LR-btn img {
+    width: 40%;
+}
+
+.appear .posters {
+    display: flex;
+    gap: 18.65px;
+}
+
+.appear .posters a {
+    width: 117.48px; height: 176px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.filmo .line {
+    width: 100%; height: 1px;
+    background: linear-gradient(to right, #ff3535, #992020, #7e1e1e);
+    margin: 60px 0;
+}
+
+.filmo .box {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.filmo .details {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.filmo .text {}
+.filmo .text a {
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: 2px underline;
+}
+
+.filmo .year::before {
+    content: 'ㆍ';
+}
