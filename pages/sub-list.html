@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/page/sub-search.css">
+    <link rel="stylesheet" href="../css/page/sub-list.css">
     <script defer src="../javascript/common.js"></script>
+    <script defer src="../javascript/sub-list.js"></script>
 </head>
+
 <body>
     <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
     <!--                       header                      -->
@@ -14,35 +17,36 @@
     <header>
         <div class="header-box">
             <div class="header-left">
-                <p><img src="../image/logo-screen.svg" alt="로고"></p>
+                <a class="logo" href="#"><img src="../image/logo-screen.svg" alt="로고"></a>
                 <nav>
                     <a href="#">영화</a>
                     <a href="#">TV</a>
                 </nav>
             </div>
-            
+
             <p class="header-icon"><img src="../image/ic_search.svg" alt="검색아이콘"></p>
         </div>
 
         <div class="header-search">
-            <div class="header-search-box">
-                <p>검색어를 입력해 주세요</p>
-            </div>
-            <div>
+            <form class="header-search-box">
+                <input type="text" placeholder="검색어를 입력해 주세요">
+                <button></button>
+            </form>
+            <div class="recommend">
                 <b>추천 검색어</b>
-                <p>더 레킹 트루</p>
-                <p>원더맨</p>
-                <p>아나콘다</p>
+                <div></div>
             </div>
         </div>
     </header>
 
     <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
     <!--                        main                       -->
-    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->    
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
     <main>
         <div class="back-img"></div>
+
         <section class="search-section">
+            <!-- side menu -->
             <article class="side-menu">
                 <small>FILTER</small>
                 <div class="see">
@@ -62,7 +66,7 @@
                     </div>
                 </div>
                 <div class="genre">
-                    <a  class="spread" href="#">
+                    <a class="spread" href="#">
                         <span>
                             <span><img src="../image/ic_genre.svg" alt="볼 수 있는곳 아이콘"></span>
                             <span>장르</span>
@@ -70,24 +74,24 @@
                         <span><img src="../image/ic_up.svg" alt=""></span>
                     </a>
                     <div class="genre-btn">
-                        <a href="#">SF</a>
-                        <a class="active" href="#">TV 영화</a>
-                        <a href="#">가족</a>
-                        <a href="#">공포</a>
-                        <a href="#">드라마</a>
-                        <a href="#">다큐멘터리</a>
-                        <a href="#">로맨스</a>
-                        <a href="#">모험</a>
-                        <a href="#">미스터리</a>
-                        <a href="#">범죄</a>
-                        <a href="#">서부</a>
-                        <a href="#">스릴러</a>
-                        <a href="#">애니메이션</a>
-                        <a href="#">액션</a>
-                        <a href="#">음악</a>
-                        <a href="#">전쟁</a>
-                        <a href="#">코미디</a>
-                        <a href="#">판타지</a>
+                        <p class="genBtn">SF</p>
+                        <p class="genBtn">TV 영화</p>
+                        <p class="genBtn">가족</p>
+                        <p class="genBtn">공포</p>
+                        <p class="genBtn">드라마</p>
+                        <p class="genBtn">다큐멘터리</p>
+                        <p class="genBtn">로맨스</p>
+                        <p class="genBtn">모험</p>
+                        <p class="genBtn">미스터리</p>
+                        <p class="genBtn">범죄</p>
+                        <p class="genBtn">서부</p>
+                        <p class="genBtn">스릴러</p>
+                        <p class="genBtn">애니메이션</p>
+                        <p class="genBtn">액션</p>
+                        <p class="genBtn">음악</p>
+                        <p class="genBtn">전쟁</p>
+                        <p class="genBtn">코미디</p>
+                        <p class="genBtn">판타지</p>
                     </div>
                 </div>
                 <div class="lineOkbtn">
@@ -96,246 +100,21 @@
                 </div>
             </article>
 
-            <article class="curation">
+            <!-- list -->
+            <article class="movie-list curation">
                 <div class="sort-tab">
                     <h2>영화</h2>
 
-                    <div>
-                        <a class="active" href="#">조회수순</a>
-                        <a href="#">평점순</a>
-                        <a href="#">최근작품순</a>
+                    <div class="sort-btn">
+                        <a data-sort="popularity" class="active">인기순</a>
+                        <a data-sort="rating">평점순</a>
+                        <a data-sort="latest">최근작품순</a>
                     </div>
                 </div>
 
                 <div class="objs">
-                    <div class="list">
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                        <figure>
-                            <p><img src="../image/img-poster.jpg" alt="영화포스터"></p>
-                            <div class="objs-txt">
-                                <b>주토피아 2</b>
-                                <p>2025 · 애니메이션/코미디/모험/가족/미스터리</p>
-                                <p>3.0</p>
-                            </div>
-                        </figure>
-                    </div>
-
-                    <a class="more" href="#">More</a>
+                    <div class="list"></div>
+                    <button class="more">More</button>
                 </div>
             </article>
         </section>
@@ -347,7 +126,7 @@
     <footer>
         <div class="footer-box">
             <div class="footer-text">
-                <p><img src="../image/logo-screen.svg" alt="로고"></p>
+                <p class="logo"><img src="../image/logo-screen.svg" alt="로고"></p>
                 <div>
                     <b class="contour">이용약관</b>
                     <b>개인정보처리방침</b>
@@ -355,26 +134,26 @@
             </div>
 
             <div class="footer-text">
-                <div>
+                <div class="text">
                     <b>주소</b>
                     <p>경기도 가평군 가평읍 경반안로 357-187 (경반리 583-34)</p>
                 </div>
-                <div>
+                <div class="text">
                     <b>대표</b>
                     <p>박춘하</p>
                 </div>
-                <div>
+                <div class="text">
                     <b>사업자등록번호</b>
                     <p>286-11-00158</p>
                 </div>
             </div>
 
             <div class="footer-text">
-                <div>
+                <div class="text">
                     <b>전화번호</b>
                     <p>031-581-0662</p>
                 </div>
-                <div>
+                <div class="text">
                     <b>E-mail</b>
                     <p>daonpension@daon.com</p>
                 </div>
@@ -386,4 +165,5 @@
         </div>
     </footer>
 </body>
+
 </html>
