@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-=======
 
->>>>>>> 6c18c3fb464f9038ab8824a4308b370a4a0b9d93
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/page/sub-search.css">
-<<<<<<< HEAD
     <script defer src="../javascript/common.js"></script>
+    <script defer src="../javascript/sub-search.js"></script>
 </head>
+<!--이현주 (검색결과 페이지)
+    마지막 수정날짜:26.02.12-->
+
+
+
 <body>
     <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
     <!--                       header                      -->
     <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-=======
-</head>
-
-<body>
-    <!--이현주 서브페이지 (검색결과)
-    마지막 수정 날짜 : 26.02.10-->
-
-
-
->>>>>>> 6c18c3fb464f9038ab8824a4308b370a4a0b9d93
     <header>
         <div class="header-box">
             <div class="header-left">
@@ -39,11 +31,12 @@
     </header>
 
     <main>
+        <!--검색창-->
         <div class="top-back">
             <div class="header-search">
-                <div class="header-search-box">
-                    <p>검색어를 입력해 주세요</p>
-                </div>
+                <form class="header-search-box">
+                        <input type="text" placeholder="검색어를 입력해 주세요">
+                </form>
                 <div>
                     <b>추천 검색어</b>
                     <p>더 레킹 트루</p>
@@ -53,289 +46,77 @@
             </div>
         </div>
 
-        <!-- 이 밑에서부터 써주세요 -->
+        
+<!----------------------내용시작------------------------------------------>
+        <article class="scMain">
+
+             <!-- " 0 " 검색결과 -->
+            <h3></h3>
+
+            <!--탭 메뉴 버튼-->
+            <div class="scMenu">
+                <!-- 
+                    <button class="active">전체(12)</button>
+                    <button>영화(12)</button>
+                    <button>TV프로그램(12)</button>
+                    <button>인물(12)</button> 
+                -->
+            </div>
+
+            <div class="search-wrap">
+                <!--전체 검색결과_인물-->
+                <!-- <div class="searchAll">
+                    <div class="search">
+                        <b>인물 검색결과(12)</b>
+                    </div>
+                    <div class="searchH">
+                        <figure>
+                            <img src="../image/test_img_H01.jpg" alt="">
+                            <p>송강호</p>
+                        </figure>
+                    </div>
+                </div> -->
+
+                <!--전체 검색결과_영화-->
+                <!-- <div class="searchAll movie">
+                    <div class="search">
+                        <b>영화 검색결과(12)</b>
+                    </div>
+                    <div class="searchList">
+                        <figure>
+                            <img src="../image/test_img01.jpg" alt="">
+                        </figure>
+                    </div>
+                </div> -->
+
+                <!--전체 검색결과_TV-->
+                <!-- <div class="searchAll tv">
+                <div class="search">
+                    <b>TV 프로그램 검색결과(12)</b>
+                </div>
+                <div class="searchList">
+                    <figure>
+                        <img src="../image/test_img01.jpg" alt="">
+                    </figure>
+                </div>
+            </div> -->
+            </div>
+
+        </article>
+
+
+
+
+     
 
     </main>
 
-    <!--전체 검색결과-->
-    <article class="scMain">
-        <h3>"000검색결과"</h3>
-
-        <!--전체 검색결과_메뉴-->
-        <div class="scMenu">
-            <button>전체(12)</button>
-            <button>영화(12)</button>
-            <button>TV프로그램(12)</button>
-            <button>인물(12)</button>
-        </div>
-
-        <!--전체 검색결과_영화-->
-        <div class="searchAll">
-            <div class="search">
-                <b>영화 검색결과(12)</b>
-                <a href="">더보기 ></a>
-            </div>
-            <div class="searchList">
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-
-            </div>
-        </div>
-
-        <!--전체 검색결과_TV-->
-        <div class="searchAll">
-            <div class="search">
-                <b>TV 프로그램 검색결과(12)</b>
-                <a href="">더보기 ></a>
-            </div>
-            <div class="searchList">
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-                <figure>
-                    <img src="../image/test_img01.jpg" alt="">
-                </figure>
-
-            </div>
-        </div>
-
-        <!--전체 검색결과_인물-->
-        <div class="searchAll">
-            <div class="search">
-                <b>인물 검색결과(12)</b>
-                <a href="">더보기 ></a>
-            </div>
-            <div class="searchH">
-                <figure>
-                    <img src="../image/test_img_H01.jpg" alt="">
-                    <p>송강호</p>
-                </figure>
-                <figure>
-                    <img src="../image/test_img_H01.jpg" alt="">
-                    <p>송강호</p>
-                </figure>
-                <figure>
-                    <img src="../image/test_img_H01.jpg" alt="">
-                    <p>송강호</p>
-                </figure>
-                <figure>
-                    <img src="../image/test_img_H01.jpg" alt="">
-                    <p>송강호</p>
-                </figure>
-                <figure>
-                    <img src="../image/test_img_H01.jpg" alt="">
-                    <p>송강호</p>
-                </figure>
-                <figure>
-                    <img src="../image/test_img_H01.jpg" alt="">
-                    <p>송강호</p>
-                </figure>
-                <figure>
-                    <img src="../image/test_img_H01.jpg" alt="">
-                    <p>송강호</p>
-                </figure>
-                <figure>
-                    <img src="../image/test_img_H01.jpg" alt="">
-                    <p>송강호</p>
-                </figure>
-            </div>
-        </div>
-    </article>
 
 
 
 
-    <!--영화 검색결과-->
-    <article>
-        <article class="scMain">
-            <h3>"000검색결과"</h3>
 
-            <!--영화 검색결과_메뉴-->
-            <div class="scMenu">
-                <button>전체(12)</button>
-                <button>영화(12)</button>
-                <button>TV프로그램(12)</button>
-                <button>인물(12)</button>
-            </div>
 
-            <!--영화 검색결과_영화-->
-            <div class="searchAll">
-                <div class="search">
-                    <b>영화 검색결과(12)</b>
-                    <a href="">더보기 ></a>
-                </div>
-                <div class="searchList_at">
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                    <figure>
-                        <img src="../image/test_img01.jpg" alt="">
-                        <figcaption>
-                            <b>프로젝트 Y</b>
-                            <p>2025·로맨스/드라마·한국</p>
-                            <p>★ 3.0</p>
-                        </figcaption>
-                    </figure>
-                </div>
-            </div>
-        </article>
 </body>
 
 </html>
