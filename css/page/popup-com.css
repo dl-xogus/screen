@@ -1,0 +1,6 @@
+body{width: 1100px; margin: 0 auto; }
+.popup{margin: 100px 0; padding: 0 20px;}
+.popup .wrap { margin: 0 auto;}
+.title{    display: flex;}
+.title-txt{padding-left: 50px;} 
+
