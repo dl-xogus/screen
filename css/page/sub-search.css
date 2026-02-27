@@ -1,6 +1,10 @@
 @import url(../reset.css);
 @import url(../common.css);
 
+body.popup-open {
+    overflow: hidden;
+}
+
 .top-back {
     width: 100%;
     height: 380px;
@@ -52,7 +56,6 @@ a {
     text-decoration: none;
     font-size: 14px;
     color: white;
-    margin-left: auto;
 }
 
 button {
@@ -76,10 +79,11 @@ h3 {
 }
 
 /*---------- 메뉴 공통 스타일 ----------------------------------------*/
-.scMenu{
+.scMenu {
     display: flex;
     gap: 10px;
 }
+
 .scMenu button {
     color: #84868D;
     font-weight: 600;
@@ -116,7 +120,8 @@ h3 {
     width: 100%;
     column-gap: 20px;
 }
-.searchAll .searchList > figure {
+
+.searchAll .searchList>figure {
     width: 192px;
 }
 
@@ -163,8 +168,8 @@ h3 {
 /*--------------------------------------
 ----------영화&TV 카테고리 검색결과----------*/
 
-.searchList figure{
-    padding: 20px 0 ;
+.searchList figure {
+    padding: 20px 0;
 }
 
 
@@ -214,6 +219,7 @@ h3 {
     display: flex;
     gap: 10px;
 }
+
 .sc_note2>p {
     background-color: #353535;
     padding: 5px 10px;
@@ -226,6 +232,15 @@ h3 {
     padding-bottom: 20px;
 }
 
+header .header-icon {
+    /* 검색 페이지에서는 헤더 돋보기 아이콘 안보이게 */
+    display: none;
+}
+
+header .header-search {
+    /* 검색 페이지에서는 헤더 검색창 안나오게 */
+    display: none;
+}
 
 /*---------------------------------------------------------------
 --------------------------반응형---------------------------------*/
@@ -242,7 +257,7 @@ h3 {
 
     .searchH {
         display: flex;
-        
+
         overflow-x: auto;
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
@@ -265,6 +280,7 @@ h3 {
     main {
         padding: 0 5%;
     }
+
     .scMain {
         width: 100%;
     }
@@ -292,6 +308,7 @@ h3 {
     .searchList::-webkit-scrollbar-track {
         background: #e0e0e0;
     }
+
     .searchList>button {
         margin-bottom: 50px;
     }
@@ -367,10 +384,12 @@ h3 {
         width: 100%;
         margin-bottom: 8px;
     }
+
     .sc_note2>p {
         font-size: 13px;
         padding: 8px;
     }
+
     .searchH,
     .sc_all,
     .searchList {

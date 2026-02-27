@@ -27,25 +27,41 @@ const el_thumbName = document.querySelectorAll('.video .name');
 
 /* 데이터 호출 */
 let soonCallFun = async function () {
-    let soonRes = await fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=a3a99689753df933ab4c76e497b6c0b7&language=ko-KR&region=KR');
+    let soonRes = await fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=a3a99689753df933ab4c76e497b6c0b7&language=ko-KR');
     let soonData = await soonRes.json();
 
-    soonData.results.slice(0, 4).forEach(async function (soon, i) {
+    let img_path = 'https://image.tmdb.org/t/p/w300';
 
-        let detailsRes = await fetch(`https://api.themoviedb.org/3/movie/${soon.id}/videos?api_key=a3a99689753df933ab4c76e497b6c0b7`);
+    let videoCount = 0;             // 영상 들어간 개수 체크
+
+    for (let i = 0; i < soonData.results.length; i++) {
+
+        if (videoCount >= 4) break; // 4개 채우면 종료
+
+        let soon = soonData.results[i];
+
+        let detailsRes = await fetch(`https://api.themoviedb.org/3/movie/${soon.id}/videos?api_key=a3a99689753df933ab4c76e497b6c0b7&language=ko-KR`);
         let detailsData = await detailsRes.json();
 
-        let img_path = 'https://image.tmdb.org/t/p/w300';
-        let youtubeLink = `https://www.youtube.com/embed/${detailsData.results[0].key}?autoplay=1&mute=1&loop=1&playlist=${detailsData.results[0].key}&controls=0&modestbranding=1&showinfo=0&controls=0`;
+        /* 영상이 없으면 넘어가기 */
+        if (!detailsData.results || detailsData.results.length === 0) {
+            continue;
+        }
 
-        el_thumbName[i].innerText = `${soon.title}`;
-        el_thumb[i].src = img_path + soon.backdrop_path;
-        el_subVideo[i].href = youtubeLink;
+        let videoKey = detailsData.results[0].key;
 
-        if (i === 0) {
+        let youtubeLink = `https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1&loop=1&playlist=${videoKey}&controls=0`;
+
+        el_thumbName[videoCount].innerText = soon.title;
+        el_thumb[videoCount].src = img_path + soon.backdrop_path;
+        el_subVideo[videoCount].href = youtubeLink;
+
+        if (videoCount === 0) {
             el_mainVideo.src = youtubeLink;
         }
-    });
+
+        videoCount++;
+    }
 };
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

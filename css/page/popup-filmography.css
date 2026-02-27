@@ -1,26 +1,60 @@
-@import url(../reset.css);
-@import url(../common.css);
+#popup-filmography {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 9999;
 
-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 0;
+    overflow-y: auto;
+}
+
+#popup-filmography .popup-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 1140px;
+    padding: 0 20px;
+}
+
+#popup-filmography .popup {
     background-color: #1a1a1a;
-    width: 1100px;
+    width: 100%;
+    max-width: 1100px;
+    height: 90vh;
     border-radius: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-
-    border: 1px solid white;    /* 테두리가 안보여서 임시로 넣음 */
+    overflow-y: scroll;
+    border: 1px solid #383838;
 }
+
+#popup-filmography .popup::-webkit-scrollbar {
+    width: 0;
+}
+/* 스크롤바 스타일 */
+/* #popup-filmography .popup::-webkit-scrollbar-thumb {
+    background-color: #FF3535;
+    border-radius: 5px;
+}
+#popup-filmography .popup::-webkit-scrollbar-track {
+    border-radius: 5px;
+} */
 
 img {
     width: 100%;
 }
 
 .btn-x {
-    position: relative;
-    left: 46%;
-    top: 30px;
+    position: absolute;
+    /* left: 46%; */
+    /* top: 30px; */
+    right: 45px;
+    top: 25px;
+    cursor: pointer;
 }
 
 .profile {
@@ -35,6 +69,14 @@ img {
     height: 185px;
     border-radius: 100%;
     overflow: hidden;
+    position: relative;
+}
+
+.profile .image img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .profile .details {
@@ -46,7 +88,12 @@ img {
 .profile .details .name {
     display: flex;
     align-items: flex-end;
-    gap: 5px;
+    gap: 10px;
+}
+.profile .details .genderBirth {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .profile .icons {
@@ -60,7 +107,12 @@ img {
 }
 
 .contents {
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.appear {   /* 대표작 밑 공백 */
     padding-bottom: 100px;
 }
 
@@ -71,46 +123,67 @@ img {
     padding-bottom: 20px;
 }
 
-.appear .LR-btn {
+.appear .posters {
+    width: 100%;
+    max-width: 800px;
     display: flex;
-    gap: 5px;
+    gap: 18.65px;
+    overflow-x: auto;
+    padding-bottom: 20px;
 }
 
-.appear .LR-btn a {
-    width: 20px;
-    height: 20px;
+.appear .posters .po {
+    width: 100%;
+    width: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
     display: flex;
-    align-items: center;
     justify-content: center;
-    background-color: rgba(255, 53, 53, 0.8);
+}
+
+.appear .posters::-webkit-scrollbar {
+    height: 5px;
+}
+
+.appear .posters::-webkit-scrollbar-thumb {
+    background-color: #FF3535;
     border-radius: 5px;
 }
 
-.appear .LR-btn img {
-    width: 40%;
+.appear .posters::-webkit-scrollbar-track {
+    background-color: #e0e0e0;
 }
 
-.appear .posters {
-    display: flex;
-    gap: 18.65px;
-}
-
-.appear .posters a {
+.appear .posters .po {
     width: 117.48px; height: 176px;
     border-radius: 10px;
     overflow: hidden;
+    cursor: pointer;
+}
+
+.appear .posters .po img {
+    transition: 0.3s;
+}
+
+.appear .posters .po:hover img {
+    transform: scale(1.05);
 }
 
 .filmo .line {
     width: 100%; height: 1px;
     background: linear-gradient(to right, #ff3535, #992020, #7e1e1e);
-    margin: 60px 0;
+    margin: 20px 0;
 }
 
 .filmo .box {
     display: flex;
     flex-direction: column;
     gap: 40px;
+    padding: 30px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .filmo .details {
@@ -118,13 +191,72 @@ img {
     align-items: center;
     gap: 40px;
 }
-.filmo .text {}
+
+.filmo .text {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .filmo .text a {
+    width: 100%;
     font-weight: bold;
     font-size: 18px;
-    text-decoration: 2px underline;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.filmo .text a:hover {
+    text-decoration: underline;
+}
+
+.filmo .text p {
+    font-size: 13px;
+}
+
+.filmo .year {
+    width: 51px;
+    flex-shrink: 0;
 }
 
 .filmo .year::before {
     content: 'ㆍ';
+}
+
+.filmo .more {
+    width: 100%;
+    height: 40px;
+    background-color: #FF3535;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.filmo .more::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    background: url(../../image/ic_down.svg) center center / cover no-repeat;
+}
+
+/* 반응형 */
+@media screen and (min-width: 0px) and (max-width:767px) {
+    .profile {
+        flex-direction: column;
+    }
+
+    .filmo .more {
+        border-radius: 99px;
+    }
 }

@@ -17,10 +17,10 @@
     <header>
         <div class="header-box">
             <div class="header-left">
-                <a class="logo" href="#"><img src="../image/logo-screen.svg" alt="로고"></a>
+                <a class="logo" href="../index.html"><img src="../image/logo-screen.svg" alt="로고"></a>
                 <nav>
-                    <a href="#">영화</a>
-                    <a href="#">TV</a>
+                    <a href="./sub-list.html?type=movie">영화</a>
+                    <a href="./sub-list.html?type=tv">TV</a>
                 </nav>
             </div>
 
@@ -29,7 +29,7 @@
 
         <div class="header-search">
             <form class="header-search-box">
-                <input type="text" placeholder="검색어를 입력해 주세요">
+                <input type="text" placeholder="검색어를 입력해 주세요" name="keyword">
                 <button></button>
             </form>
             <div class="recommend">
@@ -49,54 +49,31 @@
             <!-- side menu -->
             <article class="side-menu">
                 <small>FILTER</small>
-                <div class="see">
+                <div class="see spr active">
                     <a class="spread" href="#">
                         <span>
                             <span><img src="../image/ic_see.svg" alt="볼 수 있는곳 아이콘"></span>
                             <span>볼 수 있는 곳</span>
                         </span>
-                        <span><img src="../image/ic_up.svg" alt=""></span>
+                        <span><img class="updown" src="../image/ic_up.svg" alt=""></span>
                     </a>
                     <div class="icons">
-                        <a class="netflix" href="#"></a>
-                        <a class="appleTV" href="#"></a>
-                        <a class="tving" href="#"></a>
-                        <a class="wavve" href="#"></a>
-                        <a class="disneyplus" href="#"></a>
+                        <a class="netflix" data-id="8"></a>
+                        <a class="appleTV" data-id="350"></a>
+                        <a class="tving" data-id="1883"></a>
+                        <a class="wavve" data-id="356"></a>
+                        <a class="disneyplus" data-id="337"></a>
                     </div>
                 </div>
-                <div class="genre">
+                <div class="genre spr active">
                     <a class="spread" href="#">
                         <span>
-                            <span><img src="../image/ic_genre.svg" alt="볼 수 있는곳 아이콘"></span>
+                            <span><img src="../image/ic_genre.svg" alt="장르 아이콘"></span>
                             <span>장르</span>
                         </span>
-                        <span><img src="../image/ic_up.svg" alt=""></span>
+                        <span><img class="updown" src="../image/ic_up.svg" alt=""></span>
                     </a>
-                    <div class="genre-btn">
-                        <p class="genBtn">SF</p>
-                        <p class="genBtn">TV 영화</p>
-                        <p class="genBtn">가족</p>
-                        <p class="genBtn">공포</p>
-                        <p class="genBtn">드라마</p>
-                        <p class="genBtn">다큐멘터리</p>
-                        <p class="genBtn">로맨스</p>
-                        <p class="genBtn">모험</p>
-                        <p class="genBtn">미스터리</p>
-                        <p class="genBtn">범죄</p>
-                        <p class="genBtn">서부</p>
-                        <p class="genBtn">스릴러</p>
-                        <p class="genBtn">애니메이션</p>
-                        <p class="genBtn">액션</p>
-                        <p class="genBtn">음악</p>
-                        <p class="genBtn">전쟁</p>
-                        <p class="genBtn">코미디</p>
-                        <p class="genBtn">판타지</p>
-                    </div>
-                </div>
-                <div class="lineOkbtn">
-                    <p class="line"></p>
-                    <a class="okbtn" href="#">확인</a>
+                    <div class="genre-btn"></div>
                 </div>
             </article>
 
@@ -126,7 +103,7 @@
     <footer>
         <div class="footer-box">
             <div class="footer-text">
-                <p class="logo"><img src="../image/logo-screen.svg" alt="로고"></p>
+                <a class="logo" href="../index.html"><img src="../image/logo-screen.svg" alt="로고"></a>
                 <div>
                     <b class="contour">이용약관</b>
                     <b>개인정보처리방침</b>

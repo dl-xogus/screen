@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="./css/index.css">
     <script defer src="./javascript/common.js"></script>
     <script defer src="./javascript/index.js"></script>
 </head>
@@ -14,19 +14,19 @@
     <header>
         <div class="header-box">
             <div class="header-left">
-                <a class="logo" href="#"><img src="../image/logo-screen.svg" alt="로고"></a>
+                <a class="logo" href="./index.html"><img src="./image/logo-screen.svg" alt="로고"></a>
                 <nav>
-                    <a href="#">영화</a>
-                    <a href="#">TV</a>
+                    <a href="./pages/sub-list.html?type=movie">영화</a>
+                    <a href="./pages/sub-list.html?type=tv">TV</a>
                 </nav>
             </div>
 
-            <p class="header-icon"><img src="../image/ic_search.svg" alt="검색아이콘"></p>
+            <p class="header-icon"><img src="./image/ic_search.svg" alt="검색아이콘"></p>
         </div>
 
         <div class="header-search">
-            <form class="header-search-box">
-                <input type="text" placeholder="검색어를 입력해 주세요">
+            <form class="header-search-box" action="./pages/sub-search.html">
+                <input type="text" placeholder="검색어를 입력해 주세요" name="keyword">
                 <button></button>
             </form>
             <div class="recommend">
@@ -145,7 +145,7 @@
     <footer>
         <div class="footer-box">
             <div class="footer-text">
-                <a class="logo" href="#"><img src="../image/logo-screen.svg" alt="로고"></a>
+                <a class="logo" href="#"><img src="./image/logo-screen.svg" alt="로고"></a>
                 <div>
                     <b class="contour">이용약관</b>
                     <b>개인정보처리방침</b>

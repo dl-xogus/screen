@@ -1,44 +1,3 @@
-const el_header = document.querySelector('header');
-const el_nav = document.querySelector('.header-left nav');
-const el_headerIcon = document.querySelector('header .header-icon');
-const el_headerSearch = document.querySelector('.header-search');
-
-/* 헤더 검색창 펼침 */
-if (el_headerIcon) {
-    el_headerIcon.addEventListener('click', function () {
-        el_header.classList.toggle('active');
-        el_nav.classList.toggle('active');
-        el_headerSearch.classList.toggle('active');
-        el_headerIcon.classList.toggle('active');
-
-        let contains = el_headerIcon.classList.contains('active');
-        if (contains) {
-            el_headerIcon.innerHTML = `<img src="../image/ic_x.svg" alt="검색아이콘">`;
-        } else {
-            el_headerIcon.innerHTML = `<img src="../image/ic_search.svg" alt="검색아이콘">`;
-        }
-    });
-}
-
-/* 헤더 추천검색어 */
-let headerRecommendFun = async function () {
-    const el_recommendSearchKeyword = document.querySelector('.header-search .recommend div');
-    el_recommendSearchKeyword.innerHTML = '';
-
-    let res = await fetch('https://api.themoviedb.org/3/trending/all/day?api_key=a3a99689753df933ab4c76e497b6c0b7&language=ko-KR');
-    let data = await res.json();
-
-    data.results.slice(0, 3).forEach(item => {
-        let title = item.title || item.name;
-        el_recommendSearchKeyword.innerHTML += `<a href="./pages/sub-search.html?keyword=${title}">${title}</a>`;
-    });
-};
-headerRecommendFun();
-
-let params = new URLSearchParams(document.location.search);
-let keyword = params.get("keyword");
-
-
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 //                          인물 팝업 (이태현)
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -130,7 +89,7 @@ let popup_filmography_func = function (id) {
                     <a data-id="${ca.id}">${title}</a>
                     <p>${ca.character || ''}</p>
                 </div>
-            </div>`;                                            // ca.character || '' : 역할이 값이 없는경우 ''출력
+            </div>`;                                                // ca.character || '' : 역할이 값이 없는경우 ''출력
 
             prevYear = year;                                        // 이번 횟수의 년도 전 년도에 저장
         });
@@ -146,7 +105,7 @@ let popup_filmography_func = function (id) {
             .sort((a, b) => {
                 let dateA = a.release_date || a.first_credit_air_date;
                 let dateB = b.release_date || b.first_credit_air_date;
-                return new Date(dateB) - new Date(dateA);           // 최신순 정렬
+                return new Date(dateB) - new Date(dateA);                  // 최신순 정렬
             });
 
         filmoOutputFunc(castData);                      // 최초 출력

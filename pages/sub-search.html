@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/page/sub-search.css">
+    <link rel="stylesheet" href="../css/page/popup-filmography.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script defer src="../javascript/common.js"></script>
     <script defer src="../javascript/sub-search.js"></script>
 </head>
@@ -20,12 +22,14 @@
     <header>
         <div class="header-box">
             <div class="header-left">
-                <p><img src="../image/logo-screen.svg" alt="로고"></p>
+                <a class="logo" href="../index.html"><img src="../image/logo-screen.svg" alt="로고"></a>
                 <nav>
-                    <a href="#">영화</a>
-                    <a href="#">TV</a>
+                    <a href="./sub-list.html?type=movie">영화</a>
+                    <a href="./sub-list.html?type=tv">TV</a>
                 </nav>
             </div>
+
+            <p class="header-icon"><img src="../image/ic_search.svg" alt="검색아이콘"></p>
         </div>
     </header>
 
@@ -33,20 +37,19 @@
         <!--검색창-->
         <div class="top-back">
             <div class="header-search">
-                <form class="header-search-box">
-                        <input type="text" placeholder="검색어를 입력해 주세요">
-                </form>
-                <div>
-                    <b>추천 검색어</b>
-                    <p>더 레킹 트루</p>
-                    <p>원더맨</p>
-                    <p>아나콘다</p>
-                </div>
+            <form class="header-search-box" action="./pages/sub-search.html">
+                <input type="text" placeholder="검색어를 입력해 주세요" name="keyword">
+                <button></button>
+            </form>
+            <div class="recommend">
+                <b>추천 검색어</b>
+                <div></div>
             </div>
+        </div>
         </div>
 
         
-<!----------------------내용시작------------------------------------------>
+        <!----------------------내용시작------------------------------------------>
         <article class="scMain">
 
              <!-- " 0 " 검색결과 -->
@@ -100,20 +103,8 @@
                 </div>
             </div> -->
             </div>
-
         </article>
-
-
-
-
-     
-
     </main>
-
-
-
-
-
 
 
 </body>

@@ -117,7 +117,9 @@ let output8 = function (obj) {
                     default:
                     return `
                         <figure>
-                            <img src="${item.profile_path ? img_path + item.profile_path : '../image/no_img.jpg'}" alt="">
+                            <p class="imgs-wrap">
+                                <img class="person-card" data-id="${item.id}" src="${item.profile_path ? img_path + item.profile_path : '../image/no_img.jpg'}">
+                            </p>
                             <p>${item.name}</p>
                         </figure>
                     `;
@@ -162,7 +164,9 @@ let output20 = function (obj) {
                     default:
                     return `
                         <figure>
-                            <img src="${item.profile_path ? img_path + item.profile_path : '../image/no_img.jpg'}" alt="">
+                            <p class="imgs-wrap">
+                                <img class="person-card" data-id="${item.id}" src="${item.profile_path ? img_path + item.profile_path : '../image/no_img.jpg'}" alt="">
+                            </p>
                             <p>${item.name}</p>
                         </figure>
                     `;
