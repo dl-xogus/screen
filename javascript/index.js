@@ -179,31 +179,38 @@ let recommendCallFun = async function () {
 
     recommendDomControl(movieData.results, tvData.results, aniData.results);
 };
+// 공통 주소 (현주)
+let img_path = 'https://image.tmdb.org/t/p/w200';
 
 /* dom 출력 */
 let recommendDomControl = function (movie, tv, ani) {
-    let img_path = 'https://image.tmdb.org/t/p/w200';
 
     el_recomMovieOutput.innerHTML = '';
     el_recomdTvOutput.innerHTML = '';
     el_recomAniOutput.innerHTML = '';
 
     movie.slice(0, 16).forEach(function (mov, i) {
+        // (현주)
+        let img_onOFF = mov.poster_path ? img_path + mov.poster_path : '../image/img_noimage.jpg';
         el_recomMovieOutput.innerHTML +=
             `<a href="#" class="slide">
-                <img src="${img_path + mov.poster_path}">
+                <img src="${img_onOFF}">
             </a>`;
     });
     tv.slice(0, 16).forEach(function (t, i) {
+        // (현주)
+        let img_onOFF = t.poster_path ? img_path + t.poster_path : '../image/img_noimage.jpg';
         el_recomdTvOutput.innerHTML +=
             `<a href="#" class="slide">
-                <img src="${img_path + t.poster_path}">
+                <img src="${img_onOFF}">
             </a>`;
     });
     ani.slice(0, 16).forEach(function (an, i) {
+        // (현주)
+        let img_onOFF = an.poster_path ? img_path + an.poster_path : '../image/img_noimage.jpg';
         el_recomAniOutput.innerHTML +=
             `<a href="#" class="slide">
-                <img src="${img_path + an.poster_path}">
+                <img src="${img_onOFF}">
             </a>`;
     });
 };
@@ -230,26 +237,28 @@ let recommendMoviesRandom = async function () {
             `<article>
                 <div class="title">
                     <h2>${genre.name}</h2>
-                    <a href="#">더보기<img src="./image/ic_right.svg"></a>
-                </div>
-                <div class="swiper wrapper">`;
-
-        data.results.slice(0, 16).forEach(function (movie) {
+                    <a href="movie" data-name="${genre.name}" data-id="${genre.id}">더보기<img src="./image/ic_right.svg"></a>
+                    </div>
+                    <div class="swiper wrapper">`;
+                    
+                    data.results.slice(0, 16).forEach(function (movie) {
+            // (현주)
+            let img_onOFF = movie.poster_path ? img_path + movie.poster_path : '../image/img_noimage.jpg';
             html +=
-                `<a href="#" class="slide">
-                    <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}">
+            `<a href="#" class="slide">
+            <img src="${img_onOFF}">
                 </a>`;
-        });
-
-        html += `</div></article>`;
-
-        container.innerHTML += html;
-    }
-};
-
-/* tv 랜덤 장르 3개 뽑기 */
-let getRndTvGenres = function () {
-    let genres = JSON.parse(localStorage.tvGenres);
+            });
+            
+            html += `</div></article>`;
+            
+            container.innerHTML += html;
+        }
+    };
+    
+    /* tv 랜덤 장르 3개 뽑기 */
+    let getRndTvGenres = function () {
+        let genres = JSON.parse(localStorage.tvGenres);
     let shuffled = genres.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 3);
 };
@@ -258,44 +267,91 @@ let getRndTvGenres = function () {
 let recommendTvRandom = async function () {
     let container = document.querySelector('.recommend-tv');
     container.innerHTML = '';
-
+    
     let randomGenres = getRndTvGenres();
 
     for (let genre of randomGenres) {
         let res = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=a3a99689753df933ab4c76e497b6c0b7&language=ko-KR&sort_by=popularity.desc&with_genres=${genre.id}`);
         let data = await res.json();
-
+        
         let html =
-            `<article>
-                <div class="title">
-                    <h2>${genre.name}</h2>
-                    <a href="#">더보기<img src="./image/ic_right.svg"></a>
+        `<article>
+        <div class="title">
+        <h2>${genre.name}</h2>
+        <a href="tv" data-name="${genre.name}" data-id="${genre.id}">더보기<img src="./image/ic_right.svg"></a>
                 </div>
                 <div class="swiper wrapper">`;
-
-        data.results.slice(0, 16).forEach(function (tv) {
+                
+                data.results.slice(0, 16).forEach(function (tv) {
+                    // (현주)
+            let img_onOFF = tv.poster_path ? img_path + tv.poster_path : '../image/img_noimage.jpg';
             html +=
                 `<a href="#" class="slide">
-                    <img src="https://image.tmdb.org/t/p/w200${tv.poster_path}">
+                <img src="${img_onOFF}">
                 </a>`;
-        });
+            });
+            
+            html += `</div></article>`;
+            
+            container.innerHTML += html;
+        }
+    };
 
-        html += `</div></article>`;
-
-        container.innerHTML += html;
-    }
-};
-
-
-
-let init = async function () {
+    
+    
+    let init = async function () {
     await moviesGenresFun();
     await tvGenresFun();
-
+    
     topCallFun();
     recommendCallFun();
-
-
+    
     soonCallFun();
+    // 팝업 출력 (현주)
+    // a태그 클릭 이벤트 (a = 더보기 버튼)
+    $('body').on('click', 'a', function (e) {
+        
+        // 새로고침 안되게
+        e.preventDefault();
+        
+        let _target = e.target.tagName == 'A' ? e.target : e.target.parentElement;
+        let href = _target.getAttribute('href');
+        let name = _target.getAttribute('data-name');
+        let id = _target.getAttribute('data-id');
+        
+        if (name) {
+            // 메인페이지에 있는 로컬스토리지에서 moreData를 가져와서 사용하기
+            localStorage.moreData = JSON.stringify({ 'href': href, 'name': name, 'id': id });
+            movieData();
+            
+            // 팝업 열기
+            $('.popup-wrap').css('display', 'flex');
+            
+            // 팝업 닫기
+            $('.popup-wrap').on('click', '.btn-x', function () {
+                $('.popup-wrap').css('display', 'none');
+
+                $('body').css('overflow','auto'); /* 스크롤 다시 생기게 */
+            });
+            
+            $('body').css('overflow','hidden'); /* 팝업 열면 배경스크롤 없애줘 */
+
+            /* 팝업을 열면 배경 스크롤 꺼지게 하는 방법2 
+            const popup = document.querySelector('.popup');
+            const popupWrap = document.querySelector('.popup-wrap');
+            let a = popupWrap.addEventListener('wheel',function(e){
+                e.preventDefault();
+            },{ passive: false });
+
+            popup.addEventListener('wheel',function(e){                                   
+                e.stopPropagation();
+                popupWrap.removeEventListener('wheel',a);
+            },{ passive: true }) */
+        }
+    })
+    
+    $('body').append('<div class="popup-wrap">  </div>');
+    $('.popup-wrap').load('./pages/popup-recommendList.html');
+    
 };
 init();

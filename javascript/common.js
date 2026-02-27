@@ -4,20 +4,21 @@ const el_headerIcon = document.querySelector('.header-icon');
 const el_headerSearch = document.querySelector('.header-search');
 
 /* 헤더 검색창 펼침 */
-el_headerIcon.addEventListener('click', function () {
-    el_header.classList.toggle('active');
-    el_nav.classList.toggle('active');
-    el_headerSearch.classList.toggle('active');
-    el_headerIcon.classList.toggle('active');
+if(el_headerIcon){
+    el_headerIcon.addEventListener('click', function () {
+        el_header.classList.toggle('active');
+        el_nav.classList.toggle('active');
+        el_headerSearch.classList.toggle('active');
+        el_headerIcon.classList.toggle('active');
 
-    let contains = el_headerIcon.classList.contains('active');
-    if (contains) {
-        el_headerIcon.innerHTML = `<img src="../image/ic_x.svg" alt="검색아이콘">`;
-    } else {
-        el_headerIcon.innerHTML = `<img src="../image/ic_search.svg" alt="검색아이콘">`;
-    }
-});
-
+        let contains = el_headerIcon.classList.contains('active');
+        if (contains) {
+            el_headerIcon.innerHTML = `<img src="../image/ic_x.svg" alt="검색아이콘">`;
+        } else {
+            el_headerIcon.innerHTML = `<img src="../image/ic_search.svg" alt="검색아이콘">`;
+        }
+    });
+}
 /* 헤더 추천검색어 */
 let headerRecommendFun = async function() {
     const el_recommendSearchKeyword = document.querySelector('.header-search .recommend div');
@@ -28,7 +29,7 @@ let headerRecommendFun = async function() {
 
     data.results.slice(0, 3).forEach(item => {
         let title = item.title || item.name;
-        el_recommendSearchKeyword.innerHTML += `<a href="#">${title}</a>`;
+        el_recommendSearchKeyword.innerHTML += `<a href="./pages/sub-search.html?keyword=${title}">${title}</a>`;
     });
 };
 headerRecommendFun();

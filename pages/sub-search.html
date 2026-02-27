@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/page/sub-search.css">
+    <link rel="stylesheet" href="../css/page/popup-filmography.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script defer src="../javascript/common.js"></script>
     <script defer src="../javascript/sub-search.js"></script>
 </head>
 <!--이현주 (검색결과 페이지)
-    마지막 수정날짜:26.02.12-->
+    마지막 수정날짜:26.02.27-->
 
 
 
@@ -26,23 +28,24 @@
                     <a href="#">TV</a>
                 </nav>
             </div>
+
+            <p class="header-icon"><img src="../image/ic_search.svg" alt="검색아이콘"></p>
         </div>
     </header>
 
     <main>
         <!--검색창-->
         <div class="top-back">
-            <div class="header-search">
-                <form class="header-search-box">
-                        <input type="text" placeholder="검색어를 입력해 주세요">
-                </form>
-                <div>
-                    <b>추천 검색어</b>
-                    <p>더 레킹 트루</p>
-                    <p>원더맨</p>
-                    <p>아나콘다</p>
-                </div>
+             <div class="header-search">
+            <form class="header-search-box" action="./pages/sub-search.html">
+                <input type="text" placeholder="검색어를 입력해 주세요" name="keyword">
+                <button></button>
+            </form>
+            <div class="recommend">
+                <b>추천 검색어</b>
+                <div></div>
             </div>
+        </div>
         </div>
 
         
@@ -64,7 +67,8 @@
 
             <div class="search-wrap">
                 <!--전체 검색결과_인물-->
-                <!-- <div class="searchAll">
+                <!-- 
+                <div class="searchAll">
                     <div class="search">
                         <b>인물 검색결과(12)</b>
                     </div>
@@ -109,6 +113,51 @@
      
 
     </main>
+
+        <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <!--                       footer                      -->
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <footer>
+        <div class="footer-box">
+            <div class="footer-text">
+                <p><img src="../image/logo-screen.svg" alt="로고"></p>
+                <div>
+                    <b class="contour">이용약관</b>
+                    <b>개인정보처리방침</b>
+                </div>
+            </div>
+
+            <div class="footer-text">
+                <div>
+                    <b>주소</b>
+                    <p>경기도 가평군 가평읍 경반안로 357-187 (경반리 583-34)</p>
+                </div>
+                <div>
+                    <b>대표</b>
+                    <p>박춘하</p>
+                </div>
+                <div>
+                    <b>사업자등록번호</b>
+                    <p>286-11-00158</p>
+                </div>
+            </div>
+
+            <div class="footer-text">
+                <div>
+                    <b>전화번호</b>
+                    <p>031-581-0662</p>
+                </div>
+                <div>
+                    <b>E-mail</b>
+                    <p>daonpension@daon.com</p>
+                </div>
+            </div>
+
+            <div>
+                Copyright@ 2015 SCREEN All Rights Reserved
+            </div>
+        </div>
+    </footer>
 
 
 

@@ -1,13 +1,42 @@
-// 🎨 장르 데이터 가져오기
-fetch('https://api.themoviedb.org/3/genre/movie/list?language=ko-KR&api_key=f89a6c1f22aca3858a4ae7aef10de967')
-    .then(res => res.json())
-    .then(function (data) {
-        localStorage.genres = JSON.stringify(data.genres);
-    });
+// 💡 검색창 배경 - 인기순위로 포스터 자동 변경하기
+const backImg = document.querySelector('.top-back');
 
+
+
+
+
+// 🎨 인기순 데이터 가져오기
+let backImgFun = async function () {
+    let res = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=a3a99689753df933ab4c76e497b6c0b7&language=ko-KR&sort_by=popularity.desc');
+    let data = await res.json();
+    
+    backImgOutput(data);
+};
+
+
+
+
+
+// 💡 인기순 데이터 배경에 출력하기
+let backImgOutput = function (data) {
+    const img_path1980 = 'https://image.tmdb.org/t/p/original';
+    let imageUrl = img_path1980 + data.results[0].backdrop_path;
+    backImg.style.background = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${imageUrl}) center center / cover no-repeat`;
+};
+backImgFun();
+
+
+
+// 🎨 전역함수 모음
 const img_path = 'https://image.tmdb.org/t/p/w300';
 const genres = JSON.parse(localStorage.genres);
+const el_searchTitle = document.querySelector('.scMain h3');
 let datasets = [];
+
+
+
+
+
 
 // 🕵️‍♂️ 영화/TV 검색 함수
 let searchFun = async function (keyword) {
@@ -21,7 +50,7 @@ let searchFun = async function (keyword) {
     
     let res3 = await fetch(`https://api.themoviedb.org/3/search/person?api_key=be70ce351ebf9cdf3c901d28de3db6a3&query=${keyword}&language=ko-KR`);
     let personData = await res3.json();
-
+    
     datasets = [
         {type: '영화', cName:['movie','searchList'], data: movieData.results},
         {type: 'TV프로그램', cName:['tv','searchList'], data: tvData.results},
@@ -36,6 +65,11 @@ let searchFun = async function (keyword) {
     // DOM 출력
     domContral(datasets);
 }
+
+
+
+
+
 
 // 🎬 DOM 출력 함수
 let domContral = function(datasets) {
@@ -71,6 +105,13 @@ let domContral = function(datasets) {
     searchTab();
 
 }
+
+
+
+
+
+
+// 💡 메뉴별 화면 다르게 출력하기
 let output = function (obj) {
     
     const activeBtn = document.querySelector('.scMenu button.active');
@@ -81,6 +122,13 @@ let output = function (obj) {
     }
 };
 
+
+
+
+
+
+
+// 💡 함수 만들기 - '전체 탭에서 8개의 컨텐츠만 보이게 하기'
 let output8 = function (obj) {
     return obj.data.slice(0,8).map(function(item){
                 let genre = [];
@@ -95,36 +143,43 @@ let output8 = function (obj) {
                     case '영화':
                     return `
                         <figure>
-                            <img src="${item.poster_path ? img_path + item.poster_path : '../image/no_img.jpg'}" alt="">
+                            <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
                                 <b>${item.original_title}</b>
-                                <p>${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${genre.slice(0,2).join('/')}</p>
-                                <p>${item.vote_average.toFixed(1)}</p>
+                                <p class="detail">${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${genre.slice(0,2).join(' / ')}</p>
+                                <p class="detail">${item.vote_average.toFixed(1)}</p>
                             </figcaption>
                         </figure>
                     `;
                     case 'TV프로그램':
                     return `
                         <figure>
-                            <img src="${item.poster_path ? img_path + item.poster_path : '../image/no_img.jpg'}" alt="">
+                            <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
                                 <b>${item.original_name}</b>
-                                <p>${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${genre.slice(0,2).join('/')}</p>
-                                <p>${item.vote_average.toFixed(1)}</p>
+                                <p class="detail">${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${genre.slice(0,2).join(' / ')}</p>
+                                <p class="detail">${item.vote_average.toFixed(1)}</p>
                             </figcaption>
                         </figure>
-                    `;                        
+                    `;
                     default:
                     return `
                         <figure>
-                            <img src="${item.profile_path ? img_path + item.profile_path : '../image/no_img.jpg'}" alt="">
-                            <p>${item.name}</p>
+                            <p class="imgsH-wrap"><img class="person-card" data-id="${item.id}" src="${item.profile_path ? img_path + item.profile_path : '../image/img_noimage.jpg'}" alt=""></p>
+                            <p class="detail">${item.name}</p>
                         </figure>
                     `;
                 }
                 
             }).join('')
 };
+
+
+
+
+
+
+// 💡 함수 만들기 - '메뉴별 모든 컨텐츠 보이게 하기'
 let output20 = function (obj) {
     console.log(obj)
     return obj.data.map(function(item){
@@ -140,30 +195,30 @@ let output20 = function (obj) {
                     case '영화':
                     return `
                         <figure>
-                            <img src="${item.poster_path ? img_path + item.poster_path : '../image/no_img.jpg'}" alt="">
+                            <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
                                 <b>${item.original_title}</b>
-                                <p>${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${genre.slice(0,2).join('/')}</p>
-                                <p>${item.vote_average.toFixed(1)}</p>
+                                <p class="detail">${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${genre.slice(0,2).join(' / ')}</p>
+                                <p class="detail">${item.vote_average.toFixed(1)}</p>
                             </figcaption>
                         </figure>
                     `;
                     case 'TV프로그램':
                     return `
                         <figure>
-                            <img src="${item.poster_path ? img_path + item.poster_path : '../image/no_img.jpg'}" alt="">
+                            <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt="">
                             <figcaption>
                                 <b>${item.original_name}</b>
-                                <p>${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${genre.slice(0,2).join('/')}</p>
-                                <p>${item.vote_average.toFixed(1)}</p>
+                                <p class="detail">${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${genre.slice(0,2).join(' / ')}</p>
+                                <p class="detail">${item.vote_average.toFixed(1)}</p>
                             </figcaption>
                         </figure>
                     `;                        
                     default:
                     return `
                         <figure>
-                            <img src="${item.profile_path ? img_path + item.profile_path : '../image/no_img.jpg'}" alt="">
-                            <p>${item.name}</p>
+                            <p class="imgsH-wrap"><img class="person-card" data-id="${item.id}" src="${item.profile_path ? img_path + item.profile_path : '../image/img_noimage.jpg'}" alt="">
+                            <p class="detail">${item.name}</p>
                         </figure>
                     `;
                 }
@@ -171,18 +226,27 @@ let output20 = function (obj) {
             }).join('')
 };
 
+
+
+
+
+
 // 🔍 검색 input + form 이벤트
 let searchEvent = function(){
     const el_form = document.querySelector('.header-search-box');
     const el_input = document.querySelector('.header-search-box input');
-    const el_searchTitle = document.querySelector('.scMain h3');
     
     el_form.addEventListener('submit', function(e){
-        e.preventDefault(); // 검색하면 기본으로 동작되는 '새로고침'을 막음 (이거 안하면 검색하면 새로고침되서 데이터)
+        e.preventDefault(); // 검색하면 기본으로 동작되는 '새로고침'을 막음 (이거 안하면 검색하면 새로고침되서 데이터날라감)
         searchFun(el_input.value.trim());
         el_searchTitle.innerText = `"${el_input.value}" 검색결과`;
     });
 }
+
+
+
+
+
 
 // 💡 메뉴 버튼 클릭 이벤트
 
@@ -237,10 +301,20 @@ let searchTab = function(){
         }
     });
 }
-
-
-
 searchEvent();
+
+
+
+
+
+
+
+
+// 💡 메인에서 검색하면 검색페이지로 이동해서 바로 보이는 화면
+let params = new URLSearchParams(document.location.search);
+let keyword = params.get("keyword");
+searchFun(keyword);
+el_searchTitle.innerText = `"${keyword}" 검색결과`;
 
 
 
