@@ -1,6 +1,160 @@
-body{width: 1100px; margin: 0 auto; }
-.popup{margin: 100px 0; padding: 0 20px;}
-.popup .wrap { margin: 0 auto;}
-.title{    display: flex;}
-.title-txt{padding-left: 50px;} 
 
+.popup .wrap { margin: 0 auto;} 
+
+/* 배경 */
+
+
+
+
+.title {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+.title-txt {
+    padding-left: 0;
+    flex: 1;
+    min-width: 0;   /* 🔥 이게 핵심 */
+}
+.popup-text span,
+.title-txt p {
+    word-break: break-word;
+}
+
+
+
+.btn-x{position: fixed;}
+.con p img{height:60px}
+.con p {flex-shrink: 0;}
+.con span {width: 80px; flex-shrink: 0;}
+.con2 p{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+/* 스크롤바 */
+.act {
+    overflow-x: auto;
+}
+
+/* Chrome, Edge */
+.act::-webkit-scrollbar {
+    height: 5px;
+}
+
+.act::-webkit-scrollbar-track {
+    background: #e0e0e0;
+}
+
+.act::-webkit-scrollbar-thumb {
+    background: #ff3535 !important;
+    border-radius: 0 !important;
+}
+
+.act::-webkit-scrollbar-button {
+    display: none;
+}
+
+.act::-webkit-scrollbar-thumb:hover {
+    background-color: #e02e2e; /* 마우스 오버시 색상 변화 */
+}
+
+
+
+/* 팝업 전체 배경 */
+.popup-wrap {
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    display: none;
+}
+
+/* 팝업창 */
+.popup {
+    width: 100%;
+    max-width: 900px;
+    height: 90vh;
+    
+
+    background: #1a1a1a;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    border-radius: 10px;
+    padding: 30px;
+    position: relative;
+
+    
+
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE, Edge */
+}
+    
+
+
+/* 닫기 버튼 */
+#close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    width:20px; height:20px;
+}
+#close-btn img{width:100%}
+
+
+
+/* 전체 페이지 */
+.popup {
+    scrollbar-width: none;      /* Firefox */
+    -ms-overflow-style: none;   /* IE, Edge */
+}
+
+.popup::-webkit-scrollbar,
+.popup::-webkit-scrollbar {
+    display: none;              /* Chrome, Safari */
+}
+
+.act::-webkit-scrollbar:horizontal {
+    height: 6px;
+}
+
+.container::-webkit-scrollbar-track:horizontal {
+    background: transparent;
+}   
+
+
+
+.loader{
+  margin: 0 0 2em;
+  height: 100px;
+  width: 20%;
+  text-align: center;
+  padding: 1em;
+  margin: 0 auto 1em;
+  display: inline-block;
+  vertical-align: top;
+  color:white;position:absolute;left:40%;top:45%;
+}
+
+/*
+  Set the color of the icon
+*/
+svg path,
+svg rect{
+  fill: #ff3535;
+}

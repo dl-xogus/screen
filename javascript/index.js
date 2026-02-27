@@ -105,7 +105,7 @@ let top10DomControl = function (movie, tv) {
 
     movie.slice(0, 10).forEach(function (mov, i) {
         el_topMovieOutput.innerHTML +=
-            `<a href="#" class="slide ${i === 9 ? 'last' : ''}">
+            `<a href="" data-href="${mov.id}" data-type="영화" class="slide ${i === 9 ? 'last' : ''}">
                 <span ${i === 9 ? 'class="ten"' : ''}>${i + 1}</span>
                 <p class="img-wrap"><img src="${img_path + mov.poster_path}"></p>
             </a>`;
@@ -113,7 +113,7 @@ let top10DomControl = function (movie, tv) {
 
     tv.slice(0, 10).forEach(function (t, i) {
         el_topTvOutput.innerHTML +=
-            `<a href="#" class="slide ${i === 9 ? 'last' : ''}">
+            `<a href="" data-href="${t.id}" data-type="TV" class="slide ${i === 9 ? 'last' : ''}">
                 <span ${i === 9 ? 'class="ten"' : ''}>${i + 1}</span>
                 <p class="img-wrap"><img src="${img_path + t.poster_path}"></p>
             </a>`;
@@ -190,19 +190,19 @@ let recommendDomControl = function (movie, tv, ani) {
 
     movie.slice(0, 16).forEach(function (mov, i) {
         el_recomMovieOutput.innerHTML +=
-            `<a href="#" class="slide">
+            `<a data-href="${mov.id}"  data-type="영화" class="slide">
                 <img src="${img_path + mov.poster_path}">
             </a>`;
     });
     tv.slice(0, 16).forEach(function (t, i) {
         el_recomdTvOutput.innerHTML +=
-            `<a href="#" class="slide">
+            `<a data-href="${t.id}" data-type="TV" class="slide">
                 <img src="${img_path + t.poster_path}">
             </a>`;
     });
     ani.slice(0, 16).forEach(function (an, i) {
         el_recomAniOutput.innerHTML +=
-            `<a href="#" class="slide">
+            `<a data-href="${an.id}" data-type="애니메이션" class="slide">
                 <img src="${img_path + an.poster_path}">
             </a>`;
     });
@@ -236,7 +236,7 @@ let recommendMoviesRandom = async function () {
 
         data.results.slice(0, 16).forEach(function (movie) {
             html +=
-                `<a href="#" class="slide">
+                `<a data-href="${movie.id}" data-type="영화" class="slide">
                     <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}">
                 </a>`;
         });
@@ -275,7 +275,7 @@ let recommendTvRandom = async function () {
 
         data.results.slice(0, 16).forEach(function (tv) {
             html +=
-                `<a href="#" class="slide">
+                `<a data-href="${tv.id}" data-type="TV" class="slide">
                     <img src="https://image.tmdb.org/t/p/w200${tv.poster_path}">
                 </a>`;
         });
@@ -297,5 +297,6 @@ let init = async function () {
 
 
     soonCallFun();
+
 };
 init();

@@ -17,11 +17,6 @@ img {
     width: 100%;
 }
 
-.btn-x {
-    position: relative;
-    left: 46%;
-    top: 30px;
-}
 
 .profile {
     display: flex;
