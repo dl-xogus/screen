@@ -345,7 +345,7 @@ document.addEventListener('click', function (e) {
         let casts = '';
         data.casts.cast.forEach(function (값, 순번) {
 
-            casts += `<li class="act-profi">
+            casts += `<li class="act-profi person-card" data-id="${값.id}">
                         <p><img src="${img_path + 값.profile_path}" alt=""></p>
                         <b>${값.original_name}</b>
                         <span>${값.character}</span>
@@ -506,7 +506,7 @@ document.addEventListener('click', function (e) {
 
             data.credits.cast.slice(0, 10).forEach(function (c) {
                 tvCasts += `
-            <li class="act-profi">
+            <li class="act-profi person-card" data-id="${값.id}">
                 <p><img src="${img_path + c.profile_path}" alt=""></p>
                 <b>${c.original_name}</b>
                 <span>${c.character}</span>
