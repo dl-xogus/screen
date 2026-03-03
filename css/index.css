@@ -90,7 +90,7 @@
     transform: scale(1.5);
 }
 
-.video .text {
+.video .idx-text {
     display: flex;
     flex-direction: column;
     font-size: 14px;

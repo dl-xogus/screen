@@ -49,10 +49,11 @@ $('.popup-wrap').load('/pages/popup-movieDetails.html', function () {
     //const el_slide = document.querySelectorAll('.slide');
     setTimeout(function () {
 
-        $('.wrapper').on('click', function (e) {
+        $(document).on('click', '.slide', function (e) {
             e.preventDefault();
+            console.log(e.target);
+            
             let _this = e.target.parentElement.classList.contains('slide') ? e.target.parentElement : e.target.parentElement.parentElement;
-            console.log(_this)
             if (_this.classList.contains('slide')) {
 
                 $('.popup-wrap').css({ 'display': 'flex' });
@@ -149,9 +150,9 @@ $('.popup-wrap').load('/pages/popup-movieDetails.html', function () {
 
         etc += `
         
-        <a href="" data-href="${값.id}" data-type="영화" class="slide">
+        <p data-href="${값.id}" data-type="영화" class="slide">
         <img src="${img_path + 값.poster_path}" alt="">
-        </a>
+        </p>
            `;
 
     })

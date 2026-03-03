@@ -15,7 +15,7 @@ body.popup-open {
 }
 
 .header-search {
-    display: flex;
+    display: flex !important;   /* common.css에 display: none; 덮어씌워버리게 !important */
     flex-direction: column;
     align-items: center;
     gap: 30px;
