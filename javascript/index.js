@@ -325,8 +325,8 @@ let recommendTvRandom = async function () {
     recommendCallFun();
     
     soonCallFun();
-    // 팝업 출력 (현주)
-    // a태그 클릭 이벤트 (a = 더보기 버튼)
+    
+    // recommendList팝업 출력 (현주)
     $(document).on('click', '.more', function (e) {
         
         // 새로고침 안되게
@@ -336,7 +336,7 @@ let recommendTvRandom = async function () {
         let href = this.getAttribute('href');
         let name = this.getAttribute('data-name');
         let id = this.getAttribute('data-id');
-        
+
         if (name) {
             // 메인페이지에 있는 로컬스토리지에서 moreData를 가져와서 사용하기
             localStorage.moreData = JSON.stringify({ 'href': href, 'name': name, 'id': id });
@@ -355,22 +355,10 @@ let recommendTvRandom = async function () {
             $('body').css('overflow','hidden'); /* 팝업 열면 배경스크롤 없애줘 */
             
 
-            $('.recom-popup-wrap').on('click', '.slide', function () {
-                $('.recom-popup-wrap').css('display', 'none');
+            // 디테일 팝업 열면 기존 팝업 닫기
 
-                $('body').css('overflow','auto'); /* 스크롤 다시 생기게 */
-            });
-            /* 팝업을 열면 배경 스크롤 꺼지게 하는 방법2 
-            const popup = document.querySelector('.popup');
-            const popupWrap = document.querySelector('.popup-wrap');
-            let a = popupWrap.addEventListener('wheel',function(e){
-                e.preventDefault();
-            },{ passive: false });
+            
 
-            popup.addEventListener('wheel',function(e){                                   
-                e.stopPropagation();
-                popupWrap.removeEventListener('wheel',a);
-            },{ passive: true }) */
         }
     })
 
@@ -381,3 +369,5 @@ let recommendTvRandom = async function () {
     
 };
 init();
+
+
