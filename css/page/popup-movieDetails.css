@@ -68,7 +68,7 @@
     justify-content: space-between;
     gap: 14px;
 }
-.hig-img p {width: 510px; height: 260px;}
+.hig-img p {width: 510px; max-height: 260px;}
 .hig-img img {width: 100%; }
 
 /* ===========================주요출연진======================================== */
@@ -99,7 +99,7 @@
 .act-profi p img{
     object-fit: cover;
     border-radius: 100%;
-    width: 80px; height: 80px;
+    width: 60px; height: 60px;
 }
 .act-profi b{
     text-align: center;

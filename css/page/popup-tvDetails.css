@@ -73,7 +73,7 @@
     justify-content: space-between;
     gap: 14px;
 }
-.hig-img p {width: 510px; height: 260px;}
+.hig-img p {width: 510px; max-height: 260px;}
 .hig-img img {width: 100%; max-width: 840px;}
 .hig-img iframe {width: 100%; max-width: 840px;}
 
@@ -105,13 +105,14 @@
 .act-profi p img{
     object-fit: cover;
     border-radius: 100%;
-    width: 80px; height: 80px;
+    width: 60px; height: 60px;
 }
 .act-profi b{
     text-align: center;
     font-size: 15px;
     margin-top: 8px;
     line-height: 1.2;
+    font-weight: normal;
     
     height: 36px;              /* ⭐ 두 줄 높이 고정 */
     display: -webkit-box;
@@ -262,19 +263,20 @@
     .ott-logo{display: flex; gap: 10px;}
 
     /* ==============하이라이트======================================= */
-    .hig{margin: 30px auto;}
+    .hig{margin: 60px auto;}
 
     .hig-img{
         display: flex;
         margin: 10px auto;
         justify-content: space-between;
         gap: 5px;
+        
     }
     .hig-img p {width: 100%;}
     .hig-img img {width: 100%;}
 
     /* =============주요출연진======================================== */
-    .actor{margin: 30px auto;}
+    .actor{margin: 60px auto;}
 
     .act{
         display: flex;

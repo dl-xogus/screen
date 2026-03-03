@@ -119,10 +119,6 @@
 
 
 /* 전체 페이지 */
-.popup {
-    scrollbar-width: none;      /* Firefox */
-    -ms-overflow-style: none;   /* IE, Edge */
-}
 
 .popup::-webkit-scrollbar,
 .popup::-webkit-scrollbar {
@@ -157,4 +153,10 @@
 svg path,
 svg rect{
   fill: #ff3535;
+}
+
+.popup .slide img {
+    
+    object-fit: cover;
+  
 }
