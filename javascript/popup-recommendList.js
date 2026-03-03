@@ -34,7 +34,7 @@ let movieData = async function () {
     }
     let data = await res.json();
 
-    popList(data); // let popList = function (data) 여기서 실행
+    popList(data);
 
     // 팝업을 열 때 마다 스크롤을 최상단으로 옮기기
     const el_recommendPopup = document.querySelector('.recom-popup');
@@ -69,10 +69,6 @@ let popList = function (data) {
         contents.innerHTML +=
         `<a class="slide" data-href="${값.id}" data-type="${moreData.href === 'movie' ? '영화' : 'TV'}"> <img src="${reimgs}" alt=""> </a>`;
     });
-
-    // $(document).on('click', '.slide', funtion() {
-    //     $('.recom-popup-wrap').css('display', 'none');
-    // });
 }
 
 
