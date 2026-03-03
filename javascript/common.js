@@ -13,9 +13,9 @@ if (el_headerIcon) {
 
         let contains = el_headerIcon.classList.contains('active');
         if (contains) {
-            el_headerIcon.innerHTML = `<img src="../image/ic_x.svg" alt="검색아이콘">`;
+            el_headerIcon.innerHTML = `<img src="image/ic_x.svg" alt="검색아이콘">`;
         } else {
-            el_headerIcon.innerHTML = `<img src="../image/ic_search.svg" alt="검색아이콘">`;
+            el_headerIcon.innerHTML = `<img src="image/ic_search.svg" alt="검색아이콘">`;
         }
     });
 }
@@ -85,7 +85,7 @@ let popup_filmography_func = function (id) {
     /* 대표작 출력 함수 */
     let castOutputFunc = function (castData) {
         const el_filmoPosters = document.querySelector('.appear .posters');
-        const noImg = '../image/img_noimage.jpg';
+        const noImg = 'image/img_noimage.jpg';
 
         el_filmoPosters.innerHTML = '';
 
