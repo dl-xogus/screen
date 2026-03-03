@@ -66,7 +66,8 @@ let popList = function (data) {
     // 포스터 이미지 반복문
     data.results.forEach(function (값, i) {
         let reimgs = 값.poster_path ? img_repath + 값.poster_path : '../image/img_noimage.jpg'
-        contents.innerHTML += `<a href="#"> <img src="${reimgs}" alt=""> </a>`;
+        contents.innerHTML +=
+        `<a class="slide" data-href="${값.id}" data-type="${moreData.href === 'movie' ? '영화' : 'TV'}"> <img src="${reimgs}" alt=""> </a>`;
     });
     
 }

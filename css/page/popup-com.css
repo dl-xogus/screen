@@ -1,5 +1,5 @@
 
-.popup .wrap { margin: 0 auto;} 
+.popup .wrap { margin: 0 auto; z-index: 2000;} 
 
 /* 배경 */
 
@@ -76,7 +76,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 99999;
     display: none;
 }
 
@@ -158,9 +158,6 @@ svg rect{
 .popup .slide img {
     
     object-fit: cover;
-<<<<<<< HEAD
-    
-=======
   
 }
 
@@ -168,5 +165,4 @@ svg rect{
     width: 100%;
     display: flex;
     justify-content: center;
->>>>>>> 0801d431682adc8aacf5e57fbce749429a2cf385
 }
