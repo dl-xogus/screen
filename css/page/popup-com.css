@@ -160,3 +160,9 @@ svg rect{
     object-fit: cover;
   
 }
+
+.details-main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
