@@ -197,7 +197,7 @@ let recommendCallFun = async function () {
 
     recommendDomControl(movieData.results, tvData.results, aniData.results);
 };
-// 공통 주소 (현주)
+// 공통 주소
 let img_path = 'https://image.tmdb.org/t/p/w200';
 
 /* dom 출력 */
@@ -208,7 +208,6 @@ let recommendDomControl = function (movie, tv, ani) {
     el_recomAniOutput.innerHTML = '';
 
     movie.slice(0, 16).forEach(function (mov, i) {
-        // (현주)
         let img_onOFF = mov.poster_path ? img_path + mov.poster_path : '../image/img_noimage.jpg';
         el_recomMovieOutput.innerHTML +=
             `<a data-href="${mov.id}"  data-type="영화" class="slide">
@@ -216,7 +215,6 @@ let recommendDomControl = function (movie, tv, ani) {
             </a>`;
     });
     tv.slice(0, 16).forEach(function (t, i) {
-        // (현주)
         let img_onOFF = t.poster_path ? img_path + t.poster_path : '../image/img_noimage.jpg';
         el_recomdTvOutput.innerHTML +=
             `<a data-href="${t.id}" data-type="TV" class="slide">
@@ -224,7 +222,6 @@ let recommendDomControl = function (movie, tv, ani) {
             </a>`;
     });
     ani.slice(0, 16).forEach(function (an, i) {
-        // (현주)
         let img_onOFF = an.poster_path ? img_path + an.poster_path : '../image/img_noimage.jpg';
         el_recomAniOutput.innerHTML +=
             `<a data-href="${an.id}" data-type="애니메이션" class="slide">
@@ -260,7 +257,6 @@ let recommendMoviesRandom = async function () {
                     <div class="swiper wrapper">`;
                     
                     data.results.slice(0, 16).forEach(function (movie) {
-            // (현주)
             let img_onOFF = movie.poster_path ? img_path + movie.poster_path : '../image/img_noimage.jpg';
             html +=
                 `<a data-href="${movie.id}" data-type="영화" class="slide">
@@ -301,7 +297,6 @@ let recommendTvRandom = async function () {
                 <div class="swiper wrapper">`;
                 
                 data.results.slice(0, 16).forEach(function (tv) {
-                    // (현주)
             let img_onOFF = tv.poster_path ? img_path + tv.poster_path : '../image/img_noimage.jpg';
             html +=
                 `<a data-href="${tv.id}" data-type="TV" class="slide">
@@ -353,16 +348,8 @@ let recommendTvRandom = async function () {
             });
             
             $('body').css('overflow','hidden'); /* 팝업 열면 배경스크롤 없애줘 */
-            
-
-            // 디테일 팝업 열면 기존 팝업 닫기
-
-            
-
         }
     })
-
-    
     
     $('body').append('<div class="recom-popup-wrap">  </div>');
     $('.recom-popup-wrap').load('./pages/popup-recommendList.html');
