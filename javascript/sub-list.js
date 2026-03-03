@@ -189,7 +189,7 @@ let movieListOutput = function (movies) {
 
         el_list.innerHTML +=
             `<figure>
-            <p class="poster"><img src="${mov.poster_path == null ? noImg : img_path + mov.poster_path}" alt="영화포스터"></p>
+            <p class="poster slide" data-href="${mov.id}" data-type="영화"><img src="${mov.poster_path == null ? noImg : img_path + mov.poster_path}" alt="영화포스터"></p>
             <div class="objs-txt">
                 <p class="name">${mov.title}</p>
                 <p>${year} · ${genre.join(' / ')}</p>
