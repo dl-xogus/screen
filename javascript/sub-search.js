@@ -149,7 +149,7 @@ let output8 = function (obj) {
                 switch(obj.type){
                     case '영화':
                     return `
-                        <figure>
+                        <figure data-href="${item.id}" data-type="영화" class="slide">
                             <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
                                 <b>${item.original_title}</b>
@@ -160,7 +160,7 @@ let output8 = function (obj) {
                     `;
                     case 'TV프로그램':
                     return `
-                        <figure>
+                        <figure data-href="${item.id}" data-type="TV" class="slide">
                             <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
                                 <b>${item.original_name}</b>
@@ -207,7 +207,7 @@ let output20 = function (obj) {
                 switch(obj.type){
                     case '영화':
                     return `
-                        <figure>
+                        <figure data-href="${item.id}" data-type="영화" class="slide">
                             <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
                                 <b>${item.original_title}</b>
@@ -218,7 +218,7 @@ let output20 = function (obj) {
                     `;
                     case 'TV프로그램':
                     return `
-                        <figure>
+                        <figure data-href="${item.id}" data-type="TV" class="slide">
                             <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt="">
                             <figcaption>
                                 <b>${item.original_name}</b>
@@ -331,3 +331,5 @@ el_searchTitle.innerText = `"${keyword}" 검색결과`;
 
 
 
+// 검색리스트에 작품 클릭시 팝업 띄우기
+let etc = '';

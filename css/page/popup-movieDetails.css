@@ -9,7 +9,9 @@
 
 
 .drama{font-size: 13px; color: #b0b0b0;}
-.title-span{display: flex;}
+.title-span{
+ 
+}
 .title-span b{font-size: 24px; padding-right: 10px;}
 .title-span span {
     border: 1px solid #b0b0b0;
@@ -196,7 +198,7 @@
     }
 
     .drama{font-size: 10px; color: #b0b0b0;}
-    .title-span{display: flex;}
+    
     .title-span b{font-size: 20px; padding-right: 10px;}
     .title-span span {
         border: 1px solid #b0b0b0;
@@ -343,7 +345,7 @@
     }
 
     .drama{font-size: 10px; color: #b0b0b0;}
-    .title-span{display: flex;}
+
     .title-span b{font-size: 20px; padding-right: 10px;}
     .title-span span {
         border: 1px solid #b0b0b0;
