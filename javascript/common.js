@@ -49,7 +49,7 @@ $('.popup-wrap').load('/pages/popup-movieDetails.html', function () {
     //const el_slide = document.querySelectorAll('.slide');
     setTimeout(function () {
 
-        $('body').on('click', function (e) {
+        $('.wrapper').on('click', function (e) {
             e.preventDefault();
             let _this = e.target.parentElement.classList.contains('slide') ? e.target.parentElement : e.target.parentElement.parentElement;
             console.log(_this)
@@ -649,7 +649,7 @@ window.addEventListener('click', function (e) {
 
 /* 팝업창 x버튼눌러서 끄기 */
 document.addEventListener('click', function (e) {
-    if (e.target.closest('.btn-x')) {
+    if (e.target.closest('.filmo-btn-x')) {
         document.body.classList.remove('popup-open');
         document.querySelector('#popup-filmography').remove();  // html에 추가했던 팝업을 지움
     }

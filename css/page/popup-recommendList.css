@@ -1,7 +1,7 @@
 @import url(../reset.css);
 @import url(../common.css);
 
-.popup-wrap {
+.recom-popup-wrap {
     background-color: rgba(0, 0, 0, 0.8);
     width: 100%;
     height: 100%;
@@ -19,7 +19,7 @@
     position: relative;
 }
 
-.btn-x {
+.recom-btn-x {
     position: absolute;
     right: 40px;
     top: 35px;
@@ -27,7 +27,7 @@
     /* 커서 바꾸기 */
 }
 
-.popup {
+.recom-popup {
     height: 90vh;
     border-radius: 40px;
     background-color: #1a1a1a;
@@ -41,13 +41,13 @@
     /* 스크롤바 가리기 */
 }
 
-.popup-wrap .btn-x img {
+.recom-popup-wrap .btn-x img {
     width: 18px;
     height: 18px;
 }
 
 
-.popup-wrap .contents a {
+.recom-popup-wrap .contents a {
     display: block;
     width: 144px;
     border-radius: 10px;
@@ -56,16 +56,16 @@
     aspect-ratio: 2 / 3;
 }
 
-.popup-wrap img {
+.recom-popup-wrap img {
     height: 100%;
     transition: 0.3s;
 }
 
-.popup-wrap img:hover {
+.recom-popup-wrap img:hover {
     transform: scale(1.05);
 }
 
-.popup article {
+.recom-popup article {
     width: 800px;
     padding: 50px 0 70px 0;
     display: grid;
@@ -73,13 +73,13 @@
     align-items: center;
 }
 
-.popup .title {
+.recom-popup .title {
     width: 100%;
     font-size: 20px;
     padding-bottom: 20px;
 }
 
-.popup .contents {
+.recom-popup .contents {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(5, minmax(70px, 144px));
@@ -96,16 +96,16 @@
 
 /* 테블릿 가로 (해상도 768px ~ 1023px)*/
 @media all and (min-width:768px) and (max-width:1023px) {
-    .popup {
+    .recom-popup {
         margin: 0 15px;
         padding: 0;
     }
 
-    .popup article {
+    .recom-popup article {
         width: 80%;
     }
 
-    .popup .contents {
+    .recom-popup .contents {
         grid-template-columns: repeat(4, minmax(70px, 144px));
     }
 }
@@ -113,32 +113,32 @@
 
 /* 모바일 가로 & 테블릿 세로 (해상도 480px ~ 767px)*/
 @media all and (min-width:480px) and (max-width:767px) {
-    .popup {
+    .recom-popup {
         margin: 0 15px;
         padding: 0 10px;
     }
 
-    .popup article {
+    .recom-popup article {
         width: 80%;
     }
 
-    .popup .contents {
+    .recom-popup .contents {
         grid-template-columns: repeat(3, minmax(70px, 144px));
     }
 }
 
 /* 모바일 세로 (해상도 ~ 479px)*/
 @media all and (max-width:479px) {
-    .popup {
+    .recom-popup {
         margin: 0 15px;
         padding: 0 10px;
     }
 
-    .popup article {
+    .recom-popup article {
         width: 80%;
     }
 
-    .popup .contents {
+    .recom-popup .contents {
         grid-template-columns: repeat(2, minmax(70px, 144px));
     }
 }

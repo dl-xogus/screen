@@ -1,6 +1,6 @@
 @import url(./reset.css);
 @import url(./common.css);
-@import url(./popup-movieDetails.css);
+@import url(./page/popup-movieDetails.css);
 
 
 .main-top {

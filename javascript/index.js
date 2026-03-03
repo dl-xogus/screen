@@ -325,7 +325,7 @@ let recommendTvRandom = async function () {
     soonCallFun();
     // 팝업 출력 (현주)
     // a태그 클릭 이벤트 (a = 더보기 버튼)
-    $('body').on('click', '.more', function (e) {
+    $('.title').on('click', '.more', function (e) {
         
         // 새로고침 안되게
         e.preventDefault();
@@ -341,11 +341,11 @@ let recommendTvRandom = async function () {
             movieData();
             
             // 팝업 열기
-            $('.popup-wrap').css('display', 'flex');
+            $('.recom-popup-wrap').css('display', 'flex');
             
             // 팝업 닫기
-            $('.popup-wrap').on('click', '.btn-x', function () {
-                $('.popup-wrap').css('display', 'none');
+            $('.recom-popup-wrap').on('click', '.recom-btn-x', function () {
+                $('.recom-popup-wrap').css('display', 'none');
 
                 $('body').css('overflow','auto'); /* 스크롤 다시 생기게 */
             });
@@ -366,8 +366,8 @@ let recommendTvRandom = async function () {
         }
     })
     
-    $('body').append('<div class="popup-wrap">  </div>');
-    $('.popup-wrap').load('./pages/popup-recommendList.html');
+    $('body').append('<div class="recom-popup-wrap">  </div>');
+    $('.recom-popup-wrap').load('./pages/popup-recommendList.html');
     
 };
 init();

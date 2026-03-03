@@ -12,14 +12,14 @@
     overflow-y: auto;
 }
 
-#popup-filmography .popup-wrap {
+#popup-filmography .filmo-popup-wrap {
     position: relative;
     width: 100%;
     max-width: 1140px;
     padding: 0 20px;
 }
 
-#popup-filmography .popup {
+#popup-filmography .filmo-popup {
     background-color: #1a1a1a;
     width: 100%;
     max-width: 1100px;
@@ -32,7 +32,7 @@
     border: 1px solid #383838;
 }
 
-#popup-filmography .popup::-webkit-scrollbar {
+#popup-filmography .filmo-popup::-webkit-scrollbar {
     width: 0;
 }
 /* 스크롤바 스타일 */
@@ -48,7 +48,7 @@ img {
     width: 100%;
 }
 
-.btn-x {
+.filmo-btn-x {
     position: absolute;
     /* left: 46%; */
     /* top: 30px; */

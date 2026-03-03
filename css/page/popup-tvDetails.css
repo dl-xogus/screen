@@ -1,6 +1,6 @@
-@import url('/common.css');
-@import url('/reset.css');
-@import url('/popup-com.css');
+@import url('../common.css');
+@import url('../reset.css');
+@import url('./popup-com.css');
 
 
 .poster{ height: 100%;}

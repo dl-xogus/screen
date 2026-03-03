@@ -37,7 +37,7 @@ let movieData = async function () {
     popList(data); // let popList = function (data) 여기서 실행
 
     // 팝업을 열 때 마다 스크롤을 최상단으로 옮기기
-    const el_recommendPopup = document.querySelector('.popup');
+    const el_recommendPopup = document.querySelector('.recom-popup');
     el_recommendPopup.scrollTop = 0;
     
     
@@ -51,8 +51,8 @@ let popList = function (data) {
     
 
     // 태그 이름 정하기
-    const title = document.querySelector('.popup .title');
-    const contents = document.querySelector('.popup .contents');
+    const title = document.querySelector('.recom-popup .title');
+    const contents = document.querySelector('.recom-popup .contents');
 
     // 공통 이미지 주소
     let img_repath = 'https://image.tmdb.org/t/p/w300';
