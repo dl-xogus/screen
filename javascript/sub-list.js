@@ -54,7 +54,7 @@ const el_spr = document.querySelectorAll('.spr');
 const el_spread = document.querySelectorAll('.spr .spread');
 
 el_spread.forEach(function (sp, i) {
-    sp.addEventListener('click', function (e) {
+    sp.addEventListener('click', function () {
         el_spr[i].classList.toggle('active');
     });
 });
@@ -185,7 +185,7 @@ let movieListOutput = function (movies) {
         });
 
         /* 출력 */
-        let noImg = '../image/img_noimage.jpg';
+        let noImg = '/screen/image/img_noimage.jpg';
 
         el_list.innerHTML +=
             `<figure>
@@ -262,11 +262,11 @@ let tvListOutput = function (tv) {
         });
 
         /* 출력 */
-        let noImg = '../image/img_noimage.jpg';
+        let noImg = '/screen/image/img_noimage.jpg';
 
         el_list.innerHTML +=
             `<figure>
-            <p class="poster slide" data-href="${t.id}" data-type="TV"><img src="${t.poster_path == null ? noImg : img_path + t.poster_path}" alt="영화포스터"></p>
+            <p class="poster"><img src="${t.poster_path == null ? noImg : img_path + t.poster_path}" alt="영화포스터"></p>
             <div class="objs-txt">
                 <p class="name">${t.name}</p>
                 <p>${year} · ${genre.join(' / ')}</p>

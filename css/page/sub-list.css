@@ -99,23 +99,23 @@
 }
 
 .see .icons .netflix {
-    background: url(../../image/ic_netflix.svg) center center / cover no-repeat;
+    background: url(/screen/image/ic_netflix.svg) center center / cover no-repeat;
 }
 
 .see .icons .appleTV {
-    background: url(../../image/ic_appleTV.svg) center center / cover no-repeat;
+    background: url(/screen/image/ic_appleTV.svg) center center / cover no-repeat;
 }
 
 .see .icons .tving {
-    background: url(../../image/ic_tving.svg) center center / cover no-repeat;
+    background: url(/screen/image/ic_tving.svg) center center / cover no-repeat;
 }
 
 .see .icons .wavve {
-    background: url(../../image/ic_wavve.svg) center center / cover no-repeat;
+    background: url(/screen/image/ic_wavve.svg) center center / cover no-repeat;
 }
 
 .see .icons .disneyplus {
-    background: url(../../image/ic_disneyplus.svg) center center / cover no-repeat;
+    background: url(/screen/image/ic_disneyplus.svg) center center / cover no-repeat;
 }
 
 .spr .genre-btn {
@@ -185,11 +185,11 @@
     width: 10px;
     height: 10px;
     margin: 0 5px;
-    background: url(../../image/ic_point.svg) center center / cover no-repeat;
+    background: url(/screen/image/ic_point.svg) center center / cover no-repeat;
 }
 
 .sort-tab a.active::before {
-    background: url(../../image/ic_check.svg) center center / cover no-repeat;
+    background: url(/screen/image/ic_check.svg) center center / cover no-repeat;
 }
 
 .objs {
@@ -276,7 +276,7 @@
     width: 20px;
     height: 20px;
     margin: 0 5px;
-    background: url(../../image/ic_down.svg) center center / cover no-repeat;
+    background: url(/screen/image/ic_down.svg) center center / cover no-repeat;
 }
 
 /* 테블릿 가로 (해상도 768px ~ 1023px)*/

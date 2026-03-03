@@ -101,7 +101,7 @@ header a {
 .header-search-box button {
     width: 15px;
     height: 15px;
-    background: url(../image/ic_search.svg) center center / cover no-repeat;
+    background: url(/screen/image/ic_search.svg) center center / cover no-repeat;
     background-color: transparent;
     border: none;
     cursor: pointer;

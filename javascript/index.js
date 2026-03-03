@@ -208,21 +208,21 @@ let recommendDomControl = function (movie, tv, ani) {
     el_recomAniOutput.innerHTML = '';
 
     movie.slice(0, 16).forEach(function (mov, i) {
-        let img_onOFF = mov.poster_path ? img_path + mov.poster_path : '../image/img_noimage.jpg';
+        let img_onOFF = mov.poster_path ? img_path + mov.poster_path : '/screen/image/img_noimage.jpg';
         el_recomMovieOutput.innerHTML +=
             `<a data-href="${mov.id}"  data-type="영화" class="slide">
                 <img src="${img_onOFF}">
             </a>`;
     });
     tv.slice(0, 16).forEach(function (t, i) {
-        let img_onOFF = t.poster_path ? img_path + t.poster_path : '../image/img_noimage.jpg';
+        let img_onOFF = t.poster_path ? img_path + t.poster_path : '/screen/image/img_noimage.jpg';
         el_recomdTvOutput.innerHTML +=
             `<a data-href="${t.id}" data-type="TV" class="slide">
                 <img src="${img_onOFF}">
             </a>`;
     });
     ani.slice(0, 16).forEach(function (an, i) {
-        let img_onOFF = an.poster_path ? img_path + an.poster_path : '../image/img_noimage.jpg';
+        let img_onOFF = an.poster_path ? img_path + an.poster_path : '/screen/image/img_noimage.jpg';
         el_recomAniOutput.innerHTML +=
             `<a data-href="${an.id}" data-type="애니메이션" class="slide">
                 <img src="${img_onOFF}">
@@ -257,7 +257,7 @@ let recommendMoviesRandom = async function () {
                     <div class="swiper wrapper">`;
                     
                     data.results.slice(0, 16).forEach(function (movie) {
-            let img_onOFF = movie.poster_path ? img_path + movie.poster_path : '../image/img_noimage.jpg';
+            let img_onOFF = movie.poster_path ? img_path + movie.poster_path : '/screen/image/img_noimage.jpg';
             html +=
                 `<a data-href="${movie.id}" data-type="영화" class="slide">
                     <img src="${img_onOFF}">
@@ -292,12 +292,12 @@ let recommendTvRandom = async function () {
         `<article>
         <div class="title">
         <h2>${genre.name}</h2>
-        <a href="tv" class="more" data-name="${genre.name}" data-id="${genre.id}">더보기<img src="./image/ic_right.svg"></a>
+        <a href="tv" class="more" data-name="${genre.name}" data-id="${genre.id}">더보기<img src="/screen/image/ic_right.svg"></a>
                 </div>
                 <div class="swiper wrapper">`;
                 
                 data.results.slice(0, 16).forEach(function (tv) {
-            let img_onOFF = tv.poster_path ? img_path + tv.poster_path : '../image/img_noimage.jpg';
+            let img_onOFF = tv.poster_path ? img_path + tv.poster_path : '/screen/image/img_noimage.jpg';
             html +=
                 `<a data-href="${tv.id}" data-type="TV" class="slide">
                     <img src="${img_onOFF}">
@@ -352,7 +352,7 @@ let recommendTvRandom = async function () {
     })
     
     $('body').append('<div class="recom-popup-wrap">  </div>');
-    $('.recom-popup-wrap').load('./pages/popup-recommendList.html');
+    $('.recom-popup-wrap').load('/screen/pages/popup-recommendList.html');
     
 };
 init();

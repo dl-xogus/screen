@@ -13,9 +13,9 @@ if (el_headerIcon) {
 
         let contains = el_headerIcon.classList.contains('active');
         if (contains) {
-            el_headerIcon.innerHTML = `<img src="image/ic_x.svg" alt="검색아이콘">`;
+            el_headerIcon.innerHTML = `<img src="/screen/image/ic_x.svg" alt="검색아이콘">`;
         } else {
-            el_headerIcon.innerHTML = `<img src="image/ic_search.svg" alt="검색아이콘">`;
+            el_headerIcon.innerHTML = `<img src="/screen/image/ic_search.svg" alt="검색아이콘">`;
         }
     });
 }
@@ -29,7 +29,7 @@ let headerRecommendFun = async function () {
 
     data.results.slice(0, 3).forEach(item => {
         let title = item.title || item.name;
-        el_recommendSearchKeyword.innerHTML += `<a href="/pages/sub-search.html?keyword=${title}">${title}</a>`;
+        el_recommendSearchKeyword.innerHTML += `<a href="/screen/pages/sub-search.html?keyword=${title}">${title}</a>`;
     });
 };
 headerRecommendFun();
@@ -85,7 +85,7 @@ let popup_filmography_func = function (id) {
     /* 대표작 출력 함수 */
     let castOutputFunc = function (castData) {
         const el_filmoPosters = document.querySelector('.appear .posters');
-        const noImg = 'image/img_noimage.jpg';
+        const noImg = '/screen/image/img_noimage.jpg';
 
         el_filmoPosters.innerHTML = '';
 
@@ -227,7 +227,7 @@ $(document).on('click', '.person-card', function (e) {
     if (oldPopup) oldPopup.remove();
 
     $('body').append('<div id="popup-filmography"></div>');
-    $('#popup-filmography').load('/pages/popup-filmography.html', function () {
+    $('#popup-filmography').load('/screen/pages/popup-filmography.html', function () {
         document.body.classList.add('popup-open');   // 스크롤 막기
         popup_filmography_func(personId);     // load 끝난 후 실행
     });
@@ -253,7 +253,7 @@ document.addEventListener('click', function (e) {
 //// 무비팝업
 
     $('body').append('<div class="popup-wrap"></div>');
-    $('.popup-wrap').load('/pages/popup-movieDetails.html', function () {
+    $('.popup-wrap').load('/screen/pages/popup-movieDetails.html', function () {
         //const popup_wrap = document.querySelector('.popup-wrap');
         //const el_slide = document.querySelectorAll('.slide');
         setTimeout(function () {
@@ -303,7 +303,7 @@ document.addEventListener('click', function (e) {
             </div>`);
 
         let img_path = 'https://image.tmdb.org/t/p/w500/';
-        el_popup.innerHTML = '<p class="btn-x" id="close-btn"><img src="/image/ic_x.svg" alt=""></p>';
+        el_popup.innerHTML = '<p class="btn-x" id="close-btn"><img src="/screen/image/ic_x.svg" alt=""></p>';
 
         let res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,casts&language=ko-kr`);
         let data = await res.json();
@@ -397,11 +397,11 @@ document.addEventListener('click', function (e) {
                     ${genres}                    
                     </div>
                     <div class="ott-logo">
-                    <a href="www.netflix.com/kr"> <img src="/image/ic_netflix.svg" alt=""> </a>
-                    <a href="www.netflix.com/kr"> <img src="/image/ic_disneyplus.svg" alt=""></a>
-                    <a href="www.netflix.com/kr"> <img src="/image/ic_tving.svg" alt=""></a>
-                    <a href="www.netflix.com/kr"> <img src="/image/ic_appleTV.svg" alt=""></a>
-                    <a href="www.netflix.com/kr"> <img src="/image/ic_wavve.svg" alt=""></a>
+                    <a href="www.netflix.com/kr"> <img src="/screen/image/ic_netflix.svg" alt=""> </a>
+                    <a href="www.netflix.com/kr"> <img src="/screen/image/ic_disneyplus.svg" alt=""></a>
+                    <a href="www.netflix.com/kr"> <img src="/screen/image/ic_tving.svg" alt=""></a>
+                    <a href="www.netflix.com/kr"> <img src="/screen/image/ic_appleTV.svg" alt=""></a>
+                    <a href="www.netflix.com/kr"> <img src="/screen/image/ic_wavve.svg" alt=""></a>
                 </div>
                 </div>          
             </div>`;
@@ -470,7 +470,7 @@ document.addEventListener('click', function (e) {
 
         const el_popup = document.querySelector('.popup');
         let img_path = 'https://image.tmdb.org/t/p/w500/';
-        el_popup.innerHTML = '<p class="btn-x" id="close-btn"><img src="/image/ic_x.svg" alt=""></p>';
+        el_popup.innerHTML = '<p class="btn-x" id="close-btn"><img src="/screen/image/ic_x.svg" alt=""></p>';
 
         let res = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,credits&language=ko-kr`);
         let data = await res.json();
@@ -524,7 +524,7 @@ document.addEventListener('click', function (e) {
             seaData.episodes.forEach(function (ep) {
                 let episodeImg = ep.still_path
                     ? `<p><img src="${img_path + ep.still_path}" alt=""></p>`
-                    : `<p><img src="/image/img_noimage.jpg" alt=""></p>`; // 대체 이미지
+                    : `<p><img src="/screen/image/img_noimage.jpg" alt=""></p>`; // 대체 이미지
 
                 tvEpisodes += `
                 <li class="con">
@@ -613,11 +613,11 @@ document.addEventListener('click', function (e) {
                     
                     </div>
                     <div class="ott-logo">
-                    <a href="www.netflix.com/kr"> <img src="/image/ic_netflix.svg" alt=""> </a>
-                        <a href="www.netflix.com/kr"> <img src="/image/ic_disneyplus.svg" alt=""></a>
-                        <a href="www.netflix.com/kr"> <img src="/image/ic_tving.svg" alt=""></a>
-                        <a href="www.netflix.com/kr"> <img src="/image/ic_appleTV.svg" alt=""></a>
-                        <a href="www.netflix.com/kr"> <img src="/image/ic_wavve.svg" alt=""></a>
+                    <a href="www.netflix.com/kr"> <img src="/screen/image/ic_netflix.svg" alt=""> </a>
+                        <a href="www.netflix.com/kr"> <img src="/screen/image/ic_disneyplus.svg" alt=""></a>
+                        <a href="www.netflix.com/kr"> <img src="/screen/image/ic_tving.svg" alt=""></a>
+                        <a href="www.netflix.com/kr"> <img src="/screen/image/ic_appleTV.svg" alt=""></a>
+                        <a href="www.netflix.com/kr"> <img src="/screen/image/ic_wavve.svg" alt=""></a>
                     </div>
                     </div>          
             </div>`;
@@ -672,7 +672,7 @@ document.addEventListener('click', function (e) {
                 seaData.episodes.forEach(function (ep) {
                     let episodeImg = ep.still_path
                         ? `<p><img src="${img_path + ep.still_path}" alt=""></p>`
-                        : `<p><img src="/image/img_noimage.jpg""></p>`; // 대체 이미지
+                        : `<p><img src="/screen/image/img_noimage.jpg""></p>`; // 대체 이미지
 
                     tvEpisodes += `
                         <li class="con">
