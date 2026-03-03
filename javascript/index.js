@@ -325,15 +325,15 @@ let recommendTvRandom = async function () {
     soonCallFun();
     // 팝업 출력 (현주)
     // a태그 클릭 이벤트 (a = 더보기 버튼)
-    $('body').on('click', 'a', function (e) {
+    $('body').on('click', '.more', function (e) {
         
         // 새로고침 안되게
         e.preventDefault();
         
-        let _target = e.target.tagName == 'A' ? e.target : e.target.parentElement;
-        let href = _target.getAttribute('href');
-        let name = _target.getAttribute('data-name');
-        let id = _target.getAttribute('data-id');
+        // let _target = e.target.tagName == 'A' ? e.target : e.target.parentElement;
+        let href = this.getAttribute('href');
+        let name = this.getAttribute('data-name');
+        let id = this.getAttribute('data-id');
         
         if (name) {
             // 메인페이지에 있는 로컬스토리지에서 moreData를 가져와서 사용하기

@@ -29,13 +29,13 @@ let headerRecommendFun = async function () {
 
     data.results.slice(0, 3).forEach(item => {
         let title = item.title || item.name;
-        el_recommendSearchKeyword.innerHTML += `<a href="./pages/sub-search.html?keyword=${title}">${title}</a>`;
+        el_recommendSearchKeyword.innerHTML += `<a href="/pages/sub-search.html?keyword=${title}">${title}</a>`;
     });
 };
 headerRecommendFun();
 
-let params = new URLSearchParams(document.location.search);
-let keyword = params.get("keyword");
+// let params = new URLSearchParams(document.location.search);
+// let keyword = params.get("keyword");
 
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */

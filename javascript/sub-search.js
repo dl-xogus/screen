@@ -29,7 +29,8 @@ backImgFun();
 
 // 🎨 전역함수 모음
 const img_path = 'https://image.tmdb.org/t/p/w300';
-const genres = JSON.parse(localStorage.genres);
+const moviesGenres = JSON.parse(localStorage.moviesGenres);
+const tvGenres = JSON.parse(localStorage.tvGenres);
 const el_searchTitle = document.querySelector('.scMain h3');
 let datasets = [];
 
@@ -41,14 +42,14 @@ let datasets = [];
 // 🕵️‍♂️ 영화/TV 검색 함수
 let searchFun = async function (keyword) {
     // 영화 검색
-    let res = await fetch(`https://api.themoviedb.org/3/search/movie?query=${keyword}&api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let res = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(keyword)}&api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
     let movieData = await res.json();
     
     // TV 검색
-    let res2 = await fetch(`https://api.themoviedb.org/3/search/tv?query=${keyword}&api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let res2 = await fetch(`https://api.themoviedb.org/3/search/tv?query=${encodeURIComponent(keyword)}&api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
     let tvData = await res2.json();
     
-    let res3 = await fetch(`https://api.themoviedb.org/3/search/person?api_key=be70ce351ebf9cdf3c901d28de3db6a3&query=${keyword}&language=ko-KR`);
+    let res3 = await fetch(`https://api.themoviedb.org/3/search/person?api_key=be70ce351ebf9cdf3c901d28de3db6a3&query=${encodeURIComponent(keyword)}&language=ko-KR`);
     let personData = await res3.json();
     
     datasets = [
@@ -131,11 +132,17 @@ let output = function (obj) {
 // 💡 함수 만들기 - '전체 탭에서 8개의 컨텐츠만 보이게 하기'
 let output8 = function (obj) {
     return obj.data.slice(0,8).map(function(item){
-                let genre = [];
+                let movGen = [];
+                let tvGen = [];
                 if(item.genre_ids){
-                    genres.forEach(function(g){
+                    moviesGenres.forEach(function(g){
                         if(item.genre_ids.includes(g.id)){
-                            genre.push(g.name);
+                            movGen.push(g.name);
+                        }
+                    });
+                    tvGenres.forEach(function(g){
+                        if(item.genre_ids.includes(g.id)){
+                            tvGen.push(g.name);
                         }
                     });
                 }
@@ -146,7 +153,7 @@ let output8 = function (obj) {
                             <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
                                 <b>${item.original_title}</b>
-                                <p class="detail">${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${genre.slice(0,2).join(' / ')}</p>
+                                <p class="detail">${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${movGen.slice(0,2).join(' / ')}</p>
                                 <p class="detail">${item.vote_average.toFixed(1)}</p>
                             </figcaption>
                         </figure>
@@ -157,7 +164,7 @@ let output8 = function (obj) {
                             <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
                                 <b>${item.original_name}</b>
-                                <p class="detail">${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${genre.slice(0,2).join(' / ')}</p>
+                                <p class="detail">${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${tvGen.slice(0,2).join(' / ')}</p>
                                 <p class="detail">${item.vote_average.toFixed(1)}</p>
                             </figcaption>
                         </figure>
@@ -183,11 +190,17 @@ let output8 = function (obj) {
 let output20 = function (obj) {
     console.log(obj)
     return obj.data.map(function(item){
-                let genre = [];
+                let movGen = [];
+                let tvGen = [];
                 if(item.genre_ids){
-                    genres.forEach(function(g){
+                    moviesGenres.forEach(function(g){
                         if(item.genre_ids.includes(g.id)){
-                            genre.push(g.name);
+                            movGen.push(g.name);
+                        }
+                    });
+                    tvGenres.forEach(function(g){
+                        if(item.genre_ids.includes(g.id)){
+                            tvGen.push(g.name);
                         }
                     });
                 }
@@ -198,7 +211,7 @@ let output20 = function (obj) {
                             <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
                                 <b>${item.original_title}</b>
-                                <p class="detail">${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${genre.slice(0,2).join(' / ')}</p>
+                                <p class="detail">${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${movGen.slice(0,2).join(' / ')}</p>
                                 <p class="detail">${item.vote_average.toFixed(1)}</p>
                             </figcaption>
                         </figure>
@@ -209,7 +222,7 @@ let output20 = function (obj) {
                             <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt="">
                             <figcaption>
                                 <b>${item.original_name}</b>
-                                <p class="detail">${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${genre.slice(0,2).join(' / ')}</p>
+                                <p class="detail">${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${tvGen.slice(0,2).join(' / ')}</p>
                                 <p class="detail">${item.vote_average.toFixed(1)}</p>
                             </figcaption>
                         </figure>
