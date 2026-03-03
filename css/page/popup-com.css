@@ -15,6 +15,7 @@
     padding-left: 0;
     flex: 1;
     min-width: 0;   /* 🔥 이게 핵심 */
+    width: 300px;
 }
 .popup-text span,
 .title-txt p {
@@ -23,7 +24,6 @@
 
 
 
-.btn-x{position: fixed;}
 .con p img{height:60px}
 .con p {flex-shrink: 0;}
 .con span {width: 80px; flex-shrink: 0;}
@@ -80,44 +80,49 @@
     display: none;
 }
 
+
+
+
 /* 팝업창 */
 .popup {
     width: 100%;
-    max-width: 900px;
+    max-width: 1100px;
     height: 90vh;
     
-
+    
     background: #1a1a1a;
     overflow-y: auto;
     overflow-x: hidden;
 
-    border-radius: 10px;
-    padding: 30px;
+    border-radius: 40px;
+    padding: 130px;
     position: relative;
-
     
-
+    border: 1px solid #383838;
+    
+    
     scrollbar-width: none;      /* Firefox */
     -ms-overflow-style: none;   /* IE, Edge */
 }
-    
+
 
 
 /* 닫기 버튼 */
+
+.btn-x{position: absolute;}
+
+
 #close-btn {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    background: none;
-    border: none;
-    font-size: 20px;
+    position: fixed;
+    right: 90px; top: 75px;
     cursor: pointer;
-    width:20px; height:20px;
+
 }
 #close-btn img{width:100%}
 
 
-
+ 
+   
 /* 전체 페이지 */
 
 .popup::-webkit-scrollbar,

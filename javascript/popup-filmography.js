@@ -49,7 +49,8 @@ let popup_filmography_func = function (id) {
         castData.cast.slice(0, 12).forEach(function (ca, i) {
             let posterImg = img_path200 + ca.poster_path;
 
-            el_filmoPosters.innerHTML += `<a class="po" data-id="${ca.id}"><img src="${ca.poster_path ? posterImg : noImg}"></a>`;
+            el_filmoPosters.innerHTML += 
+            `<a class="po" data-href="${ca.id}" data-type="영화" class="slide"><img src="${ca.poster_path ? posterImg : noImg}"></a>`;
         });
     };
 

@@ -1,6 +1,6 @@
-@import url('../common.css');
-@import url('../reset.css');
-@import url('./popup-com.css');
+@import url('/common.css');
+@import url('/reset.css');
+@import url('/popup-com.css');
 
 
 .popup .title .poster{ height: 100%;}
@@ -9,7 +9,7 @@
 }
 
 .drama{font-size: 13px; color: #b0b0b0;}
-.title-span{display: flex;}
+.title-span{}
 .title-span b{font-size: 24px; padding-right: 10px;}
 .title-span span {
     border: 1px solid #b0b0b0;
@@ -87,6 +87,7 @@
     margin: 30px auto;
     gap: 20px;  
 }
+
 
 .act-profi {
     display: flex;
@@ -177,7 +178,7 @@
 
 
 .con>p { width:96px; }
-.con>p>img { width:100%; }
+.con>p>img { width:100%; object-fit: cover;}
 
 
 
@@ -211,7 +212,7 @@
         width: 100%; min-width: 0; 
     } 
     .drama{font-size: 13px; color: #b0b0b0; font-size: 10px;}
-    .title-span{display: flex;}
+    
     .title-span b{font-size: 20px; padding-right: 10px;}
     .title-span span {
         border: 1px solid #b0b0b0;
@@ -374,7 +375,7 @@
         width: 100%; min-width: 0;
     } 
     .drama{font-size: 13px; color: #b0b0b0; font-size: 10px;}
-    .title-span{display: flex;}
+    
     .title-span b{font-size: 20px; padding-right: 10px;}
     .title-span span {
         border: 1px solid #b0b0b0;

@@ -149,8 +149,8 @@ let output8 = function (obj) {
                 switch(obj.type){
                     case '영화':
                     return `
-                        <figure>
-                            <p class="imgs-wrap slide" data-href="${item.id}" data-type="영화"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
+                        <figure data-href="${item.id}" data-type="영화" class="slide">
+                            <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
                                 <b>${item.original_title}</b>
                                 <p class="detail">${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${movGen.slice(0,2).join(' / ')}</p>
@@ -160,8 +160,8 @@ let output8 = function (obj) {
                     `;
                     case 'TV프로그램':
                     return `
-                        <figure>
-                            <p class="imgs-wrap slide" data-href="${item.id}" data-type="TV"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
+                        <figure data-href="${item.id}" data-type="TV" class="slide">
+                            <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
                                 <b>${item.original_name}</b>
                                 <p class="detail">${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${tvGen.slice(0,2).join(' / ')}</p>
@@ -207,8 +207,8 @@ let output20 = function (obj) {
                 switch(obj.type){
                     case '영화':
                     return `
-                        <figure>
-                            <p class="imgs-wrap slide" data-href="${item.id}" data-type="영화"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
+                        <figure data-href="${item.id}" data-type="영화" class="slide">
+                            <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
                                 <b>${item.original_title}</b>
                                 <p class="detail">${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${movGen.slice(0,2).join(' / ')}</p>
@@ -218,8 +218,8 @@ let output20 = function (obj) {
                     `;
                     case 'TV프로그램':
                     return `
-                        <figure>
-                            <p class="imgs-wrap slide" data-href="${item.id}" data-type="TV"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt="">
+                        <figure data-href="${item.id}" data-type="TV" class="slide">
+                            <p class="imgs-wrap"><img src="${item.poster_path ? img_path + item.poster_path : '../image/img_noimage.jpg'}" alt="">
                             <figcaption>
                                 <b>${item.original_name}</b>
                                 <p class="detail">${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${tvGen.slice(0,2).join(' / ')}</p>
@@ -331,3 +331,5 @@ el_searchTitle.innerText = `"${keyword}" 검색결과`;
 
 
 
+// 검색리스트에 작품 클릭시 팝업 띄우기
+let etc = '';
