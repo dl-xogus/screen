@@ -8,48 +8,22 @@ body.popup-open {
 .top-back {
     width: 100%;
     height: 380px;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../image/test_imgB02.jpg) center center / cover no-repeat;
+    /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../image/test_imgB02.jpg) center center / cover no-repeat; */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .header-search {
-    width: 425px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
 }
 
-.header-search-box {
-    width: 380px;
-    height: 40px;
-    border-bottom: 1px solid white;
-}
-
-.header-search-box p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.header-search>div:nth-of-type(1)::after {
-    content: url(../../image/ic_search.svg);
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-}
-
-.header-search div {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-b {
+.scMain .search b {
     text-decoration: underline;
+    font-size: 18px;
 }
 
 a {
@@ -107,13 +81,24 @@ h3 {
     padding: 60px 0 30px 0;
     display: flex;
 }
+.searchAll>div>figure
 
-
-.searchAll>div>figure>img {
-    border-radius: 10px;
+.imgs-wrap {
     width: 192px;
     height: 288px;
+    border-radius: 10px;
+    overflow: hidden;
 }
+
+.imgs-wrap img {
+    height: 100%;
+    transition: 0.3s; /* 애니메이션 부드럽게 */
+    
+}
+.imgs-wrap:hover img {  /* :hover 해당 태그에 마우스를 올리면 */
+    transform: scale(1.05); /* 1.05배 만큼 커지게 변경 */
+}
+
 
 .searchAll .searchList {
     display: flex;
@@ -123,6 +108,9 @@ h3 {
 
 .searchAll .searchList>figure {
     width: 192px;
+}
+.searchAll>div>figure .detail {
+    font-size: 13px;
 }
 
 
@@ -142,20 +130,31 @@ h3 {
     gap: 20px;
 }
 
+.imgsH-wrap {
+    overflow: hidden;
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+}
+.imgsH-wrap img {
+    object-fit: cover;
+
+    width: 100%;
+    transition: 0.3s; /* 애니메이션 부드럽게 */
+
+}
+.imgsH-wrap:hover img {  /* :hover 해당 태그에 마우스를 올리면 */
+    transform: scale(1.05); /* 1.05배 만큼 커지게 변경 */
+}
+
 .searchAll .searchH>figure {
     text-align: center;
     padding: 20px 0;
     margin: 0;
 }
 
-.searchAll .searchH>figure>img {
-    border-radius: 100%;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-}
-
-.searchAll .searchH>figure>p {
+.searchAll .searchH>figure>.detail {
     font-size: 14px;
     padding: 5px 0 0 0;
 }

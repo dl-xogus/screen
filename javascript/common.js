@@ -19,7 +19,6 @@ if (el_headerIcon) {
         }
     });
 }
-
 /* 헤더 추천검색어 */
 let headerRecommendFun = async function () {
     const el_recommendSearchKeyword = document.querySelector('.header-search .recommend div');
