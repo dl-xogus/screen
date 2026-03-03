@@ -54,7 +54,7 @@ const el_spr = document.querySelectorAll('.spr');
 const el_spread = document.querySelectorAll('.spr .spread');
 
 el_spread.forEach(function (sp, i) {
-    sp.addEventListener('click', function () {
+    sp.addEventListener('click', function (e) {
         el_spr[i].classList.toggle('active');
     });
 });
@@ -266,7 +266,7 @@ let tvListOutput = function (tv) {
 
         el_list.innerHTML +=
             `<figure>
-            <p class="poster"><img src="${t.poster_path == null ? noImg : img_path + t.poster_path}" alt="영화포스터"></p>
+            <p class="poster slide" data-href="${t.id}" data-type="TV"><img src="${t.poster_path == null ? noImg : img_path + t.poster_path}" alt="영화포스터"></p>
             <div class="objs-txt">
                 <p class="name">${t.name}</p>
                 <p>${year} · ${genre.join(' / ')}</p>

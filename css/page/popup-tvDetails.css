@@ -3,8 +3,8 @@
 @import url('./popup-com.css');
 
 
-.poster{ height: 100%;}
-.poster img{
+.popup .title .poster{ height: 100%;}
+.popup .title .poster img{
     width: 280px; height: 380px;
 }
 

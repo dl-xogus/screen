@@ -51,6 +51,7 @@ $('.popup-wrap').load('/pages/popup-movieDetails.html', function () {
 
         $(document).on('click', '.slide', function (e) {
             e.preventDefault();
+
             console.log(e.target);
             
             let _this = e.target.parentElement.classList.contains('slide') ? e.target.parentElement : e.target.parentElement.parentElement;
@@ -60,6 +61,9 @@ $('.popup-wrap').load('/pages/popup-movieDetails.html', function () {
 
                 let id = _this.getAttribute('data-href');
                 let type = _this.getAttribute('data-type');
+
+                console.log(id, type);
+                
 
                 if (type == '영화') {
                     popdataFun(id, type);
@@ -73,7 +77,7 @@ $('.popup-wrap').load('/pages/popup-movieDetails.html', function () {
 
 });
 
-    let popdataFun = async function (id, type) {
+let popdataFun = async function (id, type) {
 
     const el_popup = document.querySelector('.popup');
     //로딩 아이콘 출력
@@ -136,8 +140,8 @@ $('.popup-wrap').load('/pages/popup-movieDetails.html', function () {
     let casts = '';
     data.casts.cast.forEach(function (값, 순번) {
 
-        casts += `<li class="act-profi">
-                    <p><img src="${img_path + 값.profile_path}" alt=""></p>
+        casts += `<li class="act-profi person-card" data-id="${값.id}">
+                    <p><img src="${img_path + 값.profile_path}"></p>
                     <b>${값.original_name}</b>
                     <span>${값.character}</span>
             </li>`;
@@ -276,7 +280,7 @@ let popdataFunTv = async function (id, type) {
 
         data.credits.cast.slice(0, 10).forEach(function (c) {
             tvCasts += `
-        <li class="act-profi">
+        <li class="act-profi person-card" data-id="${c.id}">
             <p><img src="${img_path + c.profile_path}" alt=""></p>
             <b>${c.original_name}</b>
             <span>${c.character}</span>
@@ -385,11 +389,11 @@ let popdataFunTv = async function (id, type) {
                 
                 </div>
                 <div class="ott-logo">
-                <a href="www.netflix.com/kr"> <img src="./image/ic_netflix.svg" alt=""> </a>
-                    <a href="www.netflix.com/kr"> <img src="./image/ic_disneyplus.svg" alt=""></a>
-                    <a href="www.netflix.com/kr"> <img src="./image/ic_tving.svg" alt=""></a>
-                    <a href="www.netflix.com/kr"> <img src="./image/ic_appleTV.svg" alt=""></a>
-                    <a href="www.netflix.com/kr"> <img src="./image/ic_wavve.svg" alt=""></a>
+                <a href="www.netflix.com/kr"> <img src="/image/ic_netflix.svg" alt=""> </a>
+                    <a href="www.netflix.com/kr"> <img src="/image/ic_disneyplus.svg" alt=""></a>
+                    <a href="www.netflix.com/kr"> <img src="/image/ic_tving.svg" alt=""></a>
+                    <a href="www.netflix.com/kr"> <img src="/image/ic_appleTV.svg" alt=""></a>
+                    <a href="www.netflix.com/kr"> <img src="/image/ic_wavve.svg" alt=""></a>
                 </div>
                 </div>          
         </div>`;
@@ -525,7 +529,12 @@ let popup_filmography_func = function (id) {
         castData.cast.slice(0, 12).forEach(function (ca, i) {
             let posterImg = img_path200 + ca.poster_path;
 
-            el_filmoPosters.innerHTML += `<a class="po" data-id="${ca.id}"><img src="${ca.poster_path ? posterImg : noImg}"></a>`;
+            el_filmoPosters.innerHTML += `<a class="po slide" data-href="${ca.id}" data-type="${ca.media_type == 'movie' ? '영화' : 'TV'}"><img src="${ca.poster_path ? posterImg : noImg}"></a>`;
+
+            el_filmoPosters.addEventListener('click', function () {
+                document.body.classList.remove('popup-open');
+                document.querySelector('#popup-filmography').remove();      // 대표작 클릭하면 인물팝업 삭제
+            });
         });
     };
 
@@ -561,13 +570,23 @@ let popup_filmography_func = function (id) {
             el_filmoText.innerHTML += `
             <div class="details">
                 <p class="year">${year}</p>
-                <div class="text">
-                    <a data-id="${ca.id}">${title}</a>
+                <div class="text slide" data-href="${ca.id}" data-type="${ca.media_type == 'movie' ? '영화' : 'TV'}">
+                    <a>${title}</a>
                     <p>${ca.character || ''}</p>
                 </div>
             </div>`;                                            // ca.character || '' : 역할이 값이 없는경우 ''출력
 
             prevYear = year;                                        // 이번 횟수의 년도 전 년도에 저장
+
+        });
+        const el_filmoTitle = document.querySelectorAll('.filmo .slide');
+
+        el_filmoTitle.forEach(function (title, i) {
+
+            title.addEventListener('click', function () {
+                document.body.classList.remove('popup-open');
+                document.querySelector('#popup-filmography').remove();
+            });
         });
     };
 
@@ -633,16 +652,19 @@ let popup_filmography_func = function (id) {
 };
 
 /* 인물 클릭했을때 */
-window.addEventListener('click', function (e) {
-    const card = e.target.closest('.person-card');
-    if (!card) return;                  // person-card가 아니면 무시
+$(document).on('click', '.person-card', function (e) {
+    const popup_wrap = document.querySelector('.popup-wrap');
+    if (popup_wrap) popup_wrap.style.display = 'none';        // 기존 팝업 끄기
 
+    const card = e.target.closest('.person-card');
     let personId = card.dataset.id;           // 클릭한 태그에 걸린 data-id값을 가져옴
 
-    if (document.querySelector('#popup-filmography')) return; // 이미 있으면 또 생성 안함
+    // 기존 filmo 팝업이 있으면 삭제
+    const oldPopup = document.querySelector('#popup-filmography');
+    if (oldPopup) oldPopup.remove();
 
     $('body').append('<div id="popup-filmography"></div>');
-    $('#popup-filmography').load('./popup-filmography.html', function () {
+    $('#popup-filmography').load('/pages/popup-filmography.html', function () {
         document.body.classList.add('popup-open');   // 스크롤 막기
         popup_filmography_func(personId);     // load 끝난 후 실행
     });

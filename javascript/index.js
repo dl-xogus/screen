@@ -25,6 +25,8 @@ const el_subVideo = document.querySelectorAll('.video a');
 const el_thumb = document.querySelectorAll('.video .thumb img');
 const el_thumbName = document.querySelectorAll('.video .name');
 
+const el_soonName = document.querySelector('.main-top .name');
+
 /* 데이터 호출 */
 let soonCallFun = async function () {
     let soonRes = await fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=a3a99689753df933ab4c76e497b6c0b7&language=ko-KR');
@@ -253,7 +255,7 @@ let recommendMoviesRandom = async function () {
             `<article>
                 <div class="title">
                     <h2>${genre.name}</h2>
-                    <a href="movie" data-name="${genre.name}" data-id="${genre.id}">더보기<img src="./image/ic_right.svg"></a>
+                    <a href="movie" class="more" data-name="${genre.name}" data-id="${genre.id}">더보기<img src="./image/ic_right.svg"></a>
                     </div>
                     <div class="swiper wrapper">`;
                     
@@ -294,7 +296,7 @@ let recommendTvRandom = async function () {
         `<article>
         <div class="title">
         <h2>${genre.name}</h2>
-        <a href="tv" data-name="${genre.name}" data-id="${genre.id}">더보기<img src="./image/ic_right.svg"></a>
+        <a href="tv" class="more" data-name="${genre.name}" data-id="${genre.id}">더보기<img src="./image/ic_right.svg"></a>
                 </div>
                 <div class="swiper wrapper">`;
                 
@@ -325,7 +327,7 @@ let recommendTvRandom = async function () {
     soonCallFun();
     // 팝업 출력 (현주)
     // a태그 클릭 이벤트 (a = 더보기 버튼)
-    $('.title').on('click', '.more', function (e) {
+    $(document).on('click', '.more', function (e) {
         
         // 새로고침 안되게
         e.preventDefault();
@@ -346,12 +348,18 @@ let recommendTvRandom = async function () {
             // 팝업 닫기
             $('.recom-popup-wrap').on('click', '.recom-btn-x', function () {
                 $('.recom-popup-wrap').css('display', 'none');
-
+                
                 $('body').css('overflow','auto'); /* 스크롤 다시 생기게 */
             });
             
             $('body').css('overflow','hidden'); /* 팝업 열면 배경스크롤 없애줘 */
+            
 
+            $('.recom-popup-wrap').on('click', '.slide', function () {
+                $('.recom-popup-wrap').css('display', 'none');
+
+                $('body').css('overflow','auto'); /* 스크롤 다시 생기게 */
+            });
             /* 팝업을 열면 배경 스크롤 꺼지게 하는 방법2 
             const popup = document.querySelector('.popup');
             const popupWrap = document.querySelector('.popup-wrap');
@@ -365,6 +373,8 @@ let recommendTvRandom = async function () {
             },{ passive: true }) */
         }
     })
+
+    
     
     $('body').append('<div class="recom-popup-wrap">  </div>');
     $('.recom-popup-wrap').load('./pages/popup-recommendList.html');
