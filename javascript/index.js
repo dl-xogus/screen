@@ -66,6 +66,8 @@ let soonCallFun = async function () {
     }
 };
 
+
+
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //                         TOP 10
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -123,9 +125,9 @@ let top10DomControl = function (movie, tv) {
 
     movie.slice(0, 10).forEach(function (mov, i) {
         el_topMovieOutput.innerHTML +=
-            `<a href="" data-href="${mov.id}" data-type="영화" class="slide ${i === 9 ? 'last' : ''}">
+            `<a href="" data-href="${mov.id}" data-type="영화" class="slide ${i === 9 ? 'last' : ''}" draggable="false">
                 <span ${i === 9 ? 'class="ten"' : ''}>${i + 1}</span>
-                <p class="img-wrap"><img src="${img_path + mov.poster_path}"></p>
+                <p class="img-wrap"><img src="${img_path + mov.poster_path}" draggable="false"></p>
             </a>`;
     });
 
@@ -210,22 +212,22 @@ let recommendDomControl = function (movie, tv, ani) {
     movie.slice(0, 16).forEach(function (mov, i) {
         let img_onOFF = mov.poster_path ? img_path + mov.poster_path : '/screen/image/img_noimage.jpg';
         el_recomMovieOutput.innerHTML +=
-            `<a data-href="${mov.id}"  data-type="영화" class="slide">
-                <img src="${img_onOFF}">
+            `<a data-href="${mov.id}"  data-type="영화" class="slide" draggable="false">
+                <img src="${img_onOFF}" draggable="false">
             </a>`;
     });
     tv.slice(0, 16).forEach(function (t, i) {
         let img_onOFF = t.poster_path ? img_path + t.poster_path : '/screen/image/img_noimage.jpg';
         el_recomdTvOutput.innerHTML +=
-            `<a data-href="${t.id}" data-type="TV" class="slide">
-                <img src="${img_onOFF}">
+            `<a data-href="${t.id}" data-type="TV" class="slide" draggable="false">
+                <img src="${img_onOFF}" draggable="false">
             </a>`;
     });
     ani.slice(0, 16).forEach(function (an, i) {
         let img_onOFF = an.poster_path ? img_path + an.poster_path : '/screen/image/img_noimage.jpg';
         el_recomAniOutput.innerHTML +=
-            `<a data-href="${an.id}" data-type="애니메이션" class="slide">
-                <img src="${img_onOFF}">
+            `<a data-href="${an.id}" data-type="애니메이션" class="slide" draggable="false">
+                <img src="${img_onOFF}" draggable="false">
             </a>`;
     });
 };
@@ -252,15 +254,15 @@ let recommendMoviesRandom = async function () {
             `<article>
                 <div class="title">
                     <h2>${genre.name}</h2>
-                    <a href="movie" class="more" data-name="${genre.name}" data-id="${genre.id}">더보기<img src="./image/ic_right.svg"></a>
+                    <a href="movie" class="more" data-name="${genre.name}" data-id="${genre.id}" draggable="false">더보기<img src="./image/ic_right.svg"></a>
                     </div>
                     <div class="swiper wrapper">`;
                     
                     data.results.slice(0, 16).forEach(function (movie) {
             let img_onOFF = movie.poster_path ? img_path + movie.poster_path : '/screen/image/img_noimage.jpg';
             html +=
-                `<a data-href="${movie.id}" data-type="영화" class="slide">
-                    <img src="${img_onOFF}">
+                `<a data-href="${movie.id}" data-type="영화" class="slide" draggable="false">
+                    <img src="${img_onOFF}" draggable="false">
                 </a>`;
             });
             
@@ -299,8 +301,8 @@ let recommendTvRandom = async function () {
                 data.results.slice(0, 16).forEach(function (tv) {
             let img_onOFF = tv.poster_path ? img_path + tv.poster_path : '/screen/image/img_noimage.jpg';
             html +=
-                `<a data-href="${tv.id}" data-type="TV" class="slide">
-                    <img src="${img_onOFF}">
+                `<a data-href="${tv.id}" data-type="TV" class="slide" draggable="false">
+                    <img src="${img_onOFF}" draggable="false">
                 </a>`;
             });
             
@@ -358,3 +360,48 @@ let recommendTvRandom = async function () {
 init();
 
 
+/* 드래그 스크롤 */
+const slider = document.querySelectorAll('.drag-');
+
+let isDragging = false;
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.forEach(function (sli, i) {
+    sli.addEventListener('mousedown', (e) => {
+        isDown = true;
+        isDragging = false; // 초기화
+        sli.classList.add('active');
+        startX = e.pageX - sli.offsetLeft;
+        scrollLeft = sli.scrollLeft;
+    });
+    
+    sli.addEventListener('mouseleave', () => {
+        isDown = false;
+    });
+    
+    sli.addEventListener('mouseup', () => {
+        isDown = false;
+    });
+    
+    sli.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - sli.offsetLeft;
+        const walk = (x - startX) * 1; // 드래그 속도 조절
+
+        if (Math.abs(walk) > 5) {
+            isDragging = true;
+        }
+
+        sli.scrollLeft = scrollLeft - walk;
+    });
+
+    sli.addEventListener('click', function (e) {
+        if (isDragging) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    });
+});

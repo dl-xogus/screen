@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
     <link rel="stylesheet" href="/screen/css/index.css">
     <link rel="stylesheet" href="/screen/css/page/popup-recommendList.css">
     <link rel="stylesheet" href="/screen/css/page/popup-filmography.css">
@@ -40,6 +41,13 @@
         </div>
     </header>
     
+    <!-- 커서 -->
+    <div class="cursor">
+        <div class="cursor-text">
+            <span></span>
+        </div>
+    </div>
+
     <main>
         <div class="main-top">
             <div class="video-wrap">
@@ -52,33 +60,49 @@
                 <b>Comming Soon</b>
 
                 <div class="video">
-                    <a href="" target="video">
-                        <p class="thumb"><img src="" alt="썸네일"></p>
-                        <p class="btn"><img src="/screen/image/ic_startBtn.svg" alt="재생버튼"></p>
+                    <a class="click-area" target="video" draggable="false">
+                        <p class="thumb">
+                            <img src="" alt="썸네일" draggable="false">
+                        </p>
+                        <p class="btn">
+                            <img src="/screen/image/ic_startBtn.svg" alt="재생버튼" draggable="false">
+                        </p>
                         <div class="idx-text">
                             <span>[예고편]</span>
                             <b class="name"></b>
                         </div>
                     </a>
-                    <a href="" target="video">
-                        <p class="thumb"><img src="" alt="썸네일"></p>
-                        <p class="btn"><img src="/screen/image/ic_startBtn.svg" alt="재생버튼"></p>
+                    <a class="click-area" target="video" draggable="false">
+                        <p class="thumb">
+                            <img src="" alt="썸네일" draggable="false">
+                        </p>
+                        <p class="btn">
+                            <img src="/screen/image/ic_startBtn.svg" alt="재생버튼" draggable="false">
+                        </p>
                         <div class="idx-text">
                             <span>[예고편]</span>
                             <b class="name"></b>
                         </div>
                     </a>
-                    <a href="" target="video">
-                        <p class="thumb"><img src="" alt="썸네일"></p>
-                        <p class="btn"><img src="/screen/image/ic_startBtn.svg" alt="재생버튼"></p>
+                    <a class="click-area" target="video" draggable="false">
+                        <p class="thumb">
+                            <img src="" alt="썸네일" draggable="false">
+                        </p>
+                        <p class="btn">
+                            <img src="/screen/image/ic_startBtn.svg" alt="재생버튼" draggable="false">
+                        </p>
                         <div class="idx-text">
                             <span>[예고편]</span>
                             <b class="name"></b>
                         </div>
                     </a>
-                    <a href="" target="video">
-                        <p class="thumb"><img src="" alt="썸네일"></p>
-                        <p class="btn"><img src="/screen/image/ic_startBtn.svg" alt="재생버튼"></p>
+                    <a class="click-area" target="video" draggable="false">
+                        <p class="thumb">
+                            <img src="" alt="썸네일" draggable="false">
+                        </p>
+                        <p class="btn">
+                            <img src="/screen/image/ic_startBtn.svg" alt="재생버튼" draggable="false">
+                        </p>
                         <div class="idx-text">
                             <span>[예고편]</span>
                             <b class="name"></b>
@@ -97,12 +121,12 @@
         <section>
             <article class="top-movies top-contents active">
                 <h2>영화 TOP 10</h2>
-                <div class="top10 wrapper"></div>
+                <div class="top10 wrapper drag-area"></div>
             </article>
 
             <article class="top-tv top-contents">
                 <h2>TV프로그램 TOP 10</h2>
-                <div class="top10 wrapper"></div>
+                <div class="top10 wrapper drag-area"></div>
             </article>
         </section>
 
@@ -119,21 +143,21 @@
                     <h2>추천 영화</h2>
                     <a class="more" href="movie" data-name="추천 영화">더보기<img src="/screen/image/ic_right.svg"></a>
                 </div>
-                <div class="swiper wrapper mov"></div>
+                <div class="swiper wrapper mov drag-area"></div>
             </article>
             <article>
                 <div class="title">
                     <h2>추천 TV 프로그램</h2>
                     <a class="more" href="tv" data-name="추천 TV 프로그램">더보기<img src="/screen/image/ic_right.svg"></a>
                 </div>
-                <div class="swiper wrapper tvpro"></div>
+                <div class="swiper wrapper tvpro drag-area"></div>
             </article>
             <article>
                 <div class="title">
                     <h2>추천 애니메이션</h2>
                     <a class="more" href="tv" data-name="추천 애니메이션">더보기<img src="/screen/image/ic_right.svg"></a>
                 </div>
-                <div class="swiper wrapper animation"></div>
+                <div class="swiper wrapper animation drag-area"></div>
             </article>
         </section>
 

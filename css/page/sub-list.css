@@ -17,6 +17,7 @@
     overflow: hidden;
     position: relative;
 }
+
 .back-img img {
     position: absolute;
     left: 50%;
@@ -198,6 +199,7 @@
 
 .objs .list {
     width: 100%;
+    min-width: 0;
     padding: 30px 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -213,6 +215,7 @@
 
 .objs figure {
     width: 100%;
+    min-width: 0;
 }
 
 .objs figure .poster {
@@ -288,6 +291,9 @@
     .sort-tab {
         padding: 10px;
         width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
     }
 
     .sort-tab h2 {
@@ -317,6 +323,9 @@
     .sort-tab {
         padding: 10px;
         width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
     }
 
     .sort-tab h2 {
@@ -348,7 +357,7 @@
         border-bottom: 1px solid #383838;
         padding-bottom: 20px;
     }
-    
+
     .list figure .poster {
         min-width: 100px;
         max-width: 100px;
@@ -388,6 +397,9 @@
     .sort-tab {
         padding: 10px;
         width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
     }
 
     .sort-tab h2 {
@@ -402,7 +414,7 @@
         padding: 0 3px;
         font-size: 12px;
     }
-    
+
     .sort-tab .sort-btn {
         gap: 0;
     }
@@ -414,10 +426,23 @@
         border-bottom: 1px solid #383838;
         padding-bottom: 20px;
     }
-    
+
     .list figure .poster {
         width: 100px;
         min-width: 50px;
         border-radius: 6px;
+    }
+
+    .genre-btn::-webkit-scrollbar {
+        height: 5px;
+    }
+
+    .genre-btn::-webkit-scrollbar-thumb {
+        background-color: #FF3535;
+        border-radius: 5px;
+    }
+
+    .genre-btn::-webkit-scrollbar-track {
+        background-color: #e0e0e0;
     }
 }

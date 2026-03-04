@@ -1,5 +1,10 @@
 /* reset.css (태그 초기화) */
-body { margin: 0; }
+body {
+    margin: 0;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont,
+                 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+                 'Noto Sans KR', sans-serif;
+}
 * { box-sizing: border-box; }
 img { vertical-align: middle; }
 a {color: white; text-decoration: none;}

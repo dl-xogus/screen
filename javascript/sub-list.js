@@ -163,7 +163,7 @@ let movieListfetch = async function (mvPage) {
 
     if (validItem) {
         let backImg = img_pathOG + validItem.backdrop_path;
-        el_listBackImg.innerHTML = `<img src="${backImg}">`;
+        el_listBackImg.innerHTML = `<img draggable="false" src="${backImg}">`;
     }
 };
 
@@ -189,13 +189,13 @@ let movieListOutput = function (movies) {
 
         el_list.innerHTML +=
             `<figure>
-            <p class="poster slide" data-href="${mov.id}" data-type="영화"><img src="${mov.poster_path == null ? noImg : img_path + mov.poster_path}" alt="영화포스터"></p>
-            <div class="objs-txt">
-                <p class="name">${mov.title}</p>
-                <p>${year} · ${genre.join(' / ')}</p>
-                <p>${mov.vote_average.toFixed(1)}</p>
-            </div>
-        </figure>`;
+                <p class="poster slide click-area" data-href="${mov.id}" data-type="영화"><img class="click-area" draggable="false" src="${mov.poster_path == null ? noImg : img_path + mov.poster_path}" alt="영화포스터"></p>
+                <div class="objs-txt">
+                    <p class="name">${mov.title}</p>
+                    <p>${year} · ${genre.join(' / ')}</p>
+                    <p>${mov.vote_average.toFixed(1)}</p>
+                </div>
+            </figure>`;
     });
 
 };
@@ -240,7 +240,7 @@ let tvListfetch = async function (mvPage) {
 
     if (validItem) {        // backdrop_path가 존재한다면 조건문 실행
         let backImg = img_pathOG + validItem.backdrop_path;
-        el_listBackImg.innerHTML = `<img src="${backImg}">`;
+        el_listBackImg.innerHTML = `<img draggable="false" src="${backImg}">`;
     }
 };
 
@@ -266,7 +266,7 @@ let tvListOutput = function (tv) {
 
         el_list.innerHTML +=
             `<figure>
-            <p class="poster"><img src="${t.poster_path == null ? noImg : img_path + t.poster_path}" alt="영화포스터"></p>
+            <p class="poster slide click-area" data-href="${t.id}" data-type="TV"><img class="click-area" draggable="false" src="${t.poster_path == null ? noImg : img_path + t.poster_path}" alt="영화포스터"></p>
             <div class="objs-txt">
                 <p class="name">${t.name}</p>
                 <p>${year} · ${genre.join(' / ')}</p>

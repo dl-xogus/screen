@@ -13,9 +13,9 @@ if (el_headerIcon) {
 
         let contains = el_headerIcon.classList.contains('active');
         if (contains) {
-            el_headerIcon.innerHTML = `<img src="/screen/image/ic_x.svg" alt="검색아이콘">`;
+            el_headerIcon.innerHTML = `<img draggable="false" src="/screen/image/ic_x.svg" alt="검색아이콘">`;
         } else {
-            el_headerIcon.innerHTML = `<img src="/screen/image/ic_search.svg" alt="검색아이콘">`;
+            el_headerIcon.innerHTML = `<img draggable="false" src="/screen/image/ic_search.svg" alt="검색아이콘">`;
         }
     });
 }
@@ -29,7 +29,7 @@ let headerRecommendFun = async function () {
 
     data.results.slice(0, 3).forEach(item => {
         let title = item.title || item.name;
-        el_recommendSearchKeyword.innerHTML += `<a href="/screen/pages/sub-search.html?keyword=${title}">${title}</a>`;
+        el_recommendSearchKeyword.innerHTML += `<a draggable="false" href="/screen/pages/sub-search.html?keyword=${title}">${title}</a>`;
     });
 };
 headerRecommendFun();
@@ -68,7 +68,7 @@ let popup_filmography_func = function (id) {
         el_filmoJop.innerHTML = '';
 
         // 프로필 사진
-        el_filmoProfileImg.innerHTML = `<img src="${img_path200 + detailData.profile_path}">`;
+        el_filmoProfileImg.innerHTML = `<img draggable="false" src="${img_path200 + detailData.profile_path}">`;
         // 이름
         el_filmoName.innerHTML += `<h2>${detailData.name}</h2>`;
         // 전문분야(직업)
@@ -84,21 +84,26 @@ let popup_filmography_func = function (id) {
 
     /* 대표작 출력 함수 */
     let castOutputFunc = function (castData) {
-        const el_filmoPosters = document.querySelector('.appear .posters');
+        const el_filmoPosterWrap = document.querySelector('.appear .posters');
+        const el_filmoPosters = document.querySelectorAll('.appear .posters a');
         const noImg = '/screen/image/img_noimage.jpg';
 
-        el_filmoPosters.innerHTML = '';
+        el_filmoPosterWrap.innerHTML = '';
 
         castData.cast.slice(0, 12).forEach(function (ca, i) {
             let posterImg = img_path200 + ca.poster_path;
 
-            el_filmoPosters.innerHTML += `<a class="po slide" data-href="${ca.id}" data-type="${ca.media_type == 'movie' ? '영화' : 'TV'}"><img src="${ca.poster_path ? posterImg : noImg}"></a>`;
+            el_filmoPosterWrap.innerHTML += `<a draggable="false" class="po slide" data-href="${ca.id}" data-type="${ca.media_type == 'movie' ? '영화' : 'TV'}"><img draggable="false" src="${ca.poster_path ? posterImg : noImg}"></a>`;
 
-            el_filmoPosters.addEventListener('click', function () {
-                document.body.classList.remove('popup-open');
-                document.querySelector('#popup-filmography').remove();      // 대표작 클릭하면 인물팝업 삭제
+            el_filmoPosters.forEach(function (poster, i) {
+                poster.addEventListener('click', function () {
+                    document.body.classList.remove('popup-open');
+                    document.querySelector('#popup-filmography').remove();      // 대표작 클릭하면 인물팝업 삭제
+                });
             });
         });
+
+        dragFunc1();
     };
 
     /* 필모 출력 함수 */
@@ -134,7 +139,7 @@ let popup_filmography_func = function (id) {
             <div class="details">
                 <p class="year">${year}</p>
                 <div class="text slide" data-href="${ca.id}" data-type="${ca.media_type == 'movie' ? '영화' : 'TV'}">
-                    <a>${title}</a>
+                    <a draggable="false">${title}</a>
                     <p>${ca.character || ''}</p>
                 </div>
             </div>`;                                            // ca.character || '' : 역할이 값이 없는경우 ''출력
@@ -221,7 +226,7 @@ $(document).on('click', '.person-card', function (e) {
 
     const card = e.target.closest('.person-card');
     let personId = card.dataset.id;           // 클릭한 태그에 걸린 data-id값을 가져옴
-
+    
     // 기존 filmo 팝업이 있으면 삭제
     const oldPopup = document.querySelector('#popup-filmography');
     if (oldPopup) oldPopup.remove();
@@ -238,6 +243,7 @@ document.addEventListener('click', function (e) {
     if (e.target.closest('.filmo-btn-x')) {
         document.body.classList.remove('popup-open');
         document.querySelector('#popup-filmography').remove();  // html에 추가했던 팝업을 지움
+        $('html').css({ 'overflow': 'auto' });                  // 다른 팝업에서 잠궈놓은거 품
     }
 });
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -252,127 +258,129 @@ document.addEventListener('click', function (e) {
 
 //// 무비팝업
 
-    $('body').append('<div class="popup-wrap"></div>');
-    $('.popup-wrap').load('/screen/pages/popup-movieDetails.html', function () {
-        //const popup_wrap = document.querySelector('.popup-wrap');
-        //const el_slide = document.querySelectorAll('.slide');
-        setTimeout(function () {
+$('body').append('<div class="popup-wrap"></div>');
+$('.popup-wrap').load('/screen/pages/popup-movieDetails.html', function () {
+    //const popup_wrap = document.querySelector('.popup-wrap');
+    //const el_slide = document.querySelectorAll('.slide');
+    setTimeout(function () {
 
-            $(document).on('click', '.slide', function (e) {
-                e.preventDefault();
-                console.log(e.target);
-                
-                let _this = e.target.parentElement.classList.contains('slide') ? e.target.parentElement : e.target.parentElement.parentElement;
-                if (_this.classList.contains('slide')) {
+        $(document).on('click', '.slide', function (e) {
+            e.preventDefault();
 
-                    $('.popup-wrap').css({ 'display': 'flex' });
+            let _this = e.target.parentElement.classList.contains('slide') ? e.target.parentElement : e.target.parentElement.parentElement;
+            if (_this.classList.contains('slide')) {
 
-                    let id = _this.getAttribute('data-href');
-                    let type = _this.getAttribute('data-type');
+                $('.popup-wrap').css({ 'display': 'flex' });
+                $('html').css({ 'overflow': 'hidden' });
 
-                    if (type == '영화') {
-                        popdataFun(id, type);
-                    }
-                    else {
-                        popdataFunTv(id, type);
-                    }
+                let id = _this.getAttribute('data-href');
+                let type = _this.getAttribute('data-type');
+
+                if (type == '영화') {
+                    popdataFun(id, type);
                 }
-            })
-        }, 1000)
+                else {
+                    popdataFunTv(id, type);
+                }
 
-    });
-
-        let popdataFun = async function (id, type) {
-
-        const el_popup = document.querySelector('.popup');
-        //로딩 아이콘 출력
-        $('.popup-wrap').append(`<div class="loader loader--style2" title="1">
-            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-                <path fill="#000" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
-                <animateTransform attributeType="xml"
-                attributeName="transform"
-                type="rotate"
-                from="0 25 25"
-                to="360 25 25"
-                dur="0.6s"
-                repeatCount="indefinite"/>
-                </path>
-            </svg>
-            </div>
-            </div>`);
-
-        let img_path = 'https://image.tmdb.org/t/p/w500/';
-        el_popup.innerHTML = '<p class="btn-x" id="close-btn"><img src="/screen/image/ic_x.svg" alt=""></p>';
-
-        let res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,casts&language=ko-kr`);
-        let data = await res.json();
-
-        let resPost = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
-        let dataPost = await resPost.json();
-
-        let resVdo = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
-        let dataVdo = await resVdo.json();
-
-        $('.loader').remove();
-
-
-        let genres = '';
-        data.genres.forEach(function (값, 순번) {
-            genres += `<span>${값.name}</span>`;
+                //로딩 아이콘 출력
+                const el_popup = document.querySelector('.popup');
+                $('.popup-wrap').append(`
+        <div class="loader loader--style3" title="2">
+          <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+          <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+            <a draggable="false"nimateTransform attributeType="xml"
+              attributeName="transform"
+              type="rotate"
+              from="0 25 25"
+              to="360 25 25"
+              dur="0.6s"
+              repeatCount="indefinite"/>
+            </path>
+          </svg>
+        </div>`);
+            }
         })
+    }, 1000)
 
-        //하이라이트반복문
-        let videos = '';
-        if (data.videos.results.length) {
-            data.videos.results.forEach(function (값, 순번) {
-                if (순번 < 2) {
-                    videos += `<p>
+});
+
+let popdataFun = async function (id, type) {
+
+    const el_popup = document.querySelector('.popup');
+
+    let img_path = 'https://image.tmdb.org/t/p/w500/';
+    el_popup.innerHTML = '<p class="btn-x" id="close-btn"><img draggable="false" src="/screen/image/ic_x.svg" alt=""></p>';
+
+    let res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,casts&language=ko-kr`);
+    let data = await res.json();
+
+    let resPost = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let dataPost = await resPost.json();
+
+    let resVdo = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let dataVdo = await resVdo.json();
+
+    $('.loader').remove();
+
+
+    let genres = '';
+    data.genres.forEach(function (값, 순번) {
+        genres += `<span>${값.name}</span>`;
+    })
+
+    //하이라이트반복문
+    let videos = '';
+    if (data.videos.results.length) {
+        data.videos.results.forEach(function (값, 순번) {
+            if (순번 < 2) {
+                videos += `<p>
                             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${값.key}"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </p>`;
-                }
-            })
-        } else {
-            dataPost.backdrops.forEach(function (값, 순번) {
-                if (순번 < 2) {
-                    videos += `<p>
-                            <img width="100%" height="100%" src="${img_path + 값.file_path}">
+            }
+        })
+    } else {
+        dataPost.backdrops.forEach(function (값, 순번) {
+            if (순번 < 2) {
+                videos += `<p>
+                            <img draggable="false" width="100%" height="100%" src="${img_path + 값.file_path}">
                         </p>`;
-                }
-            });
-        }
-        //출연진반복분
-        let casts = '';
-        data.casts.cast.forEach(function (값, 순번) {
+            }
+        });
+    }
+    //출연진반복분
+    let casts = '';
+    data.casts.cast.forEach(function (값, 순번) {
 
-            casts += `<li class="act-profi person-card" data-id="${값.id}">
-                        <p><img src="${img_path + 값.profile_path}" alt=""></p>
+        casts += `<li class="act-profi person-card" data-id="${값.id}">
+                        <p><img draggable="false" src="${img_path + 값.profile_path}" alt=""></p>
                         <b>${값.original_name}</b>
                         <span>${값.character}</span>
                 </li>`;
 
-        })
+    })
 
-        //관련콘텐츠에 다른 영화 누르면 내용 바뀜
-        let etc = '';
-        dataVdo.results.forEach(function (값, 순번) {
+    //관련콘텐츠에 다른 영화 누르면 내용 바뀜
+    let etc = '';
+    dataVdo.results.forEach(function (값, 순번) {
 
-            etc += `
+        etc += `
             
             <p data-href="${값.id}" data-type="영화" class="slide">
-            <img src="${img_path + 값.poster_path}" alt="">
+            <img draggable="false" src="${img_path + 값.poster_path}" alt="">
             </p>
             `;
 
-        })
+    })
 
 
 
-//출력시작~~~~~
+    //출력시작~~~~~
 
-        //타이틀
-        el_popup.innerHTML += `<div class="title">
-                <p class="poster"><img src="${img_path + data.poster_path}" alt=""></p>
+    //타이틀
+    el_popup.innerHTML += `<div class="title">
+                <p class="poster"><img draggable="false" src="${img_path + data.poster_path}" alt=""></p>
                 <div class="title-txt">
                     <p class="drama">${type}</p>
                     <div class="title-span">
@@ -397,34 +405,34 @@ document.addEventListener('click', function (e) {
                     ${genres}                    
                     </div>
                     <div class="ott-logo">
-                    <a href="www.netflix.com/kr"> <img src="/screen/image/ic_netflix.svg" alt=""> </a>
-                    <a href="www.netflix.com/kr"> <img src="/screen/image/ic_disneyplus.svg" alt=""></a>
-                    <a href="www.netflix.com/kr"> <img src="/screen/image/ic_tving.svg" alt=""></a>
-                    <a href="www.netflix.com/kr"> <img src="/screen/image/ic_appleTV.svg" alt=""></a>
-                    <a href="www.netflix.com/kr"> <img src="/screen/image/ic_wavve.svg" alt=""></a>
+                    <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_netflix.svg" alt=""> </a>
+                    <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_disneyplus.svg" alt=""></a>
+                    <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_tving.svg" alt=""></a>
+                    <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_appleTV.svg" alt=""></a>
+                    <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_wavve.svg" alt=""></a>
                 </div>
                 </div>          
             </div>`;
 
-        //비디오
-        el_popup.innerHTML += `<div class="hig">
+    //비디오
+    el_popup.innerHTML += `<div class="hig">
                 <b>하이라이트</b>
                 <div class="hig-img">
                     ${videos.length ? videos : '제공되지않습니다.'}                
                 </div>
             </div>`;
 
-        //출연진
-        //casts.cast[0].profile_path/ character / original_name
-        el_popup.innerHTML += `<div class="actor">
+    //출연진
+    //casts.cast[0].profile_path/ character / original_name
+    el_popup.innerHTML += `<div class="actor">
                 <b>주요 출연진</b>
-                <ul class="act">
+                <ul class="act drag-area">
                     ${casts}
                 </ul>
             </div>`;
 
-        //관련콘텐츠
-        el_popup.innerHTML += `<div class="content-mov">
+    //관련콘텐츠
+    el_popup.innerHTML += `<div class="content-mov">
                 <b>관련 콘텐츠</b>
                 <div class="mov-img">
                     ${etc}
@@ -433,14 +441,16 @@ document.addEventListener('click', function (e) {
 
 
 
-        const popup_wrap = document.querySelector('.popup-wrap');
-        const el_xBtn = document.querySelector('.btn-x');
+    const popup_wrap = document.querySelector('.popup-wrap');
+    const el_xBtn = document.querySelector('.btn-x');
 
-        el_xBtn.addEventListener('click', function () {
-            popup_wrap.style = 'display:none';
-        });
+    el_xBtn.addEventListener('click', function () {
+        popup_wrap.style = 'display:none';
+        $('html').css('overflow', 'auto');
+    });
 
-    }
+    dragFunc1();
+}
 
 
 
@@ -466,67 +476,67 @@ document.addEventListener('click', function (e) {
 ///// tv팝업
 
 
-    let popdataFunTv = async function (id, type) {
+let popdataFunTv = async function (id, type) {
 
-        const el_popup = document.querySelector('.popup');
-        let img_path = 'https://image.tmdb.org/t/p/w500/';
-        el_popup.innerHTML = '<p class="btn-x" id="close-btn"><img src="/screen/image/ic_x.svg" alt=""></p>';
+    const el_popup = document.querySelector('.popup');
+    let img_path = 'https://image.tmdb.org/t/p/w500/';
+    el_popup.innerHTML = '<p class="btn-x" id="close-btn"><img draggable="false" src="/screen/image/ic_x.svg" alt=""></p>';
 
-        let res = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,credits&language=ko-kr`);
-        let data = await res.json();
+    let res = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,credits&language=ko-kr`);
+    let data = await res.json();
 
-        let resVdo = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
-        let dataVdo = await resVdo.json();
+    let resVdo = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let dataVdo = await resVdo.json();
 
-        let resImg = await fetch(`https://api.themoviedb.org/3/tv/${id}/images?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
-        let dataImg = await resImg.json();
+    let resImg = await fetch(`https://api.themoviedb.org/3/tv/${id}/images?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let dataImg = await resImg.json();
 
-        let season = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/1?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,credits&language=ko-kr`);
-        let seaData = await season.json();
+    let season = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/1?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,credits&language=ko-kr`);
+    let seaData = await season.json();
 
-        let resRating = await fetch(`https://api.themoviedb.org/3/tv/${id}/content_ratings?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
-        let dataRating = await resRating.json();
+    let resRating = await fetch(`https://api.themoviedb.org/3/tv/${id}/content_ratings?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let dataRating = await resRating.json();
 
-        console.log(dataRating)
-
-
-        //연령
-        let rating = dataRating.results.filter(function (t) {
-            return t.iso_3166_1 == 'KR' || t.iso_3166_1 == 'US';
-        })
-
-        if(!rating.length) rating.push({rating:'ALL'});
+    $('.loader').remove();
 
 
+    //연령
+    let rating = dataRating.results.filter(function (t) {
+        return t.iso_3166_1 == 'KR' || t.iso_3166_1 == 'US';
+    })
 
-        //출연진반복문
-        let tvCasts = '';
+    if (!rating.length) rating.push({ rating: 'ALL' });
 
-        if (data.credits && data.credits.cast) {
 
-            data.credits.cast.slice(0, 10).forEach(function (c) {
-                tvCasts += `
-            <li class="act-profi person-card" data-id="${값.id}">
-                <p><img src="${img_path + c.profile_path}" alt=""></p>
+
+    //출연진반복문
+    let tvCasts = '';
+
+    if (data.credits && data.credits.cast) {
+
+        data.credits.cast.slice(0, 10).forEach(function (c) {
+            tvCasts += `
+            <li class="act-profi person-card" data-id="${c.id}">
+                <p><img draggable="false" src="${img_path + c.profile_path}" alt=""></p>
                 <b>${c.original_name}</b>
                 <span>${c.character}</span>
             </li>`;
-            });
-        }
+        });
+    }
 
 
 
 
-        //에피소드반복문    let tvCasts = '';
-        console.log(seaData.episodes)
-        let tvEpisodes = '';
-        if (seaData.episodes && seaData.episodes.length) {
-            seaData.episodes.forEach(function (ep) {
-                let episodeImg = ep.still_path
-                    ? `<p><img src="${img_path + ep.still_path}" alt=""></p>`
-                    : `<p><img src="/screen/image/img_noimage.jpg" alt=""></p>`; // 대체 이미지
+    //에피소드반복문    let tvCasts = '';
+    console.log(seaData.episodes)
+    let tvEpisodes = '';
+    if (seaData.episodes && seaData.episodes.length) {
+        seaData.episodes.forEach(function (ep) {
+            let episodeImg = ep.still_path
+                ? `<p><img draggable="false" src="${img_path + ep.still_path}" alt=""></p>`
+                : `<p><img draggable="false" src="/screen/image/img_noimage.jpg" alt=""></p>`; // 대체 이미지
 
-                tvEpisodes += `
+            tvEpisodes += `
                 <li class="con">
                     ${episodeImg}
                     <span>${ep.episode_number}</span>
@@ -535,62 +545,62 @@ document.addEventListener('click', function (e) {
                         <p>${ep.overview || '에피소드 정보가 제공되지 않습니다.'}</p>
                     </div>
                 </li>`;
-            });
-        } else {
-            tvEpisodes = `<li style="color:#999;">에피소드 정보가 없습니다.</li>`;
-        }
+        });
+    } else {
+        tvEpisodes = `<li style="color:#999;">에피소드 정보가 없습니다.</li>`;
+    }
 
 
 
-        //시즌반복문
-        let tvSeason = '';
-        if (data.seasons) {
-            data.seasons.forEach(function (season) {
-                if (season.season_number != 0) {
-                    tvSeason += `
+    //시즌반복문
+    let tvSeason = '';
+    if (data.seasons) {
+        data.seasons.forEach(function (season) {
+            if (season.season_number != 0) {
+                tvSeason += `
                         <option value="${season.season_number}">
                             Season ${season.season_number}
                         </option>`;
-                }
-            });
-        }
+            }
+        });
+    }
 
 
-        //별점 반복문
-        let tit = '';
-        tit += `<b>${data.vote_average}</b>`;
-        data.genres.forEach(function (t) {
-            tit += `<span>${t.name}</span>`;
-        })
-        console.log(data)
+    //별점 반복문
+    let tit = '';
+    tit += `<b>${data.vote_average}</b>`;
+    data.genres.forEach(function (t) {
+        tit += `<span>${t.name}</span>`;
+    })
+    console.log(data)
 
 
-        // 하이라이트
-        let tv_videos = '';
-        if (dataVdo.results.length) {
-            dataVdo.results.forEach(function (값, 순번) {
-                if (순번 < 2) {
-                    tv_videos += `<p>
+    // 하이라이트
+    let tv_videos = '';
+    if (dataVdo.results.length) {
+        dataVdo.results.forEach(function (값, 순번) {
+            if (순번 < 2) {
+                tv_videos += `<p>
                             <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${값.key}"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </p>`;
-                }
-            })
-        } else {
-            dataImg.backdrops.forEach(function (값, 순번) {
-                if (순번 < 2) {
-                    tv_videos += `<p>
-                            <img width="100%" height="100%" src="${img_path + 값.file_path}">
+            }
+        })
+    } else {
+        dataImg.backdrops.forEach(function (값, 순번) {
+            if (순번 < 2) {
+                tv_videos += `<p>
+                            <img draggable="false" width="100%" height="100%" src="${img_path + 값.file_path}">
                         </p>`;
-                }
-            });
-        }
+            }
+        });
+    }
 
 
 
 
-        //타이틀
-        el_popup.innerHTML += `<div class="title">
-                <p class="poster"><img src="${img_path + data.poster_path}" alt=""></p>
+    //타이틀
+    el_popup.innerHTML += `<div class="title">
+                <p class="poster"><img draggable="false" src="${img_path + data.poster_path}" alt=""></p>
                 <div class="title-txt">
                     <p class="drama">${type}</p>
                     <div class="title-span">
@@ -613,32 +623,32 @@ document.addEventListener('click', function (e) {
                     
                     </div>
                     <div class="ott-logo">
-                    <a href="www.netflix.com/kr"> <img src="/screen/image/ic_netflix.svg" alt=""> </a>
-                        <a href="www.netflix.com/kr"> <img src="/screen/image/ic_disneyplus.svg" alt=""></a>
-                        <a href="www.netflix.com/kr"> <img src="/screen/image/ic_tving.svg" alt=""></a>
-                        <a href="www.netflix.com/kr"> <img src="/screen/image/ic_appleTV.svg" alt=""></a>
-                        <a href="www.netflix.com/kr"> <img src="/screen/image/ic_wavve.svg" alt=""></a>
+                    <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_netflix.svg" alt=""> </a>
+                        <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_disneyplus.svg" alt=""></a>
+                        <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_tving.svg" alt=""></a>
+                        <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_appleTV.svg" alt=""></a>
+                        <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_wavve.svg" alt=""></a>
                     </div>
                     </div>          
             </div>`;
 
-        //비디오
-        el_popup.innerHTML += `<div class="hig">
+    //비디오
+    el_popup.innerHTML += `<div class="hig">
             <b>하이라이트</b>
             <div class="hig-img">${tv_videos}</div>
             </div>`;
 
 
-        //출연진
-        //casts.cast[0].profile_path/ character / original_name
-        el_popup.innerHTML += `<div class="actor">
+    //출연진
+    //casts.cast[0].profile_path/ character / original_name
+    el_popup.innerHTML += `<div class="actor">
             <b>주요 출연진</b>
-            <ul class="act">
+            <ul class="act drag-area">
             ${tvCasts}
             </ul>`;
 
-        //에피소드
-        el_popup.innerHTML += `<div class="episode">
+    //에피소드
+    el_popup.innerHTML += `<div class="episode">
             <div class="solid">
             <b>Episode</b>
             <hr style="margin: 30px 0; border-color: #FF3535; ">
@@ -653,28 +663,28 @@ document.addEventListener('click', function (e) {
 
 
 
-        //TV프로그램 팝업에 에피소드 영역
+    //TV프로그램 팝업에 에피소드 영역
 
-        const popup_wrap = document.querySelector('.popup-wrap');
-        const episode = document.querySelector('.episode ul');
-        const tvOption = document.querySelector('.tv-option');
-        const el_xBtn = document.querySelector('.btn-x');
+    const popup_wrap = document.querySelector('.popup-wrap');
+    const episode = document.querySelector('.episode ul');
+    const tvOption = document.querySelector('.tv-option');
+    const el_xBtn = document.querySelector('.btn-x');
 
 
-        //시즌 클릭시 해당 회차 조회 가능 
-        tvOption.addEventListener('change', async function () {
-            let value = tvOption.value;
-            let season = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/${value}?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,credits&language=ko-kr`);
-            let seaData = await season.json();
-            let tvEpisodes = '';
+    //시즌 클릭시 해당 회차 조회 가능 
+    tvOption.addEventListener('change', async function () {
+        let value = tvOption.value;
+        let season = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/${value}?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,credits&language=ko-kr`);
+        let seaData = await season.json();
+        let tvEpisodes = '';
 
-            if (seaData.episodes && seaData.episodes.length) {
-                seaData.episodes.forEach(function (ep) {
-                    let episodeImg = ep.still_path
-                        ? `<p><img src="${img_path + ep.still_path}" alt=""></p>`
-                        : `<p><img src="/screen/image/img_noimage.jpg""></p>`; // 대체 이미지
+        if (seaData.episodes && seaData.episodes.length) {
+            seaData.episodes.forEach(function (ep) {
+                let episodeImg = ep.still_path
+                    ? `<p><img draggable="false" src="${img_path + ep.still_path}" alt=""></p>`
+                    : `<p><img draggable="false" src="/screen/image/img_noimage.jpg""></p>`; // 대체 이미지
 
-                    tvEpisodes += `
+                tvEpisodes += `
                         <li class="con">
                             ${episodeImg}
                             <span>${ep.episode_number}</span>
@@ -683,17 +693,144 @@ document.addEventListener('click', function (e) {
                                 <p>${ep.overview || '에피소드 정보가 제공되지 않습니다.'}</p>
                             </div>
                         </li>`;
-                });
-            } else {
-                tvEpisodes = `<li style="color:#999;">에피소드 정보가 없습니다.</li>`;
+            });
+        } else {
+            tvEpisodes = `<li style="color:#999;">에피소드 정보가 없습니다.</li>`;
+        }
+
+        episode.innerHTML = tvEpisodes;
+
+
+    })
+
+    el_xBtn.addEventListener('click', function () {
+        popup_wrap.style = 'display:none';
+        $('html').css('overflow', 'auto');
+    });
+
+    dragFunc1();
+}
+
+
+
+
+/* ================== 커서 =================== */
+const cursor = document.querySelector(".cursor");
+const cursorText = document.querySelector(".cursor-text span");
+
+
+/* 마우스 이동 */
+document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+
+
+/* ====== hover 처리 ====== */
+
+/* hover 들어갈 때 */
+document.addEventListener("mouseover", (e) => {
+    if (e.target.closest(".click-area")) {
+        cursor.classList.add("click-hover");
+        cursorText.textContent = "CLICK";
+    }
+
+    const dragArea = e.target.closest(".drag-area");
+    if (!dragArea) return;
+
+    if (dragArea.classList.contains("hovering")) return;    // 이미 hover 상태면 다시 실행하지 않음
+
+    if (dragArea.scrollWidth > dragArea.clientWidth) {
+        dragArea.classList.add("hovering");                 // 한번만 실행하기위한 클래스 추가
+        cursor.classList.add("drag-hover");
+        cursorText.textContent = "DRAG";
+    }
+});
+
+/* hover 나갈 때 */
+document.addEventListener("mouseout", (e) => {
+    if (e.target.closest(".click-area")) {
+        cursor.classList.remove("click-hover");
+        cursorText.textContent = "";
+    }
+
+    const dragArea = e.target.closest(".drag-area");
+    if (!dragArea) return;
+
+    // drag-area를 완전히 벗어났는지 체크
+    if (!dragArea.contains(e.relatedTarget)) {
+        dragArea.classList.remove("hovering");
+        cursor.classList.remove("drag-hover");
+        cursorText.textContent = "";
+    }
+});
+
+/* ====== 클릭 / 드래그 상태 ====== */
+
+document.addEventListener("mousedown", (e) => {
+
+    if (e.target.closest(".click-area")) {
+        cursor.classList.add("active");
+    }
+
+    if (e.target.closest(".drag-area")) {
+        cursor.classList.add("active");
+        cursor.classList.add("pause"); // 회전 멈춤용
+    }
+
+});
+
+document.addEventListener("mouseup", () => {
+    cursor.classList.remove("active");
+    cursor.classList.remove("pause");
+});
+
+
+/* 드래그 스크롤 */
+let dragFunc1 = function () {
+    const slider = document.querySelectorAll('.drag-area');
+
+    let isDragging = false;
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.forEach(function (sli, i) {
+        sli.addEventListener('mousedown', (e) => {
+            isDown = true;
+            isDragging = false; // 초기화
+            sli.classList.add('active');
+            startX = e.pageX - sli.offsetLeft;
+            scrollLeft = sli.scrollLeft;
+        });
+
+        sli.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        sli.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+
+        sli.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - sli.offsetLeft;
+            const walk = (x - startX) * 1; // 드래그 속도 조절
+
+            if (Math.abs(walk) > 5) {
+                isDragging = true;
             }
 
-            episode.innerHTML = tvEpisodes;
-
-
-        })
-
-        el_xBtn.addEventListener('click', function () {
-            popup_wrap.style = 'display:none';
+            sli.scrollLeft = scrollLeft - walk;
         });
-    }
+
+        sli.addEventListener('click', function (e) {
+            if (isDragging) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+    });
+};
+dragFunc1();

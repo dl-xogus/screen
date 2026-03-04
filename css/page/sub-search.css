@@ -50,6 +50,7 @@ h3 {
     width: 1680px;
     margin: 0 auto;
     box-sizing: border-box;
+    display: block;
 }
 
 /*---------- 메뉴 공통 스타일 ----------------------------------------*/

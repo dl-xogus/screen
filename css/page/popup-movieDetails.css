@@ -79,7 +79,7 @@
 .act{
     display: flex;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    /* scroll-snap-type: x mandatory; */
     margin: 30px auto;
     gap: 20px;  
 }
@@ -90,7 +90,7 @@
     align-items: center;
     width: 130px;
     flex-shrink: 0;
-    scroll-snap-align: start;
+    /* scroll-snap-align: start; */
     
 }
 

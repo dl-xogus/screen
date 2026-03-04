@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/screen/css/page/sub-list.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script defer src="/screen/javascript/common.js"></script>
     <script defer src="/screen/javascript/sub-list.js"></script>
+    <link rel="stylesheet" href="/screen/css/page/sub-list.css">
+    <link rel="stylesheet" href="/screen/css/page/popup-filmography.css">
 </head>
 
 <body>
@@ -29,7 +30,7 @@
         </div>
 
         <div class="header-search">
-            <form class="header-search-box" action="/screen/sub-search.html">
+            <form class="header-search-box" action="/screen/pages/sub-search.html">
                 <input type="text" placeholder="검색어를 입력해 주세요" name="keyword">
                 <button></button>
             </form>
@@ -39,6 +40,13 @@
             </div>
         </div>
     </header>
+
+    <!-- 커서 -->
+    <div class="cursor">
+        <div class="cursor-text">
+            <span></span>
+        </div>
+    </div>
 
     <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
     <!--                        main                       -->
