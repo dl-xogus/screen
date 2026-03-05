@@ -226,7 +226,7 @@ $(document).on('click', '.person-card', function (e) {
 
     const card = e.target.closest('.person-card');
     let personId = card.dataset.id;           // 클릭한 태그에 걸린 data-id값을 가져옴
-    
+
     // 기존 filmo 팝업이 있으면 삭제
     const oldPopup = document.querySelector('#popup-filmography');
     if (oldPopup) oldPopup.remove();
@@ -322,8 +322,13 @@ let popdataFun = async function (id, type) {
     let resVdo = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
     let dataVdo = await resVdo.json();
 
-    $('.loader').remove();
+    let resRating = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let dataRating = await resRating.json();
 
+    let resOtt = await fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=a3a99689753df933ab4c76e497b6c0b7`);
+    let dataOtt = await resOtt.json();
+
+    $('.loader').remove();
 
     let genres = '';
     data.genres.forEach(function (값, 순번) {
@@ -354,7 +359,7 @@ let popdataFun = async function (id, type) {
     data.casts.cast.forEach(function (값, 순번) {
 
         casts += `<li class="act-profi person-card" data-id="${값.id}">
-                        <p><img draggable="false" src="${img_path + 값.profile_path}" alt=""></p>
+                        <p><img draggable="false" src="${값.profile_path ? img_path + 값.profile_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
                         <b>${값.original_name}</b>
                         <span>${값.character}</span>
                 </li>`;
@@ -375,17 +380,89 @@ let popdataFun = async function (id, type) {
     })
 
 
+    /* 연령 출력 */
+    let ko = dataRating.results.find(r => r.iso_3166_1 === "KR");
+    let us = dataRating.results.find(r => r.iso_3166_1 === "US");
+
+    let certification = "";
+
+    if (ko) {
+        certification = ko.release_dates.find(d => d.certification)?.certification;
+    }
+
+    if (!certification && us) {
+        certification = us.release_dates.find(d => d.certification)?.certification;
+    }
+
+    function getAgeLabel(certification) {
+        const ratingMap = {
+            "ALL": "All",
+            "G": "All",
+            "전체관람가": "All",
+            "PG": "12",
+            "PG-13": "12",
+            "12": "12",
+            "15": "15",
+            "R": "19",
+            "19": "19",
+            "청소년관람불가": "19",
+            "NC-17": "19"
+        };
+
+        return ratingMap[certification] || "연령 정보 없음";
+    }
+
+
+
+    /* OTT 필터링 */
+    let img_path_logo = 'https://image.tmdb.org/t/p/original';
+
+    let kr = dataOtt.results.KR;
+
+    let providers = [
+        ...(kr?.flatrate || []),
+        ...(kr?.rent || []),
+        ...(kr?.buy || [])
+    ];
+
+    const myOTT = [8, 350, 1883, 356, 337];
+    /* 
+        넷플릭스 : 8
+        애플TV : 350
+        티빙 : 1883
+        웨이브 : 356
+        디즈니플러스 : 337
+    */
+
+    let printedOTT = new Set();   // 이미 출력한 OTT 저장
+
+    let ottLogoOutput = '';
+
+    providers.forEach(function (p) {
+
+        if (myOTT.includes(p.provider_id) && !printedOTT.has(p.provider_id)) {
+
+            printedOTT.add(p.provider_id);  // 출력한 OTT 기록
+
+            ottLogoOutput += `
+        <a>
+            <img draggable="false" src="${img_path_logo + p.logo_path}">
+        </a>`;
+        }
+
+    });
+
 
     //출력시작~~~~~
 
     //타이틀
     el_popup.innerHTML += `<div class="title">
-                <p class="poster"><img draggable="false" src="${img_path + data.poster_path}" alt=""></p>
+                <p class="poster"><img draggable="false" src="${data.poster_path ? img_path + data.poster_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
                 <div class="title-txt">
                     <p class="drama">${type}</p>
                     <div class="title-span">
                         <b>${data.title}</b>
-                        <span>${data.adult ? '19' : '15'}</span>
+                        <span>${getAgeLabel(certification)}</span>  
                         <small>(${data.release_date})</small>
                     </div>
                     ${data.tagline ? `<p class="text">“${data.tagline}”</p>` : ''}
@@ -401,16 +478,12 @@ let popdataFun = async function (id, type) {
                         </div>
                     </div>
                     <div class="popup-tag2">
-                        <b>${data.vote_average}</b>
+                        <b>${data.vote_average.toFixed(1)}</b>
                     ${genres}                    
                     </div>
                     <div class="ott-logo">
-                    <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_netflix.svg" alt=""> </a>
-                    <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_disneyplus.svg" alt=""></a>
-                    <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_tving.svg" alt=""></a>
-                    <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_appleTV.svg" alt=""></a>
-                    <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_wavve.svg" alt=""></a>
-                </div>
+                        ${ottLogoOutput}
+                    </div>
                 </div>          
             </div>`;
 
@@ -502,10 +575,11 @@ let popdataFunTv = async function (id, type) {
 
     //연령
     let rating = dataRating.results.filter(function (t) {
-        return t.iso_3166_1 == 'KR' || t.iso_3166_1 == 'US';
+        return t.iso_3166_1 == 'KR'/*  || t.iso_3166_1 == 'US' */;
     })
 
     if (!rating.length) rating.push({ rating: 'ALL' });
+
 
 
 
@@ -517,7 +591,7 @@ let popdataFunTv = async function (id, type) {
         data.credits.cast.slice(0, 10).forEach(function (c) {
             tvCasts += `
             <li class="act-profi person-card" data-id="${c.id}">
-                <p><img draggable="false" src="${img_path + c.profile_path}" alt=""></p>
+                <p><img draggable="false" src="${c.profile_path ? img_path + c.profile_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
                 <b>${c.original_name}</b>
                 <span>${c.character}</span>
             </li>`;
@@ -568,7 +642,7 @@ let popdataFunTv = async function (id, type) {
 
     //별점 반복문
     let tit = '';
-    tit += `<b>${data.vote_average}</b>`;
+    tit += `<b>${data.vote_average.toFixed(1)}</b>`;
     data.genres.forEach(function (t) {
         tit += `<span>${t.name}</span>`;
     })
@@ -600,7 +674,7 @@ let popdataFunTv = async function (id, type) {
 
     //타이틀
     el_popup.innerHTML += `<div class="title">
-                <p class="poster"><img draggable="false" src="${img_path + data.poster_path}" alt=""></p>
+                <p class="poster"><img draggable="false" src="${data.poster_path ? img_path + data.poster_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
                 <div class="title-txt">
                     <p class="drama">${type}</p>
                     <div class="title-span">
@@ -623,11 +697,11 @@ let popdataFunTv = async function (id, type) {
                     
                     </div>
                     <div class="ott-logo">
-                    <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_netflix.svg" alt=""> </a>
-                        <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_disneyplus.svg" alt=""></a>
-                        <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_tving.svg" alt=""></a>
-                        <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_appleTV.svg" alt=""></a>
-                        <a draggable="false" href="www.netflix.com/kr"> <img draggable="false" src="/screen/image/ic_wavve.svg" alt=""></a>
+                        <a draggable="false"> <img draggable="false" src="/screen/image/ic_netflix.svg" alt=""> </a>
+                        <a draggable="false"> <img draggable="false" src="/screen/image/ic_disneyplus.svg" alt=""></a>
+                        <a draggable="false"> <img draggable="false" src="/screen/image/ic_tving.svg" alt=""></a>
+                        <a draggable="false"> <img draggable="false" src="/screen/image/ic_appleTV.svg" alt=""></a>
+                        <a draggable="false"> <img draggable="false" src="/screen/image/ic_wavve.svg" alt=""></a>
                     </div>
                     </div>          
             </div>`;

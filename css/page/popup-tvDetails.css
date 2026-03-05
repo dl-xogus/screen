@@ -3,10 +3,6 @@
 @import url('/screen/css/page/popup-com.css');
 
 
-.popup .title .poster{ height: 100%;}
-.popup .title .poster img{
-    width: 280px; height: 380px;
-}
 
 .drama{font-size: 13px; color: #b0b0b0;}
 .title-span{}

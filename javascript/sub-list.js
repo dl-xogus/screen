@@ -145,7 +145,7 @@ let movieListfetch = async function (mvPage) {
     let sortQuery = '';
 
     if (currentSort === 'popularity') {     // 인기순
-        sortQuery = 'sort_by=popularity.desc';
+        sortQuery = 'Z';
     }
     else if (currentSort === 'rating') {    // 평점순
         sortQuery = 'sort_by=vote_average.desc&vote_count.gte=100';

@@ -155,7 +155,7 @@ let output8 = function (obj) {
                             <figcaption>
                                 <b>${item.original_title}</b>
                                 <p class="detail">${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${movGen.slice(0, 2).join(' / ')}</p>
-                                <p class="detail">${item.vote_average.toFixed(1)}</p>
+                                <p class="detail">★${item.vote_average.toFixed(1)}</p>
                             </figcaption>
                         </figure>
                     `;
@@ -166,7 +166,7 @@ let output8 = function (obj) {
                             <figcaption>
                                 <b>${item.original_name}</b>
                                 <p class="detail">${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${tvGen.slice(0, 2).join(' / ')}</p>
-                                <p class="detail">${item.vote_average.toFixed(1)}</p>
+                                <p class="detail">★${item.vote_average.toFixed(1)}</p>
                             </figcaption>
                         </figure>
                     `;
@@ -213,7 +213,7 @@ let output20 = function (obj) {
                             <figcaption>
                                 <b>${item.original_title}</b>
                                 <p class="detail">${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${movGen.slice(0, 2).join(' / ')}</p>
-                                <p class="detail">${item.vote_average.toFixed(1)}</p>
+                                <p class="detail">★${item.vote_average.toFixed(1)}</p>
                             </figcaption>
                         </figure>
                     `;
@@ -224,7 +224,7 @@ let output20 = function (obj) {
                             <figcaption>
                                 <b>${item.original_name}</b>
                                 <p class="detail">${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${tvGen.slice(0, 2).join(' / ')}</p>
-                                <p class="detail">${item.vote_average.toFixed(1)}</p>
+                                <p class="detail">★${item.vote_average.toFixed(1)}</p>
                             </figcaption>
                         </figure>
                     `;

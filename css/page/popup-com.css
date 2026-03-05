@@ -179,3 +179,21 @@ svg rect{
     flex-direction: column;
     align-items: center;
 }
+
+.mov-img p {
+    aspect-ratio: 2 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.mov-img p img {
+    height: 100%;
+}
+
+.popup .title .poster {
+    aspect-ratio: 2 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.popup .title .poster img {
+    height: 100%;
+}
