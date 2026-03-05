@@ -125,7 +125,7 @@ let top10DomControl = function (movie, tv) {
 
     movie.slice(0, 10).forEach(function (mov, i) {
         el_topMovieOutput.innerHTML +=
-            `<a href="" data-href="${mov.id}" data-type="영화" class="slide ${i === 9 ? 'last' : ''}" draggable="false">
+            `<a data-href="${mov.id}" data-type="영화" class="slide ${i === 9 ? 'last' : ''}" draggable="false">
                 <span ${i === 9 ? 'class="ten"' : ''}>${i + 1}</span>
                 <p class="img-wrap"><img src="${img_path + mov.poster_path}" draggable="false"></p>
             </a>`;
@@ -133,9 +133,9 @@ let top10DomControl = function (movie, tv) {
 
     tv.slice(0, 10).forEach(function (t, i) {
         el_topTvOutput.innerHTML +=
-            `<a href="" data-href="${t.id}" data-type="TV" class="slide ${i === 9 ? 'last' : ''}">
+            `<a data-href="${t.id}" data-type="TV" class="slide ${i === 9 ? 'last' : ''}" draggable="false">
                 <span ${i === 9 ? 'class="ten"' : ''}>${i + 1}</span>
-                <p class="img-wrap"><img src="${img_path + t.poster_path}"></p>
+                <p class="img-wrap"><img src="${img_path + t.poster_path}" draggable="false"></p>
             </a>`;
     });
 };
@@ -257,24 +257,25 @@ let recommendMoviesRandom = async function () {
                     <a href="movie" class="more" data-name="${genre.name}" data-id="${genre.id}" draggable="false">더보기<img src="./image/ic_right.svg"></a>
                     </div>
                     <div class="swiper wrapper drag-area">`;
-                    
-                    data.results.slice(0, 16).forEach(function (movie) {
+
+        data.results.slice(0, 16).forEach(function (movie) {
             let img_onOFF = movie.poster_path ? img_path + movie.poster_path : '/screen/image/img_noimage.jpg';
             html +=
                 `<a data-href="${movie.id}" data-type="영화" class="slide" draggable="false">
                     <img src="${img_onOFF}" draggable="false">
                 </a>`;
-            });
-            
-            html += `</div></article>`;
-            
-            container.innerHTML += html;
-        }
-    };
-    
-    /* tv 랜덤 장르 3개 뽑기 */
-    let getRndTvGenres = function () {
-        let genres = JSON.parse(localStorage.tvGenres);
+        });
+
+        html += `</div></article>`;
+
+        container.innerHTML += html;
+    }
+    dragFunc2();
+};
+
+/* tv 랜덤 장르 3개 뽑기 */
+let getRndTvGenres = function () {
+    let genres = JSON.parse(localStorage.tvGenres);
     let shuffled = genres.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 3);
 };
@@ -283,52 +284,53 @@ let recommendMoviesRandom = async function () {
 let recommendTvRandom = async function () {
     let container = document.querySelector('.recommend-tv');
     container.innerHTML = '';
-    
+
     let randomGenres = getRndTvGenres();
 
     for (let genre of randomGenres) {
         let res = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=a3a99689753df933ab4c76e497b6c0b7&language=ko-KR&sort_by=popularity.desc&with_genres=${genre.id}`);
         let data = await res.json();
-        
+
         let html =
-        `<article>
+            `<article>
         <div class="title">
         <h2>${genre.name}</h2>
         <a href="tv" class="more" data-name="${genre.name}" data-id="${genre.id}">더보기<img src="/screen/image/ic_right.svg"></a>
                 </div>
                 <div class="swiper wrapper drag-area">`;
-                
-                data.results.slice(0, 16).forEach(function (tv) {
+
+        data.results.slice(0, 16).forEach(function (tv) {
             let img_onOFF = tv.poster_path ? img_path + tv.poster_path : '/screen/image/img_noimage.jpg';
             html +=
                 `<a data-href="${tv.id}" data-type="TV" class="slide" draggable="false">
                     <img src="${img_onOFF}" draggable="false">
                 </a>`;
-            });
-            
-            html += `</div></article>`;
-            
-            container.innerHTML += html;
-        }
-    };
+        });
 
-    
-    
-    let init = async function () {
+        html += `</div></article>`;
+
+        container.innerHTML += html;
+    }
+    dragFunc2();
+};
+
+
+
+let init = async function () {
     await moviesGenresFun();
     await tvGenresFun();
-    
+
     topCallFun();
     recommendCallFun();
-    
+
     soonCallFun();
-    
+
     // recommendList팝업 출력 (현주)
     $(document).on('click', '.more', function (e) {
-        
+
         // 새로고침 안되게
         e.preventDefault();
-        
+
         // let _target = e.target.tagName == 'A' ? e.target : e.target.parentElement;
         let href = this.getAttribute('href');
         let name = this.getAttribute('data-name');
@@ -338,70 +340,72 @@ let recommendTvRandom = async function () {
             // 메인페이지에 있는 로컬스토리지에서 moreData를 가져와서 사용하기
             localStorage.moreData = JSON.stringify({ 'href': href, 'name': name, 'id': id });
             movieData();
-            
+
             // 팝업 열기
             $('.recom-popup-wrap').css('display', 'flex');
-            
+
             // 팝업 닫기
             $('.recom-popup-wrap').on('click', '.recom-btn-x', function () {
                 $('.recom-popup-wrap').css('display', 'none');
-                
-                $('body').css('overflow','auto'); /* 스크롤 다시 생기게 */
+
+                $('body').css('overflow', 'auto'); /* 스크롤 다시 생기게 */
             });
-            
-            $('body').css('overflow','hidden'); /* 팝업 열면 배경스크롤 없애줘 */
+
+            $('body').css('overflow', 'hidden'); /* 팝업 열면 배경스크롤 없애줘 */
         }
     })
-    
+
     $('body').append('<div class="recom-popup-wrap">  </div>');
     $('.recom-popup-wrap').load('/screen/pages/popup-recommendList.html');
-    
+
 };
 init();
 
 
 /* 드래그 스크롤 */
-const slider = document.querySelectorAll('.drag-');
+let dragFunc2 = function () {
+    const slider = document.querySelectorAll('.drag-area');
 
-let isDragging = false;
-let isDown = false;
-let startX;
-let scrollLeft;
+    let isDragging = false;
+    let isDown = false;
+    let startX;
+    let scrollLeft;
 
-slider.forEach(function (sli, i) {
-    sli.addEventListener('mousedown', (e) => {
-        isDown = true;
-        isDragging = false; // 초기화
-        sli.classList.add('active');
-        startX = e.pageX - sli.offsetLeft;
-        scrollLeft = sli.scrollLeft;
-    });
-    
-    sli.addEventListener('mouseleave', () => {
-        isDown = false;
-    });
-    
-    sli.addEventListener('mouseup', () => {
-        isDown = false;
-    });
-    
-    sli.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - sli.offsetLeft;
-        const walk = (x - startX) * 1; // 드래그 속도 조절
+    slider.forEach(function (sli, i) {
+        sli.addEventListener('mousedown', (e) => {
+            isDown = true;
+            isDragging = false; // 초기화
+            sli.classList.add('active');
+            startX = e.pageX - sli.offsetLeft;
+            scrollLeft = sli.scrollLeft;
+        });
 
-        if (Math.abs(walk) > 5) {
-            isDragging = true;
-        }
+        sli.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
 
-        sli.scrollLeft = scrollLeft - walk;
-    });
+        sli.addEventListener('mouseup', () => {
+            isDown = false;
+        });
 
-    sli.addEventListener('click', function (e) {
-        if (isDragging) {
+        sli.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
             e.preventDefault();
-            e.stopPropagation();
-        }
+            const x = e.pageX - sli.offsetLeft;
+            const walk = (x - startX) * 1; // 드래그 속도 조절
+
+            if (Math.abs(walk) > 5) {
+                isDragging = true;
+            }
+
+            sli.scrollLeft = scrollLeft - walk;
+        });
+
+        sli.addEventListener('click', function (e) {
+            if (isDragging) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
     });
-});
+}
