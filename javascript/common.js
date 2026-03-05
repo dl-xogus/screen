@@ -434,7 +434,7 @@ let popdataFun = async function (id, type) {
     //관련콘텐츠
     el_popup.innerHTML += `<div class="content-mov">
                 <b>관련 콘텐츠</b>
-                <div class="mov-img">
+                <div class="mov-img click-area">
                     ${etc}
                 </div>
             </div>`;
