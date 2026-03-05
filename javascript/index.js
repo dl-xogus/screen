@@ -256,7 +256,7 @@ let recommendMoviesRandom = async function () {
                     <h2>${genre.name}</h2>
                     <a href="movie" class="more" data-name="${genre.name}" data-id="${genre.id}" draggable="false">더보기<img src="./image/ic_right.svg"></a>
                     </div>
-                    <div class="swiper wrapper">`;
+                    <div class="swiper wrapper drag-area">`;
                     
                     data.results.slice(0, 16).forEach(function (movie) {
             let img_onOFF = movie.poster_path ? img_path + movie.poster_path : '/screen/image/img_noimage.jpg';
@@ -296,7 +296,7 @@ let recommendTvRandom = async function () {
         <h2>${genre.name}</h2>
         <a href="tv" class="more" data-name="${genre.name}" data-id="${genre.id}">더보기<img src="/screen/image/ic_right.svg"></a>
                 </div>
-                <div class="swiper wrapper">`;
+                <div class="swiper wrapper drag-area">`;
                 
                 data.results.slice(0, 16).forEach(function (tv) {
             let img_onOFF = tv.poster_path ? img_path + tv.poster_path : '/screen/image/img_noimage.jpg';
