@@ -54,6 +54,7 @@
     overflow: hidden;
     width: 100%;
     aspect-ratio: 2 / 3;
+    box-shadow: 1px 1px 10px 0px rgb(53, 53, 53);
 }
 
 .recom-popup-wrap img {
@@ -84,7 +85,7 @@
     display: grid;
     grid-template-columns: repeat(5, minmax(70px, 144px));
     justify-content: space-between;
-    gap: 20px;
+    gap: 25px;
 }
 
 
