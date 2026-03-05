@@ -76,9 +76,14 @@ el_ottIc.forEach(function (btn) {
         }
 
         mvPage = 1;
+        tvPage = 1;
         el_list.innerHTML = '';
 
-        movieListfetch(mvPage);
+        if (type == 'movie') {
+            movieListfetch(mvPage);
+        } else {
+            tvListfetch(tvPage);
+        }
     });
 });
 

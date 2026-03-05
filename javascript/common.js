@@ -570,6 +570,9 @@ let popdataFunTv = async function (id, type) {
     let resRating = await fetch(`https://api.themoviedb.org/3/tv/${id}/content_ratings?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
     let dataRating = await resRating.json();
 
+    let resOtt = await fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=a3a99689753df933ab4c76e497b6c0b7`);
+    let dataOtt = await resOtt.json();
+
     $('.loader').remove();
 
 
@@ -602,7 +605,6 @@ let popdataFunTv = async function (id, type) {
 
 
     //에피소드반복문    let tvCasts = '';
-    console.log(seaData.episodes)
     let tvEpisodes = '';
     if (seaData.episodes && seaData.episodes.length) {
         seaData.episodes.forEach(function (ep) {
@@ -646,7 +648,6 @@ let popdataFunTv = async function (id, type) {
     data.genres.forEach(function (t) {
         tit += `<span>${t.name}</span>`;
     })
-    console.log(data)
 
 
     // 하이라이트
@@ -669,7 +670,43 @@ let popdataFunTv = async function (id, type) {
         });
     }
 
+    /* OTT 필터링 */
+    let img_path_logo = 'https://image.tmdb.org/t/p/original';
 
+    let kr = dataOtt.results?.KR;
+
+    let providers = [
+        ...(kr?.flatrate || []),
+        ...(kr?.rent || []),
+        ...(kr?.buy || [])
+    ];
+
+    const myOTT = [8, 350, 1883, 356, 337];
+    /* 
+        넷플릭스 : 8
+        애플TV : 350
+        티빙 : 1883
+        웨이브 : 356
+        디즈니플러스 : 337
+    */
+
+    let printedOTT = new Set();   // 이미 출력한 OTT 저장
+
+    let ottLogoOutput = '';
+
+    providers.forEach(function (p) {
+
+        if (myOTT.includes(p.provider_id) && !printedOTT.has(p.provider_id)) {
+
+            printedOTT.add(p.provider_id);  // 출력한 OTT 기록
+
+            ottLogoOutput += `
+        <a>
+            <img draggable="false" src="${img_path_logo + p.logo_path}">
+        </a>`;
+        }
+
+    });
 
 
     //타이틀
@@ -697,11 +734,7 @@ let popdataFunTv = async function (id, type) {
                     
                     </div>
                     <div class="ott-logo">
-                        <a draggable="false"> <img draggable="false" src="/screen/image/ic_netflix.svg" alt=""> </a>
-                        <a draggable="false"> <img draggable="false" src="/screen/image/ic_disneyplus.svg" alt=""></a>
-                        <a draggable="false"> <img draggable="false" src="/screen/image/ic_tving.svg" alt=""></a>
-                        <a draggable="false"> <img draggable="false" src="/screen/image/ic_appleTV.svg" alt=""></a>
-                        <a draggable="false"> <img draggable="false" src="/screen/image/ic_wavve.svg" alt=""></a>
+                        ${ottLogoOutput}
                     </div>
                     </div>          
             </div>`;
