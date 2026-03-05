@@ -27,7 +27,7 @@
 
 .con p img{height:60px}
 .con p {flex-shrink: 0;}
-.con span {width: 80px; flex-shrink: 0;}
+.con span {width: 40px; flex-shrink: 0;} /* 260305수정 */
 .con2 p{
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -196,4 +196,32 @@ svg rect{
 }
 .popup .title .poster img {
     height: 100%;
+}
+
+/* 260305 추가 */
+.con2 p.active{
+    -webkit-line-clamp:unset;
+    overflow:visible;
+}
+.con2 p{
+    padding-top: 10px;
+}
+.con2 p:hover{
+}
+
+.con{
+    display: flex;
+    align-items: flex-start;
+}
+.con-box{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.con-box span{
+display: inline;
+}
+.popup-text span.active{
+    -webkit-line-clamp:unset;
+    overflow:visible;
 }
