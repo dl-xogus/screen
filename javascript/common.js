@@ -83,14 +83,14 @@ let popup_filmography_func = function (id) {
     };
 
     /* 대표작 출력 함수 */
-    let castOutputFunc = function (castData) {
+    let castOutputFunc = function (allCredits) {
         const el_filmoPosterWrap = document.querySelector('.appear .posters');
         const el_filmoPosters = document.querySelectorAll('.appear .posters a');
         const noImg = '/screen/image/img_noimage.jpg';
 
         el_filmoPosterWrap.innerHTML = '';
 
-        castData.cast.slice(0, 12).forEach(function (ca, i) {
+        allCredits.slice(0, 12).forEach(function (ca, i) {
             let posterImg = img_path200 + ca.poster_path;
 
             el_filmoPosterWrap.innerHTML += `<a draggable="false" class="po slide" data-href="${ca.id}" data-type="${ca.media_type == 'movie' ? '영화' : 'TV'}"><img draggable="false" src="${ca.poster_path ? posterImg : noImg}"></a>`;
@@ -107,13 +107,15 @@ let popup_filmography_func = function (id) {
     };
 
     /* 필모 출력 함수 */
-    let filmoOutputFunc = function (castData) {
+    let filmoOutputFunc = function (allCredits) {
         const el_filmoText = document.querySelector('.filmo .box');
 
         el_filmoText.innerHTML = '';
 
+
+
         /* 날짜 있는 것만 최신순으로 영화, TV 모두 필터링해서 sorted에 저장 */
-        let sorted = castData.cast
+        let sorted = allCredits
             .filter(ca => ca.release_date || ca.first_credit_air_date)     // 영화일때 TV일때 날짜 둘 다
             .sort((a, b) => {
                 let dateA = a.release_date || a.first_credit_air_date;
@@ -126,6 +128,8 @@ let popup_filmography_func = function (id) {
 
         sorted.forEach(function (ca, i) {
             let date = ca.release_date || ca.first_credit_air_date;        // 영화일때 TV일때 날짜 둘 다
+            if (!date) return;
+            
             let year = date.split('-')[0];                          // 연도만 저장
 
             /* 연도가 바뀌면 line 추가 */
@@ -140,7 +144,7 @@ let popup_filmography_func = function (id) {
                 <p class="year">${year}</p>
                 <div class="text slide" data-href="${ca.id}" data-type="${ca.media_type == 'movie' ? '영화' : 'TV'}">
                     <a draggable="false">${title}</a>
-                    <p>${ca.character || ''}</p>
+                    <p>${ca.character || ca.job || '정보 없음'}</p>
                 </div>
             </div>`;                                            // ca.character || '' : 역할이 값이 없는경우 ''출력
 
@@ -159,11 +163,11 @@ let popup_filmography_func = function (id) {
     };
 
     /* More 버튼 함수 */
-    let moreFunc = function (castData) {
+    let moreFunc = function (allCredits) {
         const el_filmoMore = document.querySelector('.filmo .more');
 
         /* 날짜 있는 데이터만 필터 */
-        let filtered = castData.cast
+        let filtered = allCredits
             .filter(ca => ca.release_date || ca.first_credit_air_date)     // 영화일때 TV일때 날짜 둘 다
             .sort((a, b) => {
                 let dateA = a.release_date || a.first_credit_air_date;
@@ -171,7 +175,7 @@ let popup_filmography_func = function (id) {
                 return new Date(dateB) - new Date(dateA);           // 최신순 정렬
             });
 
-        filmoOutputFunc(castData);                      // 최초 출력
+        filmoOutputFunc(allCredits);                      // 최초 출력
 
         /* 버튼 표시 여부 체크 함수 */
         let checkMoreBtn = function () {
@@ -187,7 +191,7 @@ let popup_filmography_func = function (id) {
         /* More 버튼 이벤트 */
         el_filmoMore.addEventListener('click', function () {
             filmoNum += 10;                 // 누르면 10개씩 늘어나게
-            filmoOutputFunc(castData);      // 출력
+            filmoOutputFunc(allCredits);      // 출력
             checkMoreBtn();                 // 더 이상 정보가 없어서 버튼을 없앨지 체크
         });
     };
@@ -211,9 +215,25 @@ let popup_filmography_func = function (id) {
         let castRes = await fetch(`${defaultURL}/person/${id}/combined_credits?api_key=${APIkey}&language=ko-KR`);
         let castData = await castRes.json();
 
+        let allCredits = [...castData.cast, ...castData.crew];
+
+        allCredits.sort(function (a, b) {
+            return b.popularity - a.popularity;
+        });
+
+        let uniqueCredits = [];
+        let ids = new Set();
+
+        allCredits.forEach(function (item) {
+            if (!ids.has(item.id)) {
+                ids.add(item.id);
+                uniqueCredits.push(item);
+            }
+        });
+
         profileOutputFunc(detailData, IdsData);
-        castOutputFunc(castData);
-        moreFunc(castData);
+        castOutputFunc(uniqueCredits);
+        moreFunc(uniqueCredits);
     };
 
     personDataFunc(id);     // 전체 실행 호출문
@@ -373,7 +393,7 @@ let popdataFun = async function (id, type) {
         etc += `
             
             <p data-href="${값.id}" data-type="영화" class="slide">
-            <img draggable="false" src="${img_path + 값.poster_path}" alt="">
+            <img draggable="false" src="${값.poster_path ? img_path + 값.poster_path : '/screen/image/img_noimage.jpg'}" alt="">
             </p>
             `;
 
@@ -457,7 +477,7 @@ let popdataFun = async function (id, type) {
 
     //타이틀
     el_popup.innerHTML += `<div class="title">
-                <p class="poster"><img draggable="false" src="${data.poster_path ? img_path + data.poster_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
+                <p class="poster"><img class="detail-img" draggable="false" src="${data.poster_path ? img_path + data.poster_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
                 <div class="title-txt">
                     <p class="drama">${type}</p>
                     <div class="title-span">
@@ -570,7 +590,7 @@ let popdataFunTv = async function (id, type) {
     let resRating = await fetch(`https://api.themoviedb.org/3/tv/${id}/content_ratings?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
     let dataRating = await resRating.json();
 
-    let resOtt = await fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=a3a99689753df933ab4c76e497b6c0b7`);
+    let resOtt = await fetch(`https://api.themoviedb.org/3/tv/${id}/watch/providers?api_key=a3a99689753df933ab4c76e497b6c0b7`);
     let dataOtt = await resOtt.json();
 
     $('.loader').remove();
@@ -711,33 +731,33 @@ let popdataFunTv = async function (id, type) {
 
     //타이틀
     el_popup.innerHTML += `<div class="title">
-                <p class="poster"><img draggable="false" src="${data.poster_path ? img_path + data.poster_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
+                <p class="poster"><img class="detail-img" draggable="false" src="${data.poster_path ? img_path + data.poster_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
                 <div class="title-txt">
                     <p class="drama">${type}</p>
                     <div class="title-span">
                     <b>${data.name}</b>
                     <span>${rating[0].rating}</span>
                     <small>${data.first_air_date}</small>
-                    </div>
+                </div>
                     
-                    <div class="popup-tag">
+                <div class="popup-tag">
                     <p>개요</p>
                     <span>${data.origin_country} | </span>
                     <span>${data.number_of_episodes}부작</span>
                     <div class="popup-text">
-                    <p>줄거리요약</p>
-                    <span>${data.overview}</span>
+                        <p>줄거리요약</p>
+                        <span>${data.overview}</span>
                     </div>
-                    </div>
-                    <div class="popup-tag2">
+                </div>
+                <div class="popup-tag2">
                     ${tit}
                     
                     </div>
-                    <div class="ott-logo">
-                        ${ottLogoOutput}
-                    </div>
+                        <div class="ott-logo">
+                            ${ottLogoOutput}
+                        </div>
                     </div>          
-            </div>`;
+                </div>`;
 
     //비디오
     el_popup.innerHTML += `<div class="hig">
@@ -757,7 +777,7 @@ let popdataFunTv = async function (id, type) {
     //에피소드
     el_popup.innerHTML += `<div class="episode">
             <div class="solid">
-            <b>Episode</b>
+            <b>Episode 정보</b>
             <hr style="margin: 30px 0; border-color: #FF3535; ">
             <select class="tv-option">
                 ${tvSeason}
@@ -939,5 +959,18 @@ let dragFunc1 = function () {
             }
         });
     });
+
+
+    document.addEventListener('wheel', function (e) {
+
+        const slider = e.target.closest('.drag-area');
+        if (!slider) return;
+
+        if (slider.scrollWidth > slider.clientWidth) {
+            e.preventDefault();
+            slider.scrollLeft += e.deltaY;
+        }
+
+    }, { passive: false });
 };
 dragFunc1();

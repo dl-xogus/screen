@@ -104,7 +104,7 @@ let domContral = function (datasets) {
     });
 
     searchTab();
-    
+
     dragFunc();
 }
 
@@ -348,7 +348,7 @@ let dragFunc = function () {
     let isDown = false;
     let startX;
     let scrollLeft;
-    
+
     slider.forEach(function (sli, i) {
         sli.addEventListener('mousedown', (e) => {
             isDown = true;
@@ -386,4 +386,16 @@ let dragFunc = function () {
             }
         });
     });
+
+    document.addEventListener('wheel', function (e) {
+
+        const slider = e.target.closest('.drag-area');
+        if (!slider) return;
+
+        if (slider.scrollWidth > slider.clientWidth) {
+            e.preventDefault();
+            slider.scrollLeft += e.deltaY;
+        }
+
+    }, { passive: false });
 };

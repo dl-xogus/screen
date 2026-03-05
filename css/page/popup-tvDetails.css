@@ -5,16 +5,15 @@
 
 
 .drama{font-size: 13px; color: #b0b0b0;}
-.title-span{}
-.title-span b{font-size: 24px; padding-right: 10px;}
-.title-span span {
+.popup .title-span b{font-size: 24px; padding-right: 10px;}
+.popup .title-span span {
     border: 1px solid #b0b0b0;
     background-color: black;
     padding: 5px 5px ;
     border-radius: 5px;
     font-size: 14px;
 }
-.title-span small {
+.popup .title-span small {
     padding: 15px 0 0 10px;
     color: #b0b0b0;
 }
@@ -148,9 +147,6 @@
     margin: 70px auto; 
 }
 .con>span{padding: 0 20px; } 
-.con>span::before{
-    content: " · " ;
-}
 .con2>p{color: #b0b0b0;}
 
 /* =============hover 확대효과======================================== */    
@@ -187,7 +183,7 @@
     .con>p>img { width:100%; }  
 
     .popup{width: 80%; margin: 0 auto;}
-    .title{
+    .popup .title{
         flex-direction: column;
         align-items: center;
     }
@@ -196,28 +192,28 @@
         display: flex;
         justify-content: center;
     }
-    .poster img{
+    .poster .detail-img{
         width: 100%;
         max-width: 250px; 
         text-align: center;
     }
 
-    .title-txt{
+    .popup .title-txt{
         padding-left: 0;
         padding-top: 20px;
         width: 100%; min-width: 0; 
     } 
     .drama{font-size: 13px; color: #b0b0b0; font-size: 10px;}
     
-    .title-span b{font-size: 20px; padding-right: 10px;}
-    .title-span span {
+    .popup .title-span b{font-size: 20px; padding-right: 10px;}
+    .popup .title-span span {
         border: 1px solid #b0b0b0;
         background-color: black;
         padding-top: 5px;
         border-radius: 5px;
         font-size: 12px;
     }
-    .title-span small {
+    .popup .title-span small {
         padding: 12px 0 0 10px;
         color: #b0b0b0;
         font-size: 10px;
@@ -349,7 +345,7 @@
     .con>p { width:100%; }
     .con>p>img { width:100%; }  
     .popup{width: 80%; margin: 0 auto;}
-    .title{
+    .popup .title{
         flex-direction: column;
         align-items: center;
     }
@@ -358,29 +354,29 @@
         display: flex;
         justify-content: center;
     }
-    .poster img{
+    .poster .detail-img{
         object-fit: cover;
         width: 80%;
         height: 80%;
         max-width: 250px; 
     }
 
-    .title-txt{
+    .popup .title-txt{
         padding-left: 0;
         padding-top: 20px;
         width: 100%; min-width: 0;
     } 
     .drama{font-size: 13px; color: #b0b0b0; font-size: 10px;}
     
-    .title-span b{font-size: 20px; padding-right: 10px;}
-    .title-span span {
+    .popup .title-span b{font-size: 20px; padding-right: 10px;}
+    .popup .title-span span {
         border: 1px solid #b0b0b0;
         background-color: black;
         padding-top: 5px;
         border-radius: 5px;
         font-size: 12px;
     }
-    .title-span small {
+    .popup .title-span small {
         padding: 12px 0 0 10px;
         color: #b0b0b0;
         font-size: 10px;

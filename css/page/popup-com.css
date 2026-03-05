@@ -6,20 +6,20 @@
 
 
 
-.title {
+.popup .title {
     display: flex;
     align-items: flex-start;
     gap: 30px;
     padding-top: 60px;
 }
-.title-txt {
+.popup .title-txt {
     padding-left: 0;
     flex: 1;
     min-width: 0;   /* 🔥 이게 핵심 */
     width: 300px;
 }
 .popup-text span,
-.title-txt p {
+.popup .title-txt p {
     word-break: break-word;
 }
 
@@ -190,10 +190,16 @@ svg rect{
 }
 
 .popup .title .poster {
+    width: 280px;
     aspect-ratio: 2 / 3;
     border-radius: 10px;
     overflow: hidden;
 }
 .popup .title .poster img {
     height: 100%;
+}
+
+.ott-logo a {
+    border-radius: 10px;
+    overflow: hidden;
 }

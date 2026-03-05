@@ -376,6 +376,10 @@ header .header-search {
 
 /* 모바일 세로*/
 @media all and (max-width: 479px) {
+    .top-back {
+        height: 200px;
+    }
+
     main {
         padding: 0 3%;
     }
