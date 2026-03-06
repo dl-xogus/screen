@@ -103,18 +103,13 @@
     transition: 0.3s;
 }
 
-
-.act-profi b{
+.act-profi {
     text-align: center;
     font-size: 15px;
     margin-top: 8px;
     line-height: 1.2;
-    
-    height: 36px;              /* ⭐ 두 줄 높이 고정 */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;     /* 2줄까지만 */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+
+    min-height: 36px;
 }
 
 /* 배역 이름 */
@@ -140,7 +135,9 @@
 .mov-img img {
     width: 100%;
     display: block;
+    object-fit: cover;
 }
+
 
 
 /* =============hover 확대효과======================================== */    
