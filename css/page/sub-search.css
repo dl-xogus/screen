@@ -82,17 +82,18 @@ h3 {
     padding: 60px 0 30px 0;
     display: flex;
 }
-.searchAll>div>figure
 
 .imgs-wrap {
-    width: 192px;
-    height: 288px;
+    width: 200px;
+    aspect-ratio: 2 / 3;
     border-radius: 10px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 .imgs-wrap img {
-    height: 100%;
+    object-fit: cover;
     transition: 0.3s; /* 애니메이션 부드럽게 */
     
 }
