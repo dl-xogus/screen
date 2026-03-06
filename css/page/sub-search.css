@@ -96,10 +96,10 @@ h3 {
     transition: 0.3s; /* 애니메이션 부드럽게 */
     
 }
+
 .imgs-wrap:hover img {  /* :hover 해당 태그에 마우스를 올리면 */
     transform: scale(1.05); /* 1.05배 만큼 커지게 변경 */
 }
-
 
 .searchAll .searchList {
     display: flex;
@@ -112,6 +112,9 @@ h3 {
 }
 .searchAll>div>figure .detail {
     font-size: 13px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 
@@ -121,6 +124,7 @@ h3 {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    padding: 7px 0 0 0;
 }
 
 /*------------------------------
