@@ -37,6 +37,7 @@ headerRecommendFun();
 
 
 
+
 // let params = new URLSearchParams(document.location.search);
 // let keyword = params.get("keyword");
 
@@ -68,7 +69,7 @@ let popup_filmography_func = function (id) {
         el_filmoJop.innerHTML = '';
 
         // 프로필 사진
-        el_filmoProfileImg.innerHTML = `<img draggable="false" src="${img_path200 + detailData.profile_path}">`;
+        el_filmoProfileImg.innerHTML = `<img draggable="false" src="${detailData.profile_path ? img_path200 + detailData.profile_path : '/screen/image/img_noimage.jpg'}">`;
         // 이름
         el_filmoName.innerHTML += `<h2>${detailData.name}</h2>`;
         // 전문분야(직업)
@@ -589,10 +590,10 @@ let popdataFunTv = async function (id, type) {
     let res = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,credits&language=ko-kr`);
     let data = await res.json();
 
-    let resVdo = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let resVdo = await fetch(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=be70ce351ebf9cdf3c901d28de3db6a3&language=ko-kr`);
     let dataVdo = await resVdo.json();
 
-    let resImg = await fetch(`https://api.themoviedb.org/3/tv/${id}/images?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let resImg = await fetch(`https://api.themoviedb.org/3/tv/${id}/images?api_key=be70ce351ebf9cdf3c901d28de3db6a3&language=ko-kr`);
     let dataImg = await resImg.json();
 
     let season = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/1?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,credits&language=ko-kr`);
@@ -606,6 +607,7 @@ let popdataFunTv = async function (id, type) {
 
     $('.loader').remove();
 
+    const img_path_OG = 'https://image.tmdb.org/t/p/original';
 
     //연령
     let rating = dataRating.results.filter(function (t) {
@@ -639,9 +641,10 @@ let popdataFunTv = async function (id, type) {
     let tvEpisodes = '';
     if (seaData.episodes && seaData.episodes.length) {
         seaData.episodes.forEach(function (ep) {
-            let episodeImg = ep.still_path
-                ? `<p><img draggable="false" src="${img_path + ep.still_path}" alt=""></p>`
-                : `<p><img draggable="false" src="/screen/image/img_noimage.jpg" alt=""></p>`; // 대체 이미지
+            let episodeImg = `
+                <a draggable="false" href="${img_path_OG + ep.still_path}">
+                    <img draggable="false" src="${ep.still_path ? img_path + ep.still_path : '/screen/image/img_noimage.jpg'}" alt="">
+                </a>`;
 
             tvEpisodes += `
                 <li class="con">
@@ -681,7 +684,7 @@ let popdataFunTv = async function (id, type) {
         tit += `<span>${t.name}</span>`;
     })
 
-    const img_path_OG = 'https://image.tmdb.org/t/p/original';
+    
 
         // 하이라이트
         let tv_videos = '';

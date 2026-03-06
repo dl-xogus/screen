@@ -1,4 +1,3 @@
-
 .popup .wrap { margin: 0 auto; z-index: 2000;} 
 
 /* 배경 */
@@ -7,10 +6,12 @@
 
 
 .popup .title {
+    width: 100%;
+    max-width: 840px;
     display: flex;
     align-items: flex-start;
     gap: 30px;
-    padding-top: 60px;
+    padding: 60px 20px 0;
 }
 .popup .title-txt {
     padding-left: 0;
@@ -25,8 +26,8 @@
 
 
 
-.con p img{height:60px}
-.con p {flex-shrink: 0;}
+.con a img{height:60px}
+.con a {flex-shrink: 0;}
 .con span {width: 40px; flex-shrink: 0;} /* 260305수정 */
 .con2 p{
     display: -webkit-box;
@@ -87,8 +88,11 @@
 /* 팝업창 */
 .popup {
     width: 100%;
-    max-width: 800px;
+    /* max-width: 800px; */
     height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     
     
     overflow-y: auto;
@@ -97,6 +101,37 @@
     
     scrollbar-width: none;      /* Firefox */
     -ms-overflow-style: none;   /* IE, Edge */
+}
+
+.hig {
+    width: 100%;
+    max-width: 840px;
+    padding: 100px 20px 0;
+}
+
+.actor {
+    width: 100%;
+    max-width: 840px;
+    padding: 100px 20px 0;
+}
+
+.content-mov{
+    width: 100%;
+    max-width: 840px;
+    padding: 100px 20px;
+}
+
+.mov-img {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(5, 1fr);
+    margin: 30px auto;
+}
+
+.episode {
+    width: 100%;
+    max-width: 840px;
+    padding: 100px 20px;
 }
 
 
@@ -186,9 +221,19 @@ svg rect{
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 1px 1px 10px 0px rgb(53, 53, 53);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .mov-img p img {
+    /* object-fit: cover; */
     height: 100%;
+    transition: 0.3s;
+}
+
+.mov-img p:hover img {
+    transform: scale(1.05);
 }
 
 .popup .title .poster {
@@ -232,3 +277,12 @@ display: inline;
     -webkit-line-clamp:unset;
     overflow:visible;
 }
+
+/* ==================== 여기까지가 원래 popup-com.css ====================== */
+/* ======================================================================= */
+/* ======================================================================= */
+/* ======================================================================= */
+/* ======================================================================= */
+/* ======================================================================= */
+/* ======================================================================= */
+/* ======================================================================= */

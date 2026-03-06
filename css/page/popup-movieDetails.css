@@ -56,7 +56,6 @@
 .ott-logo img{width:30px !important; height:30px !important;}
 
 /* ==============하이라이트======================================= */
-.hig{margin: 100px auto;}
 
 .hig-img{
     display: flex;
@@ -71,7 +70,6 @@
 .hig-img img {width: 100%; }
 
 /* ===========================주요출연진======================================== */
-.actor{margin: 100px auto;}
 
 .act{
     display: flex;
@@ -127,20 +125,9 @@
 
 /* =============관련 콘텐츠======================================== */
 
-.content-mov{
-    margin: 100px auto;
-}
 
-.mov-img {
-    display: grid;
-    gap: 25px;
-    grid-template-columns: repeat(5, 1fr);
-    margin: 30px auto;
-}
-.mov-img img {
-    width: 100%;
-    display: block;
-}
+
+
 
 
 /* =============hover 확대효과======================================== */    
