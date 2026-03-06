@@ -252,7 +252,7 @@ let recommendMoviesRandom = async function () {
 
         let html =
             `<article>
-                <div class="title">
+                <div class="main-title">
                     <h2>${genre.name}</h2>
                     <a href="movie" class="more" data-name="${genre.name}" data-id="${genre.id}" draggable="false">더보기<img src="./image/ic_right.svg"></a>
                     </div>
@@ -293,7 +293,7 @@ let recommendTvRandom = async function () {
 
         let html =
             `<article>
-        <div class="title">
+        <div class="main-title">
         <h2>${genre.name}</h2>
         <a href="tv" class="more" data-name="${genre.name}" data-id="${genre.id}">더보기<img src="/screen/image/ic_right.svg"></a>
                 </div>
