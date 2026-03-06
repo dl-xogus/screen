@@ -409,15 +409,15 @@ let dragFunc2 = function () {
         });
     });
 
-    document.addEventListener('wheel', function (e) {
+    // document.addEventListener('wheel', function (e) {
 
-        const slider = e.target.closest('.drag-area');
-        if (!slider) return;
+    //     const slider = e.target.closest('.drag-area');
+    //     if (!slider) return;
 
-        if (slider.scrollWidth > slider.clientWidth) {
-            e.preventDefault();
-            slider.scrollLeft += e.deltaY;
-        }
+    //     if (slider.scrollWidth > slider.clientWidth) {
+    //         e.preventDefault();
+    //         slider.scrollLeft += e.deltaY;
+    //     }
 
-    }, { passive: false });
+    // }, { passive: false });
 }

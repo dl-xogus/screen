@@ -70,20 +70,21 @@ let searchFun = async function (keyword) {
     let res3 = await fetch(`https://api.themoviedb.org/3/search/person?api_key=be70ce351ebf9cdf3c901d28de3db6a3&query=${encodeURIComponent(keyword)}&language=ko-KR`);
     let personData = await res3.json();
 
-    let a=[],b=[];
-
-    personData.results[0].known_for.forEach(function(값){
-        값.media_type == 'movie' ?  a.push(값) : b.push(값);
-    })
-    
     datasets = [
         { type: '영화', cName: ['movie', 'searchList'], data: movieData.results },
         { type: 'TV프로그램', cName: ['tv', 'searchList'], data: tvData.results },
         { type: '인물', cName: ['person', 'searchH'], data: personData.results }
     ];
 
-    datasets[0].data = [...movieData.results, ...a];
-    datasets[1].data = [...tvData.results, ...b];
+    let a=[],b=[];
+
+    if (personData.results.length) {
+        personData.results[0].known_for.forEach(function(값){
+            값.media_type == 'movie' ?  a.push(값) : b.push(값);
+        })
+        datasets[0].data = [...movieData.results, ...a];
+        datasets[1].data = [...tvData.results, ...b];
+    }
 
     datasets.sort(function (a, b) {
         return b.data.length - a.data.length; // 내림차순
@@ -414,15 +415,15 @@ let dragFunc = function () {
         });
     });
 
-    document.addEventListener('wheel', function (e) {
+    // document.addEventListener('wheel', function (e) {
 
-        const slider = e.target.closest('.drag-area');
-        if (!slider) return;
+    //     const slider = e.target.closest('.drag-area');
+    //     if (!slider) return;
 
-        if (slider.scrollWidth > slider.clientWidth) {
-            e.preventDefault();
-            slider.scrollLeft += e.deltaY;
-        }
+    //     if (slider.scrollWidth > slider.clientWidth) {
+    //         e.preventDefault();
+    //         slider.scrollLeft += e.deltaY;
+    //     }
 
-    }, { passive: false });
+    // }, { passive: false });
 };

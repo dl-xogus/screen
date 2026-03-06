@@ -129,7 +129,7 @@ let popup_filmography_func = function (id) {
         sorted.forEach(function (ca, i) {
             let date = ca.release_date || ca.first_credit_air_date;        // 영화일때 TV일때 날짜 둘 다
             if (!date) return;
-            
+
             let year = date.split('-')[0];                          // 연도만 저장
 
             /* 연도가 바뀌면 line 추가 */
@@ -310,7 +310,7 @@ $('.popup-wrap').load('/screen/pages/popup-movieDetails.html', function () {
           <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
           <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-            <a draggable="false"nimateTransform attributeType="xml"
+            <animateTransform attributeType="xml"
               attributeName="transform"
               type="rotate"
               from="0 25 25"
@@ -355,6 +355,8 @@ let popdataFun = async function (id, type) {
         genres += `<span>${값.name}</span>`;
     })
 
+    const img_path_OG = 'https://image.tmdb.org/t/p/original';
+
     //하이라이트반복문
     let videos = '';
     if (data.videos.results.length) {
@@ -368,9 +370,9 @@ let popdataFun = async function (id, type) {
     } else {
         dataPost.backdrops.forEach(function (값, 순번) {
             if (순번 < 2) {
-                videos += `<p>
+                videos += `<a draggable="false" href="${img_path_OG + 값.file_path}">
                             <img draggable="false" width="100%" height="100%" src="${img_path + 값.file_path}">
-                        </p>`;
+                        </a>`;
             }
         });
     }
@@ -541,13 +543,13 @@ let popdataFun = async function (id, type) {
         popup_wrap.style = 'display:none';
         $('html').css('overflow', 'auto');
     });
-    
+
     //무비팝업 줄거리요약 클릭하면 내용 다 보이게
     const el_titleTxt = document.querySelectorAll('.popup-text span');
 
-    el_titleTxt.forEach(function (popt, i) {      
+    el_titleTxt.forEach(function (popt, i) {
         popt.addEventListener('click', function () {
-           popt.classList.toggle('active');
+            popt.classList.toggle('active');
         })
     })
 
@@ -672,7 +674,6 @@ let popdataFunTv = async function (id, type) {
         });
     }
 
-
     //별점 반복문
     let tit = '';
     tit += `<b>${data.vote_average.toFixed(1)}</b>`;
@@ -680,9 +681,10 @@ let popdataFunTv = async function (id, type) {
         tit += `<span>${t.name}</span>`;
     })
 
+    const img_path_OG = 'https://image.tmdb.org/t/p/original';
 
-    // 하이라이트
-    let tv_videos = '';
+        // 하이라이트
+        let tv_videos = '';
     if (dataVdo.results.length) {
         dataVdo.results.forEach(function (값, 순번) {
             if (순번 < 2) {
@@ -694,9 +696,9 @@ let popdataFunTv = async function (id, type) {
     } else {
         dataImg.backdrops.forEach(function (값, 순번) {
             if (순번 < 2) {
-                tv_videos += `<p>
+                tv_videos += `<a draggable="false" href="${img_path_OG + 값.file_path}">
                             <img draggable="false" width="100%" height="100%" src="${img_path + 값.file_path}">
-                        </p>`;
+                        </a>`;
             }
         });
     }
@@ -850,7 +852,7 @@ let popdataFunTv = async function (id, type) {
     const el_conT = document.querySelectorAll('.con2 p');
 
     el_conT.forEach(function (tx, i) {
-        tx.addEventListener('click', function () { 
+        tx.addEventListener('click', function () {
             tx.classList.toggle('active');
         })
     });
@@ -858,9 +860,9 @@ let popdataFunTv = async function (id, type) {
     //260305 추가 무비팝업 줄거리요약 쪽 클릭하면 내용 다 보이게
     const el_titleTxt = document.querySelectorAll('.popup-text span');
 
-    el_titleTxt.forEach(function (popt, i) {      
+    el_titleTxt.forEach(function (popt, i) {
         popt.addEventListener('click', function () {
-           popt.classList.toggle('active');
+            popt.classList.toggle('active');
         })
     })
 
@@ -869,7 +871,7 @@ let popdataFunTv = async function (id, type) {
 
 
 
-    
+
     dragFunc1();
 }
 
@@ -996,16 +998,16 @@ let dragFunc1 = function () {
     });
 
 
-    document.addEventListener('wheel', function (e) {
+    // document.addEventListener('wheel', function (e) {
 
-        const slider = e.target.closest('.drag-area');
-        if (!slider) return;
+    //     const slider = e.target.closest('.drag-area');
+    //     if (!slider) return;
 
-        if (slider.scrollWidth > slider.clientWidth) {
-            e.preventDefault();
-            slider.scrollLeft += e.deltaY;
-        }
+    //     if (slider.scrollWidth > slider.clientWidth) {
+    //         e.preventDefault();
+    //         slider.scrollLeft += e.deltaY;
+    //     }
 
-    }, { passive: false });
+    // }, { passive: false });
 };
 dragFunc1();
