@@ -282,7 +282,7 @@ let searchEvent = function () {
     const el_input = document.querySelector('.header-search-box input');
 
     el_form.addEventListener('submit', function (e) {
-        e.preventDefault(); // 검색하면 기본으로 동작되는 '새로고침'을 막음 (이거 안하면 검색하면 새로고침되서 데이터날라감)
+        e.preventDefault(); // 검색하면 기본으로 동작되는 '새로고침'을 막음
         searchFun(el_input.value.trim());
         el_searchTitle.innerText = `"${el_input.value}" 검색결과`;
     });
