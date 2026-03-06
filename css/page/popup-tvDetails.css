@@ -167,21 +167,7 @@
     transform: scale(1.08);
 }
 
-.act-profi b {
-    text-align: center;
-    font-size: 15px;
-    margin-top: 8px;
-    line-height: 1.2;
-    font-weight: normal;
-
-    height: 36px;
-    /* ⭐ 두 줄 높이 고정 */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    /* 2줄까지만 */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
+/*  */
 
 /* 배역 이름 */
 .act-profi span {
@@ -217,9 +203,9 @@
     margin: 70px auto;
 }
 .con>span{padding: 0 20px; } 
-.con2>p{color: #b0b0b0;}
 
-.con2>p {
+
+.con2 p {
     color: #b0b0b0;
 }
 
