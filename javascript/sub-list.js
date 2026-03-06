@@ -193,8 +193,8 @@ let movieListOutput = function (movies) {
         let noImg = '/screen/image/img_noimage.jpg';
 
         el_list.innerHTML +=
-            `<figure class="slide" data-href="${mov.id}" data-type="영화">
-                <p class="poster click-area"><img class="click-area" draggable="false" src="${mov.poster_path == null ? noImg : img_path + mov.poster_path}" alt="영화포스터"></p>
+            `<figure>
+                <p class="poster slide click-area" data-href="${mov.id}" data-type="영화"><img class="click-area" draggable="false" src="${mov.poster_path == null ? noImg : img_path + mov.poster_path}" alt="영화포스터"></p>
                 <div class="objs-txt">
                     <p class="name">${mov.title}</p>
                     <p>${year} · ${genre.join(' / ')}</p>
@@ -270,8 +270,8 @@ let tvListOutput = function (tv) {
         let noImg = '/screen/image/img_noimage.jpg';
 
         el_list.innerHTML +=
-            `<figure class="slide" data-href="${t.id}" data-type="TV">
-            <p class="poster click-area"><img class="click-area" draggable="false" src="${t.poster_path == null ? noImg : img_path + t.poster_path}" alt="영화포스터"></p>
+            `<figure>
+            <p class="poster slide click-area" data-href="${t.id}" data-type="TV"><img class="click-area" draggable="false" src="${t.poster_path == null ? noImg : img_path + t.poster_path}" alt="영화포스터"></p>
             <div class="objs-txt">
                 <p class="name">${t.name}</p>
                 <p>${year} · ${genre.join(' / ')}</p>

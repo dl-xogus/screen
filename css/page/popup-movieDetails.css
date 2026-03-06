@@ -64,7 +64,10 @@
     justify-content: space-between;
     gap: 14px;
 }
-.hig-img p {width: 510px; max-height: 260px;}
+.hig-img p {
+    width: 510px; 
+    aspect-ratio: 16 / 9;
+}
 .hig-img img {width: 100%; }
 
 /* ===========================주요출연진======================================== */

@@ -60,14 +60,14 @@ let datasets = [];
 // 🕵️‍♂️ 영화/TV 검색 함수
 let searchFun = async function (keyword) {
     // 영화 검색
-    let res = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(keyword)}&api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let res = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(keyword)}&api_key=be70ce351ebf9cdf3c901d28de3db6a3&language=ko-KR&watch_region=KR`);
     let movieData = await res.json();
 
     // TV 검색
-    let res2 = await fetch(`https://api.themoviedb.org/3/search/tv?query=${encodeURIComponent(keyword)}&api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let res2 = await fetch(`https://api.themoviedb.org/3/search/tv?query=${encodeURIComponent(keyword)}&api_key=be70ce351ebf9cdf3c901d28de3db6a3&language=ko-KRwatch_region=KR`);
     let tvData = await res2.json();
 
-    let res3 = await fetch(`https://api.themoviedb.org/3/search/person?api_key=be70ce351ebf9cdf3c901d28de3db6a3&query=${encodeURIComponent(keyword)}&language=ko-KR`);
+    let res3 = await fetch(`https://api.themoviedb.org/3/search/person?api_key=be70ce351ebf9cdf3c901d28de3db6a3&query=${encodeURIComponent(keyword)}&language=ko-KRwatch_region=KR`);
     let personData = await res3.json();
 
     datasets = [
@@ -184,7 +184,7 @@ let output8 = function (obj) {
                         <figure data-href="${item.id}" data-type="영화" class="slide">
                             <p class="imgs-wrap"><img draggable="false" src="${item.poster_path ? img_path + item.poster_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
-                                <b>${item.original_title}</b>
+                                <b>${item.title}</b>
                                 <p class="detail">${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${movGen.slice(0, 2).join(' / ')}</p>
                                 <p class="detail">★${item.vote_average.toFixed(1)}</p>
                             </figcaption>
@@ -195,7 +195,7 @@ let output8 = function (obj) {
                         <figure data-href="${item.id}" data-type="TV" class="slide">
                             <p class="imgs-wrap"><img draggable="false" src="${item.poster_path ? img_path + item.poster_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
-                                <b>${item.original_name}</b>
+                                <b>${item.name}</b>
                                 <p class="detail">${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${tvGen.slice(0, 2).join(' / ')}</p>
                                 <p class="detail">★${item.vote_average.toFixed(1)}</p>
                             </figcaption>
@@ -242,7 +242,7 @@ let output20 = function (obj) {
                         <figure data-href="${item.id}" data-type="영화" class="slide">
                             <p class="imgs-wrap"><img draggable="false" src="${item.poster_path ? img_path + item.poster_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
                             <figcaption>
-                                <b>${item.original_title}</b>
+                                <b>${item.title}</b>
                                 <p class="detail">${item.release_date ? item.release_date.split('-')[0] : 'N/A'} · ${movGen.slice(0, 2).join(' / ')}</p>
                                 <p class="detail">★${item.vote_average.toFixed(1)}</p>
                             </figcaption>
@@ -253,7 +253,7 @@ let output20 = function (obj) {
                         <figure data-href="${item.id}" data-type="TV" class="slide">
                             <p class="imgs-wrap"><img draggable="false" src="${item.poster_path ? img_path + item.poster_path : '/screen/image/img_noimage.jpg'}" alt="">
                             <figcaption>
-                                <b>${item.original_name}</b>
+                                <b>${item.name}</b>
                                 <p class="detail">${item.first_air_date ? item.first_air_date.split('-')[0] : 'N/A'} · ${tvGen.slice(0, 2).join(' / ')}</p>
                                 <p class="detail">★${item.vote_average.toFixed(1)}</p>
                             </figcaption>

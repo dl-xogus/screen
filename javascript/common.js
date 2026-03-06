@@ -336,10 +336,10 @@ let popdataFun = async function (id, type) {
     let res = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=be70ce351ebf9cdf3c901d28de3db6a3&append_to_response=videos,images,casts&language=ko-kr`);
     let data = await res.json();
 
-    let resPost = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let resPost = await fetch(`https://api.themoviedb.org/3/movie/${id}/images?api_key=be70ce351ebf9cdf3c901d28de3db6a3&language=ko-KR&watch_region=KR`);
     let dataPost = await resPost.json();
 
-    let resVdo = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
+    let resVdo = await fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=be70ce351ebf9cdf3c901d28de3db6a3&language=ko-KR&watch_region=KR`);
     let dataVdo = await resVdo.json();
 
     let resRating = await fetch(`https://api.themoviedb.org/3/movie/${id}/release_dates?api_key=be70ce351ebf9cdf3c901d28de3db6a3`);
