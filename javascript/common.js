@@ -541,6 +541,15 @@ let popdataFun = async function (id, type) {
         popup_wrap.style = 'display:none';
         $('html').css('overflow', 'auto');
     });
+    
+    //무비팝업 줄거리요약 클릭하면 내용 다 보이게
+    const el_titleTxt = document.querySelectorAll('.popup-text span');
+
+    el_titleTxt.forEach(function (popt, i) {      
+        popt.addEventListener('click', function () {
+           popt.classList.toggle('active');
+        })
+    })
 
     dragFunc1();
 }
@@ -634,8 +643,10 @@ let popdataFunTv = async function (id, type) {
 
             tvEpisodes += `
                 <li class="con">
-                    ${episodeImg}
-                    <span>${ep.episode_number}</span>
+                    <div class="con-box">
+                        ${episodeImg}
+                        <span>${ep.episode_number}</span>
+                    </div>
                     <div class="con2">
                         <b>${ep.name || '제목 없음'}</b>
                         <p>${ep.overview || '에피소드 정보가 제공되지 않습니다.'}</p>
@@ -835,6 +846,30 @@ let popdataFunTv = async function (id, type) {
         $('html').css('overflow', 'auto');
     });
 
+    //260305 추가 무비팝업 에피소드쪽 줄거리 클릭하면 내용 다 보이게
+    const el_conT = document.querySelectorAll('.con2 p');
+
+    el_conT.forEach(function (tx, i) {
+        tx.addEventListener('click', function () { 
+            tx.classList.toggle('active');
+        })
+    });
+
+    //260305 추가 무비팝업 줄거리요약 쪽 클릭하면 내용 다 보이게
+    const el_titleTxt = document.querySelectorAll('.popup-text span');
+
+    el_titleTxt.forEach(function (popt, i) {      
+        popt.addEventListener('click', function () {
+           popt.classList.toggle('active');
+        })
+    })
+
+
+
+
+
+
+    
     dragFunc1();
 }
 
