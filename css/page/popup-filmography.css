@@ -16,7 +16,7 @@
     position: relative;
     width: 100%;
     max-width: 1140px;
-    padding: 0 20px;
+    padding: 0 40px;
 }
 
 #popup-filmography .filmo-popup {
@@ -50,9 +50,7 @@
 
 .filmo-btn-x {
     position: absolute;
-    /* left: 46%; */
-    /* top: 30px; */
-    right: 45px;
+    right: 65px;
     top: 25px;
     cursor: pointer;
 }
