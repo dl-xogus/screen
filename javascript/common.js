@@ -35,6 +35,20 @@ let headerRecommendFun = async function () {
 headerRecommendFun();
 
 
+/* 검색창 미입력시 실행 alert */
+window.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const headerSearch = this.document.querySelector('.header-search-box');
+    const headerSearchInput = this.document.querySelector('.header-search-box input');
+
+    if (headerSearchInput.value == '') {
+        alert("검색어를 입력해주세요!");
+    }
+    else {
+        headerSearch.submit();
+    }
+})
+
 
 
 
@@ -686,8 +700,8 @@ let popdataFunTv = async function (id, type) {
 
     
 
-        // 하이라이트
-        let tv_videos = '';
+    // 하이라이트
+    let tv_videos = '';
     if (dataVdo.results.length) {
         dataVdo.results.forEach(function (값, 순번) {
             if (순번 < 2) {
