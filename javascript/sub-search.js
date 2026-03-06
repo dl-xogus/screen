@@ -17,11 +17,29 @@ let backImgFun = async function () {
 
 
 
-// 💡 인기순 데이터 배경에 출력하기
+// 💡 인기순 포스터 배경 출력하기
+// let backImgOutput = function (data) {
+//     const img_path1980 = 'https://image.tmdb.org/t/p/original';
+//     let imageUrl = img_path1980 + data.results[0].backdrop_path;
+//     backImg.style.background = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${imageUrl}) center center / cover no-repeat`;
+// };
+
+
+// 💡 랜덤 배경 출력하기
 let backImgOutput = function (data) {
     const img_path1980 = 'https://image.tmdb.org/t/p/original';
-    let imageUrl = img_path1980 + data.results[0].backdrop_path;
-    backImg.style.background = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${imageUrl}) center center / cover no-repeat`;
+
+    let movies = data.results.filter(movie => movie.backdrop_path);
+
+    let randomIndex = Math.floor(Math.random() * movies.length);
+    let movie = movies[randomIndex];
+
+    let imageUrl = img_path1980 + movie.backdrop_path;
+
+    backImg.style.background = `
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url(${imageUrl}) center center / cover no-repeat
+    `;
 };
 backImgFun();
 
@@ -52,11 +70,20 @@ let searchFun = async function (keyword) {
     let res3 = await fetch(`https://api.themoviedb.org/3/search/person?api_key=be70ce351ebf9cdf3c901d28de3db6a3&query=${encodeURIComponent(keyword)}&language=ko-KR`);
     let personData = await res3.json();
 
+    let a=[],b=[];
+
+    personData.results[0].known_for.forEach(function(값){
+        값.media_type == 'movie' ?  a.push(값) : b.push(값);
+    })
+    
     datasets = [
         { type: '영화', cName: ['movie', 'searchList'], data: movieData.results },
         { type: 'TV프로그램', cName: ['tv', 'searchList'], data: tvData.results },
         { type: '인물', cName: ['person', 'searchH'], data: personData.results }
     ];
+
+    datasets[0].data = [...movieData.results, ...a];
+    datasets[1].data = [...tvData.results, ...b];
 
     datasets.sort(function (a, b) {
         return b.data.length - a.data.length; // 내림차순
