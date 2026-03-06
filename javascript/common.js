@@ -306,20 +306,20 @@ $('.popup-wrap').load('/screen/pages/popup-movieDetails.html', function () {
                 //로딩 아이콘 출력
                 const el_popup = document.querySelector('.popup');
                 $('.popup-wrap').append(`
-        <div class="loader loader--style3" title="2">
-          <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-             width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
-          <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
-            <a draggable="false"nimateTransform attributeType="xml"
-              attributeName="transform"
-              type="rotate"
-              from="0 25 25"
-              to="360 25 25"
-              dur="0.6s"
-              repeatCount="indefinite"/>
-            </path>
-          </svg>
-        </div>`);
+                <div class="loader loader--style3" title="2">
+                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+                <path fill="#000" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+                    <a="false"animateTransform attributeType="xml"
+                    attributeName="transform"
+                    type="rotate"
+                    from="0 25 25"
+                    to="360 25 25"
+                    dur="0.6s"
+                    repeatCount="indefinite"/>
+                    </path>
+                </svg>
+                </div>`);
             }
         })
     }, 1000)
@@ -380,7 +380,7 @@ let popdataFun = async function (id, type) {
 
         casts += `<li class="act-profi person-card" data-id="${값.id}">
                         <p><img draggable="false" src="${값.profile_path ? img_path + 값.profile_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
-                        <b>${값.original_name}</b>
+                        <b>${값.name}</b>
                         <span>${값.character}</span>
                 </li>`;
 
@@ -624,7 +624,7 @@ let popdataFunTv = async function (id, type) {
             tvCasts += `
             <li class="act-profi person-card" data-id="${c.id}">
                 <p><img draggable="false" src="${c.profile_path ? img_path + c.profile_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
-                <b>${c.original_name}</b>
+                <b>${c.name}</b>
                 <span>${c.character}</span>
             </li>`;
         });
