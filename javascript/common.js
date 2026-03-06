@@ -382,7 +382,7 @@ let popdataFun = async function (id, type) {
 
         casts += `<li class="act-profi person-card" data-id="${값.id}">
                         <p><img draggable="false" src="${값.profile_path ? img_path + 값.profile_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
-                        <b>${값.original_name}</b>
+                        <b>${값.name}</b>
                         <span>${값.character}</span>
                 </li>`;
 
@@ -626,7 +626,7 @@ let popdataFunTv = async function (id, type) {
             tvCasts += `
             <li class="act-profi person-card" data-id="${c.id}">
                 <p><img draggable="false" src="${c.profile_path ? img_path + c.profile_path : '/screen/image/img_noimage.jpg'}" alt=""></p>
-                <b>${c.original_name}</b>
+                <b>${c.name}</b>
                 <span>${c.character}</span>
             </li>`;
         });
