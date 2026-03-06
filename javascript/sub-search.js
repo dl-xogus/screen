@@ -76,15 +76,18 @@ let searchFun = async function (keyword) {
         { type: '인물', cName: ['person', 'searchH'], data: personData.results }
     ];
 
-    let a=[],b=[];
 
-    if (personData.results.length) {
+    let a=[],b=[];
+    if(personData.results.length){
         personData.results[0].known_for.forEach(function(값){
             값.media_type == 'movie' ?  a.push(값) : b.push(값);
         })
+
         datasets[0].data = [...movieData.results, ...a];
         datasets[1].data = [...tvData.results, ...b];
     }
+    
+
 
     datasets.sort(function (a, b) {
         return b.data.length - a.data.length; // 내림차순
