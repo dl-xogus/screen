@@ -249,12 +249,12 @@
   <tbody>
     <tr>
       <td>기초데이터수집 및 화면설계</td>
-      <td></td>
+      <td><a href="https://www.figma.com/deck/UgdgzWfKtRBs6qfbbPirTy/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B8%B0%ED%9A%8D?node-id=103-243&t=XCdZSDvoEMrdgjC4-1">프로젝트 기획</a></td>
       <td></td>
     </tr>
     <tr>
       <td>디자인</td>
-      <td></td>
+      <td><a href="https://www.figma.com/design/1UIgOuh1sJmWHh70Z2Qzmh/%EC%98%81%ED%99%94%ED%8C%80?node-id=0-1&t=9f5FGWik6AKkd5Rv-1">디자인</a></td>
       <td></td>
     </tr>
     <tr>
