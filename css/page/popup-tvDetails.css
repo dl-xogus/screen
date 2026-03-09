@@ -3,9 +3,6 @@
 @import url('/popup-com.css');
 
 
-.popup .title .poster {
-    height: 100%;
-}
 
 .drama {
     font-size: 13px;
@@ -270,11 +267,6 @@
         display: flex;
         justify-content: center;
     }
-    .poster .detail-img{
-        width: 100%;
-        max-width: 250px;
-        text-align: center;
-    }
 
     .popup .title-txt{
         padding-left: 0;
@@ -361,9 +353,6 @@
     }
 
     /* ==============하이라이트======================================= */
-    .hig {
-        margin: 60px auto;
-    }
 
     .hig-img {
         display: flex;
@@ -382,10 +371,6 @@
     }
 
     /* =============주요출연진======================================== */
-    .actor {
-        margin: 60px auto;
-    }
-
     .act {
         display: flex;
         overflow-x: auto;
@@ -403,26 +388,7 @@
     }
 
 
-    .act-profi p img {
-        object-fit: cover;
-        border-radius: 100%;
-        width: 70px;
-        height: 70px;
-    }
-
-    .act-profi b {
-        font-size: 15px;
-        margin-top: 8px;
-        line-height: 1.2;
-
-        height: 36px;
-        /* ⭐ 두 줄 높이 고정 */
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        /* 2줄까지만 */
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
+    
 
     /* 배역 이름 */
     .act-profi span {
@@ -434,7 +400,7 @@
     /* =============에피소드======================================== */
 
     .episode {
-        margin: 0 auto;
+        padding-top: 40px;
     }
 
     .tv-option {
@@ -496,12 +462,6 @@
     .poster {
         display: flex;
         justify-content: center;
-    }
-    .poster .detail-img{
-        object-fit: cover;
-        width: 80%;
-        height: 80%;
-        max-width: 250px;
     }
 
     .popup .title-txt{
@@ -591,9 +551,6 @@
     }
 
     /* ==============하이라이트======================================= */
-    .hig {
-        margin: 30px auto;
-    }
 
     .hig-img {
         display: flex;
@@ -612,9 +569,6 @@
     }
 
     /* =============주요출연진======================================== */
-    .actor {
-        margin: 30px auto;
-    }
 
     .act {
         display: flex;
@@ -633,27 +587,6 @@
     }
 
 
-    .act-profi p img {
-        object-fit: cover;
-        border-radius: 50%;
-        width: 55px;
-        height: 55px;
-    }
-
-    .act-profi b {
-        font-size: 12px;
-        margin-top: 3px;
-        line-height: 1.2;
-
-        height: 36px;
-        /* ⭐ 두 줄 높이 고정 */
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        /* 2줄까지만 */
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
     /* 배역 이름 */
     .act-profi span {
         font-size: 11px;
@@ -664,7 +597,7 @@
     /* =============에피소드======================================== */
 
     .episode {
-        margin: 0 auto;
+        padding-top: 40px;
     }
 
     .tv-option {
