@@ -199,13 +199,16 @@
     <tr>
       <td>기초데이터수집 및 화면설계</td>
       <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>디자인</td>
       <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>발표자료</td>
+      <td></td>
       <td></td>
     </tr>
   </tbody>
