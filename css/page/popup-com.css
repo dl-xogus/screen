@@ -32,9 +32,6 @@
 
 
 
-.con a img {
-    height: 100%;
-}
 
 .con a {
     max-width: 100px;
@@ -301,6 +298,20 @@ svg rect {
     align-items: flex-start;
 }
 
+.con-box .con-img-wrap {
+    width: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+.con-box .con-img-wrap > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .con-box {
     display: flex;
     align-items: center;
@@ -309,6 +320,10 @@ svg rect {
 
 .con-box span {
     display: inline;
+}
+
+.con2 .ep-num {
+    padding-right: 5px;
 }
 
 .popup-text span.active {

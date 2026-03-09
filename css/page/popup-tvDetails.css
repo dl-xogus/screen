@@ -186,9 +186,7 @@
     border-radius: 5px;
 }
 
-.con>p {
-    width: 96px;
-}
+
 
 .con>p>img {
     width: 100%;
@@ -198,6 +196,7 @@
     display: flex;
     width: 100%;
     margin: 70px auto;
+    gap: 20px;
 }
 .con>span{padding: 0 20px; } 
 
@@ -227,9 +226,7 @@
 
 
 
-.con>p {
-    width: 96px;
-}
+
 
 .con>p>img {
     width: 100%;

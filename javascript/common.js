@@ -656,7 +656,7 @@ let popdataFunTv = async function (id, type) {
     if (seaData.episodes && seaData.episodes.length) {
         seaData.episodes.forEach(function (ep) {
             let episodeImg = `
-                <a draggable="false" href="${img_path_OG + ep.still_path}">
+                <a  class="con-img-wrap" draggable="false" href="${img_path_OG + ep.still_path}">
                     <img draggable="false" src="${ep.still_path ? img_path + ep.still_path : '/screen/image/img_noimage.jpg'}" alt="">
                 </a>`;
 
@@ -664,10 +664,10 @@ let popdataFunTv = async function (id, type) {
                 <li class="con">
                     <div class="con-box">
                         ${episodeImg}
-                        <span>${ep.episode_number}</span>
+                        
                     </div>
                     <div class="con2">
-                        <b>${ep.name || '제목 없음'}</b>
+                        <b class="ep-num">${ep.episode_number}.</b> <b>${ep.name || '제목 없음'}</b>
                         <p>${ep.overview || '에피소드 정보가 제공되지 않습니다.'}</p>
                     </div>
                 </li>`;
@@ -838,15 +838,16 @@ let popdataFunTv = async function (id, type) {
         if (seaData.episodes && seaData.episodes.length) {
             seaData.episodes.forEach(function (ep) {
                 let episodeImg = ep.still_path
-                    ? `<p><img draggable="false" src="${img_path + ep.still_path}" alt=""></p>`
-                    : `<p><img draggable="false" src="/screen/image/img_noimage.jpg""></p>`; // 대체 이미지
+                    ? `<a class="con-img-wrap" draggable="false" href="${img_path + ep.still_path}"><img draggable="false" src="${img_path + ep.still_path}" alt=""></a>`
+                    : `<a class="con-img-wrap"><img draggable="false" src="/screen/image/img_noimage.jpg""></a>`; // 대체 이미지
 
                 tvEpisodes += `
                         <li class="con">
-                            ${episodeImg}
-                            <span>${ep.episode_number}</span>
+                            <div class="con-box">
+                                ${episodeImg}
+                            </div>
                             <div class="con2">
-                                <b>${ep.name || '제목 없음'}</b>
+                                <b class="ep-num">${ep.episode_number}.</b> <b>${ep.name || '제목 없음'}</b>
                                 <p>${ep.overview || '에피소드 정보가 제공되지 않습니다.'}</p>
                             </div>
                         </li>`;
