@@ -20,17 +20,20 @@ let selectedOTT = [];           // 클릭해서 선택한 OTT
 
 
 const el_navTab = document.querySelectorAll('nav a');
+const el_documentTitle = document.querySelector('head title');
 
 if (type == 'movie') {
     el_navTab.forEach(function (a, i) {
         a.classList.remove('active2');
     });
     el_navTab[0].classList.add('active2');
+    el_documentTitle.innerText = 'SCREEN - 영화';
 } else {
     el_navTab.forEach(function (a, i) {
         a.classList.remove('active2');
     });
     el_navTab[1].classList.add('active2');
+    el_documentTitle.innerText = 'SCREEN - TV프로그램';
 }
 
 
