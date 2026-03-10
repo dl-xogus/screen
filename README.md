@@ -249,22 +249,22 @@
   <tbody>
     <tr>
       <td>화면설계</td>
-      <td><a href="">화면설계</a></td>
+      <td><a href="./files/와이어프레임.pdf">화면설계</a></td>
       <td>주요 페이지의 화면 구성, 사용자 흐름 등 와이어프레임 기반 설계 자료</td>
     </tr>
     <tr>
       <td>디자인</td>
-      <td><a href="">디자인</a></td>
+      <td><a href="./files/디자인.pdf">디자인</a></td>
       <td>Figma로 작업한 디자인 시안. 색상, 폰트, UI 요소 등 자료</td>
     </tr>
     <tr>
       <td>발표자료</td>
-      <td><a href="">발표자료</a></td>
+      <td><a href="./files/A조 발표자료.pdf">발표자료</a></td>
       <td>팀 프로젝트 발표용 슬라이드 자료</td>
     </tr>
     <tr>
       <td>완료 보고서</td>
-      <td><a href="">완료 보고서</a></td>
+      <td><a href="./files/프로젝트 소개.pdf">완료 보고서</a></td>
       <td>프로젝트 진행 결과 요약 등 최종 보고</td>
     </tr>
   </tbody>
